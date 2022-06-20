@@ -136,7 +136,7 @@ function load_bank_from_url(b, url) {
 	load_cnt += 1
 }
 
-async function load_bank_from_url2(b, url) {	
+async function load_bank_from_url_async(b, url) {	
 	var c = document.createElement('canvas')
 	var cc = c.getContext('2d')
 	
@@ -151,28 +151,8 @@ async function load_bank_from_url2(b, url) {
 	}
 	
 	bank[b] = {data:data, width:img.width, height:img.height}
-	console.log('load_bank_from_url2', b, bank[b].data) // XXX
+	console.log('load_bank_from_url_async', b, bank[b].data) // XXX
 
-}
-
-// TODO: remove
-function load_bank2(b, id) {
-	var img = document.getElementById(id)
-	img.crossOrigin = "Anonymous"
-	var data = new Uint8Array(img.width * img.height)
-	ctx.drawImage(img, 0, 0)
-	var image = ctx.getImageData(0,0, img.width, img.height)
-	for (var i=0; i<image.data.length; i+=4) {
-		data[i>>2] = image.data[i][0]>=128 ? 1 : 0
-	}
-	bank[b] = {data:data, width:img.width, height:img.height}
-	console.log('load_bank', b, bank[b])
-	
-}
-
-function wait_for_banks() {
-	while (load_cnt != done_cnt) {
-	}
 }
 
 // REF: https://stackoverflow.com/questions/37854355/wait-for-image-loading-to-complete-in-javascript
@@ -192,8 +172,4 @@ async function _load_image(url) {
 
     await image_promise;
     return img;
-}
-
-function sleep(ms) {
-	return new Promise(resolve => setTimeout(resolve, ms));
 }
