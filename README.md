@@ -36,6 +36,8 @@ https://itch.io/tools/tag-fantasy-console
 
 - line ???
 
+- tri ???
+
 ## input
 
 
