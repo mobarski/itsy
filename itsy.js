@@ -2,6 +2,7 @@
 
 
 // TODO: object (fc? scr?)
+// TODO: color arg -> optional? remove?
 
 function init(width, height, fps) {
 	var screen = document.getElementById("screen")
@@ -34,17 +35,15 @@ function cls(col) {
 }
 
 function color(col) {
+	if (col == undefined) { return }
 	c = draw_pal[col]
 	ctx.fillStyle = colors[c]
 	ctx.strokeStyle = ctx.fillStyle
 }
 
 function pal(col1, col2) {
+	// TODO: reset <- col1==col2==-1
 	draw_pal[col1] = col2
-}
-
-function pset(x, y, col) {
-	rect(x,y,1,1,col)
 }
 
 function rect(x, y, w, h, col) {
@@ -52,11 +51,24 @@ function rect(x, y, w, h, col) {
 	ctx.fillRect(x,y,w,h)
 }
 
+function tri(x1, y1, x2, y2, x3, y3, col) {
+	color(col)
+	// TODO: propper width, edges, etc
+	ctx.beginPath()
+	ctx.moveTo(x1, y1)
+	ctx.lineTo(x2, y2)
+	ctx.lineTo(x3, y3)
+	ctx.lineTo(x1, y1)
+	ctx.closePath()
+	//ctx.stroke()
+	ctx.fill()
+}
+
 function blt(x, y, img_bank, u, v, w, h, colkey) {
 	// TODO
 }
 
-// TODO: load img_bank
+// TODO: load_img_bank
 
 function _fullscreen() {
 	var elem = cnv

@@ -49,11 +49,23 @@ function rect(x, y, w, h, col) {
 	ctx.fillRect(x,y,w,h)
 }
 
+function tri(x1, y1, x2, y2, x3, y3, col) {
+	color(col)
+	// TODO: propper width, edges, etc
+	ctx.beginPath()
+	ctx.moveTo(x1, y1)
+	ctx.lineTo(x2, y2)
+	ctx.lineTo(x3, y3)
+	ctx.lineTo(x1, y1)
+	ctx.closePath()
+	ctx.fill()
+}
+
 function blt(x, y, img_bank, u, v, w, h, colkey) {
 	// TODO
 }
 
-// TODO: load img_bank
+// TODO: load_img_bank
 
 function _fullscreen() {
 	var elem = cnv

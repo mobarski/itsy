@@ -2,16 +2,24 @@
 
 ## Idea
 
-Minimalistic fantasy console API
+Minimalistic fantasy console API.
+
+- super-simple API
+- adjustable resolution
+- adjustable color palette
+- 1 bit sprite-sheets
+- wav/mp3 sounds and music
+- mrmotext friendly
 
 ## Inspiration
 
+- Pyxel
 - PICO-8
 - TIC-80
-- Pyxel
+- 1Bit-Wonder
+- WASM-4
 - Prism-384
 - PQ93
-- WASM-4
 - LIKO-12
 
 https://itch.io/tools/tag-fantasy-console
@@ -32,15 +40,13 @@ https://itch.io/tools/tag-fantasy-console
 
 - rect(x, y, w, h, [col])
 
-- blt(x, y, bank, u, v, w, h, [colkey])
+- tri(x1, y1, x2, y2, x3, y3, [col])
 
-- line ???
+- blt(x, y, bank/sheet, u, v, w, h, [colkey])
 
-- tri ???
 
 ## input
 
 
 ## sound
-
 
