@@ -42,7 +42,7 @@ https://itch.io/tools/tag-fantasy-console
 
 - rect(x, y, w, h, [col])
 
-- blit(x, y, bank/sheet, u, v, w, h, [colkey])
+- blit(x, y, bank, u, v, w, h, col1, col0)
 
 
 ## input

@@ -6,15 +6,17 @@ function blit(x, y, bank_id, u, v, w, h, c1, c0) {
 	console.log('blit from bank',bank_id,'w',b.width,'h',b.height,'data',b.data) // XXX
 	
 	if (c1>=0) {
-		var r1 = parseInt(colors[c1].substr(1,2), 16)
-		var g1 = parseInt(colors[c1].substr(3,2), 16)
-		var b1 = parseInt(colors[c1].substr(5,2), 16)
+		var dc1 = draw_pal[c1]
+		var r1 = parseInt(colors[dc1].substr(1,2), 16)
+		var g1 = parseInt(colors[dc1].substr(3,2), 16)
+		var b1 = parseInt(colors[dc1].substr(5,2), 16)
 	}
 	
 	if (c0>=0) {
-		var r0 = parseInt(colors[c0].substr(1,2), 16)
-		var g0 = parseInt(colors[c0].substr(3,2), 16)
-		var b0 = parseInt(colors[c0].substr(5,2), 16)
+		var dc0 = draw_pal[c0]
+		var r0 = parseInt(colors[dc0].substr(1,2), 16)
+		var g0 = parseInt(colors[dc0].substr(3,2), 16)
+		var b0 = parseInt(colors[dc0].substr(5,2), 16)
 	}
 	
 	for (var i=0; i<h; i++) {
@@ -44,15 +46,17 @@ function blit8(x, y, bank_id, u, v, w, h, c1, c0) {
 	console.log('blit8 from bank',bank_id,'w',b.width,'h',b.height,'data',b.data) // XXX
 	
 	if (c1>=0) {
-		var r1 = parseInt(colors[c1].substr(1,2), 16)
-		var g1 = parseInt(colors[c1].substr(3,2), 16)
-		var b1 = parseInt(colors[c1].substr(5,2), 16)
+		var dc1 = draw_pal[c1]
+		var r1 = parseInt(colors[dc1].substr(1,2), 16)
+		var g1 = parseInt(colors[dc1].substr(3,2), 16)
+		var b1 = parseInt(colors[dc1].substr(5,2), 16)
 	}
 	
 	if (c0>=0) {
-		var r0 = parseInt(colors[c0].substr(1,2), 16)
-		var g0 = parseInt(colors[c0].substr(3,2), 16)
-		var b0 = parseInt(colors[c0].substr(5,2), 16)
+		var dc0 = draw_pal[c0]
+		var r0 = parseInt(colors[dc0].substr(1,2), 16)
+		var g0 = parseInt(colors[dc0].substr(3,2), 16)
+		var b0 = parseInt(colors[dc0].substr(5,2), 16)
 	}
 	
 	for (var i=0; i<h; i++) {
