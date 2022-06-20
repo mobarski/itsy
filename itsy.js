@@ -65,6 +65,19 @@ function tri(x1, y1, x2, y2, x3, y3, col) {
 
 function blt(x, y, img_bank, u, v, w, h, colkey) {
 	// TODO
+	// context.putImageData(imgData,x,y,dirtyX,dirtyY,dirtyWidth,dirtyHeight);
+}
+
+
+function blit(x, y, w, h) {
+	// TODO: experimental
+	ar = new Array(w*h*4)
+	for (var i=0; i<w*h*4; i+=4) {
+		ar[i] = 255
+		ar[i+3] = 255
+	}
+	img = new ImageData(ar, w)
+	ctx.putImageData(img, x, y)
 }
 
 // TODO: load_img_bank
@@ -81,6 +94,10 @@ function _fullscreen() {
 		elem.msRequestFullscreen()
 	}
 }
+
+
+// REF: https://www.w3schools.com/Tags/canvas_getimagedata.asp
+// REF: https://dirask.com/posts/JavaScript-how-to-draw-pixel-on-canvas-element-n1e7Wp
 
 // ===[ input.js ]=================
 

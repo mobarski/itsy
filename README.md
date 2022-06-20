@@ -21,7 +21,9 @@ Minimalistic fantasy console API.
 - Prism-384
 - PQ93
 - LIKO-12
+- cel7
 
+https://paladin-t.github.io/fantasy/
 https://itch.io/tools/tag-fantasy-console
 
 # API
@@ -40,7 +42,7 @@ https://itch.io/tools/tag-fantasy-console
 
 - rect(x, y, w, h, [col])
 
-- blt(x, y, bank/sheet, u, v, w, h, [colkey])
+- blit(x, y, bank/sheet, u, v, w, h, [colkey])
 
 
 ## input
