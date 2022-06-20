@@ -33,6 +33,7 @@ function cls(col) {
 }
 
 function color(col) {
+	if (col == undefined) { return }
 	c = draw_pal[col]
 	ctx.fillStyle = colors[c]
 	ctx.strokeStyle = ctx.fillStyle
@@ -41,10 +42,6 @@ function color(col) {
 function pal(col1, col2) {
 	// TODO: reset <- col1==col2==-1
 	draw_pal[col1] = col2
-}
-
-function pset(x, y, col) {
-	rect(x,y,1,1,col)
 }
 
 function rect(x, y, w, h, col) {

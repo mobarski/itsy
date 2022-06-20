@@ -4,28 +4,41 @@
 
 Minimalistic fantasy console API
 
+## Inspiration
+
+- PICO-8
+- TIC-80
+- Pyxel
+- Prism-384
+- PQ93
+- WASM-4
+- LIKO-12
+
+https://itch.io/tools/tag-fantasy-console
+
 # API
 
 ## screen
 
-init(w, h, fps, [colors])
+- init(w, h, fps, [colors])
 
-camera([x], [y])
+- camera(x, y)
 
-* cls([col])
+- cls([col])
 
-color(col)
+- color(col)
 
-pal(col1, col2)
+- pal(col1, col2)
 
-* pset(x, y, [col])
+- rect(x, y, w, h, [col])
 
-rect(x, y, w, h, [col])
+- blt(x, y, bank, u, v, w, h, [colkey])
 
-blt(x, y, bank, u, v, w, h, [colkey])
-
-? line
-
+- line ???
 
 ## input
+
+
+## sound
+
 
