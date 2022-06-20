@@ -26,6 +26,8 @@ colors = [
 // TODO: automatic
 draw_pal = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 
+bank = {0:null, 1:null}
+
 function camera(x, y) {
 	ctx.setTransform(1,0,0,1,x,y)
 }
@@ -63,24 +65,65 @@ function tri(x1, y1, x2, y2, x3, y3, col) {
 	ctx.fill()
 }
 
-function blt(x, y, img_bank, u, v, w, h, colkey) {
-	// TODO
-	// context.putImageData(imgData,x,y,dirtyX,dirtyY,dirtyWidth,dirtyHeight);
-}
-
-
-function blit(x, y, w, h) {
+function blit(x, y, bnk, u, v, w, h, colkey) {
 	// TODO: experimental
-	ar = new Array(w*h*4)
-	for (var i=0; i<w*h*4; i+=4) {
-		ar[i] = 255
-		ar[i+3] = 255
+	img = ctx.getImageData(x,y,w,h)
+	var b = bank[bnk]
+	console.log(bank)
+	for (var i=0; i<h; i++) {
+		for (var j=0; j<w; j++) {
+			var k = i*j*4
+			if (b.data[(u+j)+(v+i)*b.width]>0) {
+				img.data[k+0] = 255
+				img.data[k+1] = 0
+				img.data[k+2] = 0
+			}
+		}
 	}
-	img = new ImageData(ar, w)
 	ctx.putImageData(img, x, y)
 }
 
-// TODO: load_img_bank
+
+function set_bank(b, data, width) {
+	bank[b] = {data:data, width:width, height:data.length/width}
+}
+
+function load_bank2(b, id) {
+	var img = document.getElementById(id)
+	img.crossOrigin = "Anonymous"
+	var data = new Uint8Array(img.width * img.height)
+	ctx.drawImage(img, 0, 0)
+	var image = ctx.getImageData(0,0, img.width, img.height)
+	for (var i=0; i<image.data.length; i+=4) {
+		data[i>>2] = image.data[i][0]>=128 ? 1 : 0
+	}
+	bank[b] = {data:data, width:img.width, height:img.height}
+	console.log('load_bank', b, bank[b])
+	
+}
+
+function load_bank(b, path) {
+	// TODO
+	//var img = await _load_image(path)
+		
+	var c = document.createElement('canvas')
+	var cc = c.getContext('2d')
+	
+	//cc.drawImage(img, 0, 0)
+	var img = new Image()
+	img.onload = function() {
+		ctx.drawImage(img, 0, 0)
+		var data = new Uint8Array(img.width * img.height)
+		var image = ctx.getImageData(0, 0, img.width, img.height)
+		for (var i=0; i<image.data.length; i+=4) {
+			data[i>>2] = image.data[0]>=128 ? 1 : 0
+		}
+		bank[b] = {data:data, width:img.width, height:img.height}
+		console.log('load_bank',b,bank[b].data) // XXX
+	}
+	img.crossOrigin = "anonymous"
+	img.src = path
+}
 
 function _fullscreen() {
 	var elem = cnv
@@ -96,8 +139,26 @@ function _fullscreen() {
 }
 
 
+// REF: https://stackoverflow.com/questions/60175359/javascript-canvas-drawimage-getimagedata#60175700
+// REF: https://stackoverflow.com/questions/10754661/javascript-getting-imagedata-without-canvas
 // REF: https://www.w3schools.com/Tags/canvas_getimagedata.asp
 // REF: https://dirask.com/posts/JavaScript-how-to-draw-pixel-on-canvas-element-n1e7Wp
+
+async function _load_image(url) {
+    let img;
+    const image_promise = new Promise(resolve => {
+        img = new Image();
+        img.onload = resolve;
+        img.src = url;
+    });
+
+    await image_promise;
+    return img;
+}
+
+function sleep(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 // ===[ input.js ]=================
 
