@@ -27,6 +27,8 @@ colors = [
 // TODO: automatic
 draw_pal = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 
+bank = {}
+
 function camera(x, y) {
 	ctx.setTransform(1,0,0,1,x,y)
 }
@@ -64,19 +66,38 @@ function tri(x1, y1, x2, y2, x3, y3, col) {
 	ctx.fill()
 }
 
-function blit(x, y, bank_id, u, v, w, h, colkey) {
-	// TODO: colkey
+function blit(x, y, bank_id, u, v, w, h, c1, c0) {
 	img = ctx.getImageData(x,y,w,h)
 	var b = bank[bank_id]
 	console.log('blit from bank',bank_id,'w',b.width,'h',b.height,'data',b.data) // XXX
+	
+	if (c1>=0) {
+		var r1 = parseInt(colors[c1].substr(1,2), 16)
+		var g1 = parseInt(colors[c1].substr(3,2), 16)
+		var b1 = parseInt(colors[c1].substr(5,2), 16)
+	}
+	
+	if (c0>=0) {
+		var r0 = parseInt(colors[c0].substr(1,2), 16)
+		var g0 = parseInt(colors[c0].substr(3,2), 16)
+		var b0 = parseInt(colors[c0].substr(5,2), 16)
+	}
 	
 	for (var i=0; i<h; i++) {
 		for (var j=0; j<w; j++) {
 			var k = j*4 + i*w*4
 			if (b.data[(u+j)+(v+i)*b.width]>0) {
-				img.data[k+0] = 255
-				img.data[k+1] = 0
-				img.data[k+2] = 0
+				if (c1>=0) {
+					img.data[k+0] = r1
+					img.data[k+1] = g1
+					img.data[k+2] = b1
+				}
+			} else {
+				if (c0>=0) {
+					img.data[k+0] = r0
+					img.data[k+1] = g0
+					img.data[k+2] = b0
+				}
 			}
 		}
 	}
@@ -98,10 +119,19 @@ function load_bank_from_id(b, id) {
 	var image = cc.getImageData(0, 0, img.width, img.height)
 	
 	for (var i=0; i<image.data.length; i+=4) {
-		data[i>>2] = image.data[i]>=128 ? 1 : 0
+		data[i>>2] = image.data[i+0]>=128 ? 1 : 0
+		if (i>4*256*156 && image.data[i]>=128) {
+			console.log('OK OK OK')
+			break
+		}
 	}
+	console.log('bank',b,'image.data.length',image.data.length,'>>2',image.data.length>>2)
+	
 	
 	bank[b] = {data:data, width:img.width, height:img.height}
+	img.remove()
+	//img.style.visibility = "hidden"
+	
 	console.log('load_bank_from_id', b, bank[b].data) // XXX
 }
 
