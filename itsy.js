@@ -60,7 +60,6 @@ function tri(x1, y1, x2, y2, x3, y3, col) {
 	ctx.lineTo(x3, y3)
 	ctx.lineTo(x1, y1)
 	ctx.closePath()
-	//ctx.stroke()
 	ctx.fill()
 }
 
@@ -88,4 +87,9 @@ function _fullscreen() {
 // TODO: mouse - x,y,button1
 // TODO: left,right,up,down A B
 // TODO: start / select
+
+// ===[ sound.js ]=================
+
+// TODO: use howler.js
+
 
