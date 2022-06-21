@@ -50,14 +50,14 @@ def get_bank16(path):
 
 
 if __name__=="__main__":
-	path = 'img/MRMOTEXT EX.png'
+	path = '../img/MRMOTEXT EX.png'
 	bank = get_bank(path)
 	bank8 = get_bank8(path)
 	bank16 = get_bank16(path)
-	with open('rom.js','w') as fo:
-		print(f'bank[0] = {json.dumps(bank).replace(" ","")}', file=fo)
-		print(f'bank[8] = {json.dumps(bank8).replace(" ","")}', file=fo)
-		#print(f'bank[16] = {json.dumps(bank16).replace(" ","")}', file=fo)
+	with open('../js/rom.js','w') as fo:
+		print(f'fc.bank[0] = {json.dumps(bank).replace(" ","")}', file=fo)
+		print(f'fc.bank[8] = {json.dumps(bank8).replace(" ","")}', file=fo)
+		#print(f'fc.bank[16] = {json.dumps(bank16).replace(" ","")}', file=fo)
 	
 	exit()
 	

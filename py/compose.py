@@ -1,9 +1,11 @@
-PATH = 'itsy.js'
+PATH = '../js/itsy.js'
 
 FILES = [
-	"screen.js",
-	"input.js",
-	"sound.js",
+	"../js/core.js",
+	"../js/screen.js",
+	"../js/input.js",
+	#"../js/sound.js",
+	"../js/rom.js",
 ]
 
 with open(PATH, 'w') as fo:

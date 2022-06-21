@@ -1,27 +1,30 @@
-bank = {}
+fc.bank = {}
 
 function blit(x, y, bank_id, u, v, w, h, c1, c0) {
-	img = ctx.getImageData(x,y,w,h)
-	var b = bank[bank_id]
+	let img = fc.ctx.getImageData(x,y,w,h)
+	let b = fc.bank[bank_id]
 	console.log('blit from bank',bank_id,'w',b.width,'h',b.height,'data',b.data) // XXX
 	
+	let r1,g1,b1
+	let r0,g0,b0
+	
 	if (c1>=0) {
-		var dc1 = draw_pal[c1]
-		var r1 = parseInt(colors[dc1].substr(1,2), 16)
-		var g1 = parseInt(colors[dc1].substr(3,2), 16)
-		var b1 = parseInt(colors[dc1].substr(5,2), 16)
+		let dc1 = fc.draw_pal[c1]
+		r1 = parseInt(fc.colors[dc1].substr(1,2), 16)
+		g1 = parseInt(fc.colors[dc1].substr(3,2), 16)
+		b1 = parseInt(fc.colors[dc1].substr(5,2), 16)
 	}
 	
 	if (c0>=0) {
-		var dc0 = draw_pal[c0]
-		var r0 = parseInt(colors[dc0].substr(1,2), 16)
-		var g0 = parseInt(colors[dc0].substr(3,2), 16)
-		var b0 = parseInt(colors[dc0].substr(5,2), 16)
+		let dc0 = fc.draw_pal[c0]
+		r0 = parseInt(fc.colors[dc0].substr(1,2), 16)
+		g0 = parseInt(fc.colors[dc0].substr(3,2), 16)
+		b0 = parseInt(fc.colors[dc0].substr(5,2), 16)
 	}
 	
-	for (var i=0; i<h; i++) {
-		for (var j=0; j<w; j++) {
-			var k = j*4 + i*w*4
+	for (let i=0; i<h; i++) {
+		for (let j=0; j<w; j++) {
+			let k = j*4 + i*w*4
 			if (b.data[(u+j)+(v+i)*b.width]>0) {
 				if (c1>=0) {
 					img.data[k+0] = r1
@@ -37,33 +40,36 @@ function blit(x, y, bank_id, u, v, w, h, c1, c0) {
 			}
 		}
 	}
-	ctx.putImageData(img, x, y)
+	fc.ctx.putImageData(img, x, y)
 }
 
 function blit8(x, y, bank_id, u, v, w, h, c1, c0) {
-	img = ctx.getImageData(x,y,w,h)
-	var b = bank[bank_id]
+	let img = fc.ctx.getImageData(x,y,w,h)
+	let b = fc.bank[bank_id]
 	console.log('blit8 from bank',bank_id,'w',b.width,'h',b.height,'data',b.data) // XXX
 	
+	let r1,g1,b1
+	let r0,g0,b0
+	
 	if (c1>=0) {
-		var dc1 = draw_pal[c1]
-		var r1 = parseInt(colors[dc1].substr(1,2), 16)
-		var g1 = parseInt(colors[dc1].substr(3,2), 16)
-		var b1 = parseInt(colors[dc1].substr(5,2), 16)
+		let dc1 = fc.draw_pal[c1]
+		r1 = parseInt(fc.colors[dc1].substr(1,2), 16)
+		g1 = parseInt(fc.colors[dc1].substr(3,2), 16)
+		b1 = parseInt(fc.colors[dc1].substr(5,2), 16)
 	}
 	
 	if (c0>=0) {
-		var dc0 = draw_pal[c0]
-		var r0 = parseInt(colors[dc0].substr(1,2), 16)
-		var g0 = parseInt(colors[dc0].substr(3,2), 16)
-		var b0 = parseInt(colors[dc0].substr(5,2), 16)
+		let dc0 = fc.draw_pal[c0]
+		r0 = parseInt(fc.colors[dc0].substr(1,2), 16)
+		g0 = parseInt(fc.colors[dc0].substr(3,2), 16)
+		b0 = parseInt(fc.colors[dc0].substr(5,2), 16)
 	}
 	
-	for (var i=0; i<h; i++) {
-		for (var j=0; j<w; j++) {
-			var k = j*4 + i*w*4
-			var pos = (u+j)+(v+i)*b.width
-			var mask = 1 << (u+j)%8
+	for (let i=0; i<h; i++) {
+		for (let j=0; j<w; j++) {
+			let k = j*4 + i*w*4
+			let pos = (u+j)+(v+i)*b.width
+			let mask = 1 << (u+j)%8
 			if (b.data[pos>>3] & mask) {
 				if (c1>=0) {
 					img.data[k+0] = r1
@@ -79,79 +85,77 @@ function blit8(x, y, bank_id, u, v, w, h, c1, c0) {
 			}
 		}
 	}
-	ctx.putImageData(img, x, y)
+	fc.ctx.putImageData(img, x, y)
 }
 
 function set_bank(b, data, width) {
-	bank[b] = {data:data, width:width, height:data.length/width}
+	fc.bank[b] = {data:data, width:width, height:data.length/width}
 }
 
 function load_bank_from_id(b, id) {		
-	var c = document.createElement('canvas')
-	var cc = c.getContext('2d')
+	let c = document.createElement('canvas')
+	let cc = c.getContext('2d')
 
-	var img = document.getElementById(id)
+	let img = document.getElementById(id)
 	cc.drawImage(img, 0, 0)
-	var data = new Uint8Array(img.width * img.height)
-	var image = cc.getImageData(0, 0, img.width, img.height)
+	let data = new Uint8Array(img.width * img.height)
+	let image = cc.getImageData(0, 0, img.width, img.height)
 	
-	for (var i=0; i<image.data.length; i+=4) {
+	for (let i=0; i<image.data.length; i+=4) {
 		data[i>>2] = image.data[i+0]>=128 ? 1 : 0
 		if (i>4*256*156 && image.data[i]>=128) {
-			console.log('OK OK OK')
+			console.log('OK OK OK') // XXX
 			break
 		}
 	}
 	console.log('bank',b,'image.data.length',image.data.length,'>>2',image.data.length>>2)
 	
 	
-	bank[b] = {data:data, width:img.width, height:img.height}
+	fc.bank[b] = {data:data, width:img.width, height:img.height}
 	img.remove()
 	//img.style.visibility = "hidden"
 	
-	console.log('load_bank_from_id', b, bank[b].data) // XXX
+	console.log('load_bank_from_id', b, fc.bank[b].data) // XXX
 }
 
 
 function load_bank_from_url(b, url) {	
-	var c = document.createElement('canvas')
-	var cc = c.getContext('2d')
+	let c = document.createElement('canvas')
+	let cc = c.getContext('2d')
 	
-	var img = new Image()
+	let img = new Image()
 	img.onload = function() {
 		cc.drawImage(img, 0, 0)
-		var data = new Uint8Array(img.width * img.height)
-		var image = cc.getImageData(0, 0, img.width, img.height)
+		let data = new Uint8Array(img.width * img.height)
+		let image = cc.getImageData(0, 0, img.width, img.height)
 		
-		for (var i=0; i<image.data.length; i+=4) {
+		for (let i=0; i<image.data.length; i+=4) {
 			data[i>>2] = image.data[i]>=128 ? 1 : 0
 		}
 		
-		bank[b] = {data:data, width:img.width, height:img.height}
-		console.log('load_bank_from_url', b, bank[b].data) // XXX
-		done_cnt += 1
+		fc.bank[b] = {data:data, width:img.width, height:img.height}
+		console.log('load_bank_from_url', b, fc.bank[b].data) // XXX
 	}
 	img.crossOrigin = "anonymous"
 	img.src = url
-	load_cnt += 1
 }
 
 async function load_bank_from_url_async(b, url) {	
-	var c = document.createElement('canvas')
-	var cc = c.getContext('2d')
+	let c = document.createElement('canvas')
+	let cc = c.getContext('2d')
 	
 	const img = await _load_image(url)
 	
 	cc.drawImage(img, 0, 0)
-	var data = new Uint8Array(img.width * img.height)
-	var image = cc.getImageData(0, 0, img.width, img.height)
-	
-	for (var i=0; i<image.data.length; i+=4) {
+	let data = new Uint8Array(img.width * img.height)
+	let image = cc.getImageData(0, 0, img.width, img.height)
+
+	for (let i=0; i<image.data.length; i+=4) {
 		data[i>>2] = image.data[i]>=128 ? 1 : 0
 	}
 	
-	bank[b] = {data:data, width:img.width, height:img.height}
-	console.log('load_bank_from_url_async', b, bank[b].data) // XXX
+	fc.bank[b] = {data:data, width:img.width, height:img.height}
+	console.log('load_bank_from_url_async', b, fc.bank[b].data) // XXX
 
 }
 
