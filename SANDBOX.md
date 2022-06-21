@@ -115,6 +115,23 @@ set(snds0, snds1, snds2, snds3)
 Set the lists of sound (0-63) of all channels. If an empty list is specified, that channel is not used for playback.
 e.g. pyxel.music(0).set([0, 1], [2, 3], [4], [])
 
+## pq93
+
+Audio
+sfx i, [channel, [pos, [len]]]
+	★ plays sound effect i.
+	★ channel dictates which of the 4 audio channels should be used; they range from 0..3. a value of -1 will choose an empty channel if available.
+	★ pos specifies which beat to start on.
+	★ len specifies how many beats to play before stopping.
+	★ returns the audio channel used to play the sfx.
+
+mus [i]
+	★ will play pattern i, or stop all music by default.
+
+reverb [percent]
+	★ will set """reverb""" to percent, or reset to zero.
+	★ try it out in a cave!
+
 # text
 
 ## pyxel
