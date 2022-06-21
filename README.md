@@ -59,3 +59,6 @@ https://itch.io/tools/tag-fantasy-console
 
 ## sound
 
+## other
+
+- trace(...args)

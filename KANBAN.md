@@ -2,8 +2,7 @@
 
 # TODO
 
-- boot / init / update / draw / run
-- fps calculation / benchmark
+- drop frame / fps calculation / benchmark
 
 - option to add screen+fullscreen to document
 - fc.col1 / fc.col0
@@ -35,6 +34,7 @@
 
 # DONE
 
+- boot / init / update / draw / run
 - text api idea/docs
 - blit - 8 pixels per value as default, blit1 for 1 pixel per value
 - var vs let
