@@ -1,10 +1,5 @@
 fc = {}
 
-function trace(...args) {
-	// TODO: option to turn on/off
-	console.log(...args)
-}
-
 async function run(boot, update, draw) {
 	fc.boot = boot
 	fc.update = update
@@ -24,7 +19,11 @@ async function run(boot, update, draw) {
 		let t2 = _time()
 	}
 	
-	setInterval(main_iter, fc.target_dt)
+	fc.interval_id = setInterval(main_iter, fc.target_dt)
+}
+
+function halt() {
+	clearInterval(fc.interval_id)
 }
 
 function _time() {

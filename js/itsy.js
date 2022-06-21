@@ -6,24 +6,30 @@ async function run(boot, update, draw) {
 	fc.boot = boot
 	fc.update = update
 	fc.draw = draw
+	fc.target_dt = 1000 / fc.fps
 	
 	await fc.boot()
 	
+	fc.ts = _time()
 	function main_iter() {
-		// TODO: check for some kind of stop iteration flag
+		// TODO: check for already running
+		// TODO: check for some stop iteration flag
+		let t0 = _time()
 		fc.update()
-		// TODO: calculate time-delta and skip draw if necessary
-		fc.draw()
+		let t1 = _time()
+		fc.draw() // TODO: skip draw if necessary
+		let t2 = _time()
 	}
 	
-	let target_dt = 1000 / fc.fps
-	
-	setInterval(main_iter, target_dt)
+	fc.interval_id = setInterval(main_iter, fc.target_dt)
 }
 
-function trace(...args) {
-	// TODO: option to turn on/off
-	console.log(...args)
+function halt() {
+	clearInterval(fc.interval_id)
+}
+
+function _time() {
+	return new Date().valueOf()
 }
 
 // ===[ screen.js ]=================

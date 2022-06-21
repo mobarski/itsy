@@ -61,4 +61,4 @@ https://itch.io/tools/tag-fantasy-console
 
 ## other
 
-- trace(...args)
+- halt()
