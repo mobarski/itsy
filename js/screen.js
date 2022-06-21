@@ -1,7 +1,13 @@
 
-// TODO: color arg -> optional? remove?
+fc.colors = [
+	// https://lospec.com/palette-list/sweetie-16
+	"#1a1c2c","#5d275d","#b13e53","#ef7d57",
+	"#ffcd75","#a7f070","#38b764","#257179",
+	"#29366f","#3b5dc9","#41a6f6","#73eff7",
+	"#f4f4f4","#94b0c2","#566c86","#333c57"
+]
 
-function init(width, height, fps) {
+function init(width, height, fps, colors) {
 	let screen = document.getElementById("screen")
 	screen.innerHTML = `<canvas id="main_canvas" width="${width}" height="${height}""></canvas>`
 	
@@ -12,19 +18,15 @@ function init(width, height, fps) {
 	fc.ctx.msImageSmoothingEnabled = false
 	fc.ctx.imageSmoothingEnabled = false
 	
+	fc.width = width
+	fc.height = height
 	fc.fps = fps
+	
+	if (colors) {
+		fc.colors = colors
+	}
+	pal()
 }
-
-// TODO: argument to init
-fc.colors = [
-	// https://lospec.com/palette-list/sweetie-16
-	"#1a1c2c","#5d275d","#b13e53","#ef7d57",
-	"#ffcd75","#a7f070","#38b764","#257179",
-	"#29366f","#3b5dc9","#41a6f6","#73eff7",
-	"#f4f4f4","#94b0c2","#566c86","#333c57"
-]
-// TODO: automatic
-fc.draw_pal = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 
 function camera(x, y) {
 	fc.ctx.setTransform(1,0,0,1,x,y)
@@ -42,8 +44,14 @@ function color(col) {
 }
 
 function pal(col1, col2) {
-	// TODO: reset <- col1==col2==-1
-	fc.draw_pal[col1] = col2
+	if (col1>=0) {
+		fc.draw_pal[col1] = col2
+	} else {
+		fc.draw_pal = []
+		for (let i=0; i<fc.colors.length; i++) {
+			fc.draw_pal.push(i)
+		}
+	}
 }
 
 function rect(x, y, w, h, col) {

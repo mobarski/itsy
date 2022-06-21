@@ -35,9 +35,15 @@ function _time() {
 // ===[ screen.js ]=================
 
 
-// TODO: color arg -> optional? remove?
+fc.colors = [
+	// https://lospec.com/palette-list/sweetie-16
+	"#1a1c2c","#5d275d","#b13e53","#ef7d57",
+	"#ffcd75","#a7f070","#38b764","#257179",
+	"#29366f","#3b5dc9","#41a6f6","#73eff7",
+	"#f4f4f4","#94b0c2","#566c86","#333c57"
+]
 
-function init(width, height, fps) {
+function init(width, height, fps, colors) {
 	let screen = document.getElementById("screen")
 	screen.innerHTML = `<canvas id="main_canvas" width="${width}" height="${height}""></canvas>`
 	
@@ -49,18 +55,12 @@ function init(width, height, fps) {
 	fc.ctx.imageSmoothingEnabled = false
 	
 	fc.fps = fps
+	
+	if (colors) {
+		fc.colors = colors
+	}
+	pal()
 }
-
-// TODO: argument to init
-fc.colors = [
-	// https://lospec.com/palette-list/sweetie-16
-	"#1a1c2c","#5d275d","#b13e53","#ef7d57",
-	"#ffcd75","#a7f070","#38b764","#257179",
-	"#29366f","#3b5dc9","#41a6f6","#73eff7",
-	"#f4f4f4","#94b0c2","#566c86","#333c57"
-]
-// TODO: automatic
-fc.draw_pal = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 
 function camera(x, y) {
 	fc.ctx.setTransform(1,0,0,1,x,y)
@@ -78,8 +78,14 @@ function color(col) {
 }
 
 function pal(col1, col2) {
-	// TODO: reset <- col1==col2==-1
-	fc.draw_pal[col1] = col2
+	if (col1>=0) {
+		fc.draw_pal[col1] = col2
+	} else {
+		fc.draw_pal = []
+		for (let i=0; i<fc.colors.length; i++) {
+			fc.draw_pal.push(i)
+		}
+	}
 }
 
 function rect(x, y, w, h, col) {
@@ -115,7 +121,7 @@ fc.bank = {}
 function blit(x, y, bank_id, u, v, w, h, c1, c0) {
 	let img = fc.ctx.getImageData(x,y,w,h)
 	let b = fc.bank[bank_id]
-	console.log('blit from bank',bank_id,'w',b.width,'h',b.height,'data',b.data) // XXX
+	//console.log('blit from bank',bank_id,'w',b.width,'h',b.height,'data',b.data) // XXX
 	
 	let r1,g1,b1
 	let r0,g0,b0
@@ -161,7 +167,7 @@ function blit(x, y, bank_id, u, v, w, h, c1, c0) {
 function blit1(x, y, bank_id, u, v, w, h, c1, c0) {
 	let img = fc.ctx.getImageData(x,y,w,h)
 	let b = fc.bank[bank_id]
-	console.log('blit1 from bank',bank_id,'w',b.width,'h',b.height,'data',b.data) // XXX
+	//console.log('blit1 from bank',bank_id,'w',b.width,'h',b.height,'data',b.data) // XXX
 	
 	let r1,g1,b1
 	let r0,g0,b0
@@ -221,18 +227,18 @@ function load_bank_from_id(b, id) {
 	for (let i=0; i<image.data.length; i+=4) {
 		data[i>>2] = image.data[i+0]>=128 ? 1 : 0
 		if (i>4*256*156 && image.data[i]>=128) {
-			console.log('OK OK OK') // XXX
+			//console.log('OK OK OK') // XXX
 			break
 		}
 	}
-	console.log('bank',b,'image.data.length',image.data.length,'>>2',image.data.length>>2)
+	//console.log('bank',b,'image.data.length',image.data.length,'>>2',image.data.length>>2)
 	
 	
 	fc.bank[b] = {data:data, width:img.width, height:img.height}
 	img.remove()
 	//img.style.visibility = "hidden"
 	
-	console.log('load_bank_from_id', b, fc.bank[b].data) // XXX
+	//console.log('load_bank_from_id', b, fc.bank[b].data) // XXX
 }
 
 
@@ -252,7 +258,7 @@ function load_bank_from_url(b, url) {
 		}
 		
 		fc.bank[b] = {data:data, width:img.width, height:img.height}
-		console.log('load_bank_from_url', b, fc.bank[b].data) // XXX
+		//console.log('load_bank_from_url', b, fc.bank[b].data) // XXX
 	}
 	img.crossOrigin = "anonymous"
 	img.src = url
@@ -274,7 +280,7 @@ async function load_bank_from_url_async(b, url) {
 	}
 	
 	fc.bank[b] = {data:data, width:img.width, height:img.height}
-	console.log('load_bank_from_url_async', b, fc.bank[b].data) // XXX
+	//console.log('load_bank_from_url_async', b, fc.bank[b].data) // XXX
 
 }
 

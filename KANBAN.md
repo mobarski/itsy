@@ -2,8 +2,6 @@
 
 # TODO
 
-- move colors to init
-- reset pal
 
 - drop frame / fps calculation / benchmark
 - fc.col1 / fc.col0
@@ -36,6 +34,8 @@
 
 # DONE
 
+- reset pal
+- move colors to init
 - boot / init / update / draw / run
 - text api idea/docs
 - blit - 8 pixels per value as default, blit1 for 1 pixel per value

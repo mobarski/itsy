@@ -4,7 +4,7 @@ fc.bank = {}
 function blit(x, y, bank_id, u, v, w, h, c1, c0) {
 	let img = fc.ctx.getImageData(x,y,w,h)
 	let b = fc.bank[bank_id]
-	console.log('blit from bank',bank_id,'w',b.width,'h',b.height,'data',b.data) // XXX
+	//console.log('blit from bank',bank_id,'w',b.width,'h',b.height,'data',b.data) // XXX
 	
 	let r1,g1,b1
 	let r0,g0,b0
@@ -50,7 +50,7 @@ function blit(x, y, bank_id, u, v, w, h, c1, c0) {
 function blit1(x, y, bank_id, u, v, w, h, c1, c0) {
 	let img = fc.ctx.getImageData(x,y,w,h)
 	let b = fc.bank[bank_id]
-	console.log('blit1 from bank',bank_id,'w',b.width,'h',b.height,'data',b.data) // XXX
+	//console.log('blit1 from bank',bank_id,'w',b.width,'h',b.height,'data',b.data) // XXX
 	
 	let r1,g1,b1
 	let r0,g0,b0
@@ -110,18 +110,18 @@ function load_bank_from_id(b, id) {
 	for (let i=0; i<image.data.length; i+=4) {
 		data[i>>2] = image.data[i+0]>=128 ? 1 : 0
 		if (i>4*256*156 && image.data[i]>=128) {
-			console.log('OK OK OK') // XXX
+			//console.log('OK OK OK') // XXX
 			break
 		}
 	}
-	console.log('bank',b,'image.data.length',image.data.length,'>>2',image.data.length>>2)
+	//console.log('bank',b,'image.data.length',image.data.length,'>>2',image.data.length>>2)
 	
 	
 	fc.bank[b] = {data:data, width:img.width, height:img.height}
 	img.remove()
 	//img.style.visibility = "hidden"
 	
-	console.log('load_bank_from_id', b, fc.bank[b].data) // XXX
+	//console.log('load_bank_from_id', b, fc.bank[b].data) // XXX
 }
 
 
@@ -141,7 +141,7 @@ function load_bank_from_url(b, url) {
 		}
 		
 		fc.bank[b] = {data:data, width:img.width, height:img.height}
-		console.log('load_bank_from_url', b, fc.bank[b].data) // XXX
+		//console.log('load_bank_from_url', b, fc.bank[b].data) // XXX
 	}
 	img.crossOrigin = "anonymous"
 	img.src = url
@@ -163,7 +163,7 @@ async function load_bank_from_url_async(b, url) {
 	}
 	
 	fc.bank[b] = {data:data, width:img.width, height:img.height}
-	console.log('load_bank_from_url_async', b, fc.bank[b].data) // XXX
+	//console.log('load_bank_from_url_async', b, fc.bank[b].data) // XXX
 
 }
 
