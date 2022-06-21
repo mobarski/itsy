@@ -61,4 +61,4 @@ if __name__=="__main__":
 		print(f'fc.bank[0] = {json.dumps(bank8).replace(" ","")}', file=fo)
 		print(f'fc.bank[8] = {json.dumps(bank8).replace(" ","")}', file=fo)
 		#print(f'fc.bank[16] = {json.dumps(bank16).replace(" ","")}', file=fo)
-	
+
