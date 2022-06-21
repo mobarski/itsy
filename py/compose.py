@@ -5,6 +5,7 @@ FILES = [
 	"../js/screen.js",
 	"../js/input.js",
 	#"../js/sound.js",
+	"../js/bank.js",
 	"../js/rom.js",
 ]
 

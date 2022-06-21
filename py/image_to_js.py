@@ -4,7 +4,7 @@ import base64
 
 # 1->130kb 8->25kb 16:20kb
 
-def get_bank(path):
+def get_bank1(path):
 	im = Image.open(path)
 	w = im.width
 	h = im.height
@@ -48,27 +48,17 @@ def get_bank16(path):
 	
 	return {"data":data, "width":w, "height":h}
 
+# !!!!!!!!!!!!!!!!!!
+get_bank = get_bank8
+# !!!!!!!!!!!!!!!!!!
 
 if __name__=="__main__":
 	path = '../charsets/MRMOTEXT EX.png'
-	bank = get_bank(path)
+	bank1 = get_bank1(path)
 	bank8 = get_bank8(path)
 	bank16 = get_bank16(path)
 	with open('../js/rom.js','w') as fo:
-		print(f'fc.bank[0] = {json.dumps(bank).replace(" ","")}', file=fo)
+		print(f'fc.bank[0] = {json.dumps(bank8).replace(" ","")}', file=fo)
 		print(f'fc.bank[8] = {json.dumps(bank8).replace(" ","")}', file=fo)
 		#print(f'fc.bank[16] = {json.dumps(bank16).replace(" ","")}', file=fo)
-	
-	exit()
-	
-	data = bank['data']
-	data8 = bank8['data']
-	w = bank['width']
-	h = bank['height']
-	for y in range(h):
-		print(''.join(map(str,data[y*h:(y+1)*h])))
-	for y in range(h):
-		print(' '.join(map(str,data8[y*h//8:(y+1)*h//8])))
-	#b64 = base64.b64encode(open(path,'rb').read())
-	#open('rom.b64.js','wb').write(b64)
 	

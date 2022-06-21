@@ -1,52 +1,10 @@
 fc.bank = {}
 
+// 8 pixels encoded on 1 value (default)
 function blit(x, y, bank_id, u, v, w, h, c1, c0) {
 	let img = fc.ctx.getImageData(x,y,w,h)
 	let b = fc.bank[bank_id]
 	console.log('blit from bank',bank_id,'w',b.width,'h',b.height,'data',b.data) // XXX
-	
-	let r1,g1,b1
-	let r0,g0,b0
-	
-	if (c1>=0) {
-		let dc1 = fc.draw_pal[c1]
-		r1 = parseInt(fc.colors[dc1].substr(1,2), 16)
-		g1 = parseInt(fc.colors[dc1].substr(3,2), 16)
-		b1 = parseInt(fc.colors[dc1].substr(5,2), 16)
-	}
-	
-	if (c0>=0) {
-		let dc0 = fc.draw_pal[c0]
-		r0 = parseInt(fc.colors[dc0].substr(1,2), 16)
-		g0 = parseInt(fc.colors[dc0].substr(3,2), 16)
-		b0 = parseInt(fc.colors[dc0].substr(5,2), 16)
-	}
-	
-	for (let i=0; i<h; i++) {
-		for (let j=0; j<w; j++) {
-			let k = j*4 + i*w*4
-			if (b.data[(u+j)+(v+i)*b.width]>0) {
-				if (c1>=0) {
-					img.data[k+0] = r1
-					img.data[k+1] = g1
-					img.data[k+2] = b1
-				}
-			} else {
-				if (c0>=0) {
-					img.data[k+0] = r0
-					img.data[k+1] = g0
-					img.data[k+2] = b0
-				}
-			}
-		}
-	}
-	fc.ctx.putImageData(img, x, y)
-}
-
-function blit8(x, y, bank_id, u, v, w, h, c1, c0) {
-	let img = fc.ctx.getImageData(x,y,w,h)
-	let b = fc.bank[bank_id]
-	console.log('blit8 from bank',bank_id,'w',b.width,'h',b.height,'data',b.data) // XXX
 	
 	let r1,g1,b1
 	let r0,g0,b0
@@ -88,10 +46,58 @@ function blit8(x, y, bank_id, u, v, w, h, c1, c0) {
 	fc.ctx.putImageData(img, x, y)
 }
 
+// 1 pixel encoded on 1 value (for simplicity)
+function blit1(x, y, bank_id, u, v, w, h, c1, c0) {
+	let img = fc.ctx.getImageData(x,y,w,h)
+	let b = fc.bank[bank_id]
+	console.log('blit1 from bank',bank_id,'w',b.width,'h',b.height,'data',b.data) // XXX
+	
+	let r1,g1,b1
+	let r0,g0,b0
+	
+	if (c1>=0) {
+		let dc1 = fc.draw_pal[c1]
+		r1 = parseInt(fc.colors[dc1].substr(1,2), 16)
+		g1 = parseInt(fc.colors[dc1].substr(3,2), 16)
+		b1 = parseInt(fc.colors[dc1].substr(5,2), 16)
+	}
+	
+	if (c0>=0) {
+		let dc0 = fc.draw_pal[c0]
+		r0 = parseInt(fc.colors[dc0].substr(1,2), 16)
+		g0 = parseInt(fc.colors[dc0].substr(3,2), 16)
+		b0 = parseInt(fc.colors[dc0].substr(5,2), 16)
+	}
+	
+	for (let i=0; i<h; i++) {
+		for (let j=0; j<w; j++) {
+			let k = j*4 + i*w*4
+			if (b.data[(u+j)+(v+i)*b.width]>0) {
+				if (c1>=0) {
+					img.data[k+0] = r1
+					img.data[k+1] = g1
+					img.data[k+2] = b1
+				}
+			} else {
+				if (c0>=0) {
+					img.data[k+0] = r0
+					img.data[k+1] = g0
+					img.data[k+2] = b0
+				}
+			}
+		}
+	}
+	fc.ctx.putImageData(img, x, y)
+}
+
+
+
 function set_bank(b, data, width) {
 	fc.bank[b] = {data:data, width:width, height:data.length/width}
 }
 
+
+// 1 bit per value
 function load_bank_from_id(b, id) {		
 	let c = document.createElement('canvas')
 	let cc = c.getContext('2d')
@@ -119,6 +125,7 @@ function load_bank_from_id(b, id) {
 }
 
 
+// 1 bit per value
 function load_bank_from_url(b, url) {	
 	let c = document.createElement('canvas')
 	let cc = c.getContext('2d')
@@ -140,6 +147,7 @@ function load_bank_from_url(b, url) {
 	img.src = url
 }
 
+// 1 bit per value
 async function load_bank_from_url_async(b, url) {	
 	let c = document.createElement('canvas')
 	let cc = c.getContext('2d')

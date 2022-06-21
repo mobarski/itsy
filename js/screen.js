@@ -1,5 +1,4 @@
 
-// TODO: object (fc? scr?)
 // TODO: color arg -> optional? remove?
 
 function init(width, height, fps) {
@@ -9,7 +8,11 @@ function init(width, height, fps) {
 	fc.cnv = document.getElementById("main_canvas")
 	
 	fc.ctx = fc.cnv.getContext("2d")
+	fc.ctx.webkitImageSmoothingEnabled = false
+	fc.ctx.msImageSmoothingEnabled = false
 	fc.ctx.imageSmoothingEnabled = false
+	
+	fc.fps = fps
 }
 
 // TODO: argument to init
