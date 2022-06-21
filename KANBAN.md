@@ -2,10 +2,12 @@
 
 # TODO
 
+- move colors to init
+- reset pal
+
 - drop frame / fps calculation / benchmark
 - fc.col1 / fc.col0
 - core docs (main / init / update / draw / run)
-
 
 - text
 - playscii .char support (https://github.com/michael-lazar/playscii/tree/master/charsets)
