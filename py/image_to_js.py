@@ -50,7 +50,7 @@ def get_bank16(path):
 
 
 if __name__=="__main__":
-	path = '../img/MRMOTEXT EX.png'
+	path = '../charsets/MRMOTEXT EX.png'
 	bank = get_bank(path)
 	bank8 = get_bank8(path)
 	bank16 = get_bank16(path)

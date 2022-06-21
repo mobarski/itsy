@@ -8,8 +8,8 @@ Minimalistic fantasy console API.
 - adjustable resolution
 - adjustable color palette
 - 1 bit sprite-sheets
-- mrmotext friendly
-- wav/mp3 sounds and music
+- playscii .char support (mrmotext friendly)
+- simple sound-synth
 
 ## Inspiration
 
@@ -42,7 +42,7 @@ https://itch.io/tools/tag-fantasy-console
 
 - rect(x, y, w, h, [col])
 
-- blit(x, y, bank, u, v, w, h, col1, col0)
+- blit(x, y, bank, u, v, w, h, [col1], [col0])
 
 
 ## input
