@@ -44,6 +44,8 @@ https://itch.io/tools/tag-fantasy-console
 
 - blit(x, y, bank, u, v, w, h, [col1], [col0])
 
+- ??? clip
+
 
 ## input
 
