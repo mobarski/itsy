@@ -1,3 +1,144 @@
+# input
+
+## pyxel
+
+    mouse_x, mouse_y
+    The current position of the mouse cursor
+
+    mouse_wheel
+    The current value of the mouse wheel
+
+    btn(key)
+    Return True if key is pressed, otherwise return False. (Key definition list)
+
+    btnp(key, [hold], [repeat])
+    Return True if key is pressed at that frame, otherwise return False. When hold and repeat are specified, True will be returned at the repeat frame interval when the key is held down for more than hold frames.
+
+    btnr(key)
+    Return True if key is released at that frame, otherwise return False.
+
+    mouse(visible)
+    If visible is True, show the mouse cursor. If False, hide it. Even if the mouse cursor is not displayed, its position is updated.
+
+
+## pico8
+
+Mouse and Keyboard Input
+
+	// EXPERIMENTAL -- but mostly working on all platforms
+
+	Mouse and keyboard input can be achieved by enabling devkit input mode:
+
+	POKE(0x5F2D, flags) -- where flags are:
+
+	0x1 Enable
+	0x2 Mouse buttons trigger btn(4)..btn(6)
+	0x4 Pointer lock (use stat 38..39 to read movements)
+
+	Note that not every PICO-8 will have a keyboard or mouse attached to it, so when posting carts to the Lexaloffle BBS, it is encouraged to make keyboard and/or mouse control optional and off by default, if possible. When devkit input mode is enabled, a message is displayed to BBS users warning them that the program may be expecting input beyond the standard 6-button controllers.
+
+	The state of the mouse and keyboard can be found in stat(x):
+
+	STAT(30) -- (Boolean) True when a keypress is available
+	STAT(31) -- (String) character returned by keyboard
+	STAT(32) -- Mouse X
+	STAT(33) -- Mouse Y
+	STAT(34) -- Mouse buttons (bitfield)
+	STAT(36) -- Mouse wheel event
+	STAT(38) -- Relative x movement (in host desktop pixels) -- requires flag 0x4
+	STAT(39) -- Relative y movement (in host desktop pixels) -- requires flag 0x4
+
+
+BTN([B], [PL])
+
+	Get button B state for player PL (default 0)
+
+	B: 0..5: left right up down button_o button_x
+	PL: player index 0..7
+
+	Instead of using a number for B, it is also possible to use a button glyph. (In the coded editor, use Shift-L R U D O X)
+
+	If no parameters supplied, returns a bitfield of all 12 button states for player 0 & 1 // P0: bits 0..5 P1: bits 8..13
+
+	Default keyboard mappings to player buttons:
+	 
+	  player 0: [DPAD]: cursors, [O]: Z C N   [X]: X V M
+	  player 1: [DPAD]: SFED,    [O]: LSHIFT  [X]: TAB W  Q A
+	⚠
+
+	Although PICO-8 accepts all button combinations, note that it is generally impossible to press both LEFT and RIGHT at the same time on a physical game controller. On some controllers, UP + LEFT/RIGHT is also awkward if [X] or [O] could be used instead of UP (e.g. to jump / accelerate).
+
+BTNP(B, [PL])
+
+	BTNP is short for "Button Pressed"; Instead of being true when a button is held down, BTNP returns true when a button is down AND it was not down the last frame. It also repeats after 15 frames, returning true every 4 frames after that (at 30fps -- double that at 60fps). This can be used for things like menu navigation or grid-wise player movement.
+
+	The state that BTNP reads is reset at the start of each call to _UPDATE or _UPDATE60, so it is preferable to use BTNP from inside one of those functions.
+
+	Custom delays (in frames 30fps) can be set by poking the following memory addresses:
+
+	POKE(0X5F5C, DELAY) -- SET THE INITIAL DELAY BEFORE REPEATING. 255 MEANS NEVER REPEAT.
+	POKE(0X5F5D, DELAY) -- SET THE REPEATING DELAY.
+
+	In both cases, 0 can be used for the default behaviour (delays 15 and 4)
+
+## tic80
+
+mouse() -> x, y, left, middle, right, scrollx, scrolly
+Returns
+
+    x y : coordinates of the mouse pointer
+    left : left button is down (true/false)
+    middle : middle button is down (true/false)
+    right : right button is down (true/false)
+    scrollx : x scroll delta since last frame (-31..32)
+    scrolly : y scroll delta since last frame (-31..32)
+
+
+btn(id) -> pressed
+
+	This function allows you to read the status of one of the buttons attached to TIC.
+	The function returns true if the key with the supplied id is currently in the pressed state.
+	It remains true for as long as the key is held down.
+	If you want to test if a key was just pressed, use btnp() instead.
+
+btnp(id hold=-1 period=-1) -> pressed
+
+	This function allows you to read the status of one of TIC's buttons.
+	It returns true only if the key has been pressed since the last frame.
+	You can also use the optional hold and period parameters which allow you
+	to check if a button is being held down. After the time specified by hold
+	has elapsed, btnp will return true each time period is passed if the key is
+	still down. For example, to re-examine the state of button 0 after 2 seconds
+	and continue to check its state every 1/10th of a second, you would use btnp(0, 120, 6).
+	Since time is expressed in ticks and TIC runs at 60 frames per second, we use the value
+	of 120 to wait 2 seconds and 6 ticks (ie 60/10) as the interval for re-checking.
+
+## pq93
+
+★ btn b, [t]
+	★ used to check button state, returns a boolean.
+	★ b: the button you want to query. possible values are:
+	• directional buttons: 'u','d','l','r'.
+	• action buttons: 'a', 'b', 'x', 'y', 'start', 'select'.
+	• these buttons can also be queried by index.
+	★ t: indicates the button state you want to check for.
+	• default behavior checks if a button is down.
+	• 'p' check if a button was pressed this frame.
+	• 'r' check if a button was released this frame.
+
+★ mbtn b, [t]
+	★ used to check mouse buttons, returns a boolean.
+	★ b: 'l', 'r', or 'm'.
+	★ t: 'p', or 'r', works as with btn.
+
+★ mwheel
+	★ returns number of "wheel ticks" scrolled this frame.
+
+★ mouse
+	★ returns the position (x, y) of the mouse cursor.
+
+
+
 # sound
 
 ## tic80

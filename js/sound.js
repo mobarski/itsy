@@ -19,6 +19,9 @@ function sound(f,t) {
 }
 sound(220, 0.4)
 
+// REF: https://en.wikipedia.org/wiki/Envelope_(music)
+// REF: https://en.wikipedia.org/wiki/List_of_sound_chips
+// REF: https://aselker.github.io/gameboy-sound-chip/
 
 // REF: https://bashooka.com/coding/web-audio-javascript-libraries/
 // REF: http://bit101.github.io/tones/

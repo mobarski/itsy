@@ -3,9 +3,9 @@
 # TODO
 
 - drop frame / fps calculation / benchmark
-
-- option to add screen+fullscreen to document
 - fc.col1 / fc.col0
+- core docs (main / init / update / draw / run)
+
 
 - text
 - playscii .char support (https://github.com/michael-lazar/playscii/tree/master/charsets)
@@ -16,12 +16,12 @@
 - text input
 - keyboard ???
 
+- option to add screen+fullscreen to document
 - scaling
 - alternative drawing on canvas (pixel -> scaled rect)
 - draw virtual console (case, buttons, leds, etc)
 
 - screen api docs
-- core docs (main / init / update / draw / run)
 
 - playscii .psci support
 
