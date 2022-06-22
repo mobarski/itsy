@@ -30,9 +30,12 @@ function init(width, height, fps, colors) {
 	}
 	pal()
 	
+	init_input()
 }
 
 function camera(x, y) {
+	fc.camera_x = x
+	fc.camera_y = y
 	fc.ctx.setTransform(1,0,0,1,x,y)
 }
 
