@@ -12,11 +12,13 @@
 	async function boot() {
 		init(320,200,10)
 		fc.xxx = 03
+		cls(15)
 	}
 
 	function update() {
 		fc.xxx += 1
-		//console.log('fc.xxx', fc.xxx)
+		console.log('fc.xxx', fc.xxx)
+		halt()
 	}
 
 	function draw() {
@@ -38,6 +40,7 @@
 	}
 	
 	run(boot, update, draw)
+	//run(boot)
 	
 </script>
 

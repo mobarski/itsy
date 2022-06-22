@@ -4,8 +4,8 @@ fc = {}
 
 async function run(boot, update, draw) {
 	fc.boot = boot
-	fc.update = update
-	fc.draw = draw
+	fc.update = update || function() {}
+	fc.draw = draw || function() {}
 	fc.target_dt = 1000 / fc.fps
 	
 	await fc.boot()
@@ -35,6 +35,8 @@ function _time() {
 // ===[ screen.js ]=================
 
 
+// REF: https://mycolor.space/
+
 fc.colors = [
 	// https://lospec.com/palette-list/sweetie-16
 	"#1a1c2c","#5d275d","#b13e53","#ef7d57",
@@ -54,6 +56,8 @@ function init(width, height, fps, colors) {
 	fc.ctx.msImageSmoothingEnabled = false
 	fc.ctx.imageSmoothingEnabled = false
 	
+	fc.width = width
+	fc.height = height
 	fc.fps = fps
 	
 	if (colors) {

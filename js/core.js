@@ -2,8 +2,8 @@ fc = {}
 
 async function run(boot, update, draw) {
 	fc.boot = boot
-	fc.update = update
-	fc.draw = draw
+	fc.update = update || function() {}
+	fc.draw = draw || function() {}
 	fc.target_dt = 1000 / fc.fps
 	
 	await fc.boot()

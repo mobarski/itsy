@@ -1,4 +1,6 @@
 
+// REF: https://mycolor.space/
+
 fc.colors = [
 	// https://lospec.com/palette-list/sweetie-16
 	"#1a1c2c","#5d275d","#b13e53","#ef7d57",
