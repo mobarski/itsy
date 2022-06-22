@@ -45,6 +45,12 @@ https://itch.io/tools/tag-fantasy-console
 
 - rect(x, y, w, h, [col])
 
+- text(x, y, bank, str, [col1], [col0]) -> width
+
+- chr(x, y, bank, i, [col1], [col0]) -> width
+
+- str(x, y, bank, i_list, [col1], [col0]) -> width
+
 - blit(x, y, bank, u, v, w, h, [col1], [col0])
 
 
@@ -52,7 +58,7 @@ https://itch.io/tools/tag-fantasy-console
 
 - ??? line(x, y, x2, y2, [col])
 
-- text(x, y, str, [col1], [col0]) -> width?xmax
+
 
 ## input
 

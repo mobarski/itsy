@@ -24,10 +24,12 @@ function init(width, height, fps, colors) {
 	fc.height = height
 	fc.fps = fps
 	
+	fc.color = 1
 	if (colors) {
 		fc.colors = colors
 	}
 	pal()
+	
 }
 
 function camera(x, y) {
@@ -40,6 +42,7 @@ function cls(col) {
 
 function color(col) {
 	if (col == undefined) { return }
+	fc.color = col
 	c = fc.draw_pal[col]
 	fc.ctx.fillStyle = fc.colors[c]
 	fc.ctx.strokeStyle = fc.ctx.fillStyle

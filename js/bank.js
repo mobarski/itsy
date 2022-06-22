@@ -9,6 +9,7 @@ function blit(x, y, bank_id, u, v, w, h, c1, c0) {
 	let r1,g1,b1
 	let r0,g0,b0
 	
+	if (c1==undefined) { c1 = fc.color }
 	if (c1>=0) {
 		let dc1 = fc.draw_pal[c1]
 		r1 = parseInt(fc.colors[dc1].substr(1,2), 16)

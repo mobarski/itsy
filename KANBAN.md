@@ -2,6 +2,11 @@
 
 # TODO
 
+- blit flip (ala pyxel w<0 h<0)
+
+- text vs chr vs str vs blit
+- bank arg -> optional? move to function switch_bank? similar to color?
+
 - benchmark
 - fps calculation
 
@@ -9,8 +14,6 @@
 - core docs (main / init / update / draw / run)
 - replace setInterval with chain of setTimeout
 
-- text
-- playscii .char support (https://github.com/michael-lazar/playscii/tree/master/charsets)
 
 - input api idea/docs
 - mouse / touch
@@ -35,6 +38,11 @@
 - music
 
 # DONE
+
+- burn.py - better api -  bank -> path
+- text
+- playscii .char support (https://github.com/michael-lazar/playscii/tree/master/charsets)
+- blit vs color
 
 - predraw / postdraw
 - frame dropping
