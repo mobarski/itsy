@@ -49,15 +49,13 @@ https://itch.io/tools/tag-fantasy-console
 
 - chr(x, y, bank, i, [col1], [col0]) -> width
 
-- str(x, y, bank, i_list, [col1], [col0]) -> width
-
 - blit(x, y, bank, u, v, w, h, [col1], [col0])
-
 
 - ??? clip(w, y, w, h)
 
 - ??? line(x, y, x2, y2, [col])
 
+- ??? str(x, y, bank, i_list, [col1], [col0]) -> width
 
 
 ## input

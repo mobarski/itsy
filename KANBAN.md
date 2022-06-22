@@ -2,7 +2,7 @@
 
 # TODO
 
-- blit flip (ala pyxel w<0 h<0)
+- flip support in blit (ala pyxel w<0 h<0)
 
 - text vs chr vs str vs blit
 - bank arg -> optional? move to function switch_bank? similar to color?
@@ -21,6 +21,7 @@
 - text input
 - keyboard ???
 
+- fill patterns
 - option to add screen+fullscreen to document
 - scaling
 - alternative drawing on canvas (pixel -> scaled rect)
