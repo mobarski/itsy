@@ -62,3 +62,4 @@ https://itch.io/tools/tag-fantasy-console
 ## other
 
 - halt()
+- time() -> ms since start

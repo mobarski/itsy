@@ -4,8 +4,10 @@
 
 - benchmark
 - fps calculation
+
 - fc.col1 / fc.col0
 - core docs (main / init / update / draw / run)
+- replace setInterval with chain of setTimeout
 
 - text
 - playscii .char support (https://github.com/michael-lazar/playscii/tree/master/charsets)
@@ -34,6 +36,7 @@
 
 # DONE
 
+- predraw / postdraw
 - frame dropping
 - reset pal
 - move colors to init
