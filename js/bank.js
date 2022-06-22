@@ -1,10 +1,49 @@
 fc.bank = {}
 
+function text(s, x, y, bank=0, col1, col0) {
+	let i_list = encode(s, bank)
+	return str(i_list, x, y, bank, col1, col0)
+}
+
+function chr(i, x, y, bank=0, col1, col0) {
+	let w = fc.bank[bank].w
+	if (!i) { return w }
+	let bank_width = fc.bank[bank].width
+	let h = fc.bank[bank].h
+	let n_cols = parseInt(bank_width / w)
+	let u = w * (i % n_cols)
+	let v = h * parseInt(i / n_cols)
+	
+	blit(x,y, u, v, w, h, bank, col1, col0)
+	return w
+}
+
+// for internal use only?
+function encode(s, bank=0) {
+	let i_list = []
+	let charmap = fc.bank[bank].charmap || {}
+	for (let j=0; j<s.length; j++) {
+		let i = charmap[s[j]] || 0
+		i_list.push(i)
+	}
+	return i_list
+}
+
+// for internal use only?
+function str(i_list, x, y, bank=0, col1, col0) {
+	let w = fc.bank[bank].w
+	for (let i=0; i<i_list.length; i++) {
+		chr(i_list[i], x+i*w, y, bank, col1, col0)
+	}
+	return w * i_list.length
+}
+
+// for internal use only?
 // 8 pixels encoded on 1 value (default)
-function blit(x, y, bank_id, u, v, w, h, c1, c0) {
+function blit(x, y, u, v, w, h, bank, c1, c0) {
 	let img = fc.ctx.getImageData(x,y,w,h)
-	let b = fc.bank[bank_id]
-	//console.log('blit from bank',bank_id,'w',b.width,'h',b.height,'data',b.data) // XXX
+	let b = fc.bank[bank]
+	//console.log('blit from bank',bank,'w',b.width,'h',b.height,'data',b.data) // XXX
 	
 	let r1,g1,b1
 	let r0,g0,b0
@@ -46,6 +85,9 @@ function blit(x, y, bank_id, u, v, w, h, c1, c0) {
 	}
 	fc.ctx.putImageData(img, x, y)
 }
+
+
+
 
 // 1 pixel encoded on 1 value (for simplicity)
 function blit1(x, y, bank_id, u, v, w, h, c1, c0) {

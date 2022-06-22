@@ -36,7 +36,7 @@ def burn_banks(output, xxx):
 			bank.update(parse_charmap(path.replace('.png','.char')))
 			bank['w'] = bank['width'] // bank['cols']
 			bank['h'] = bank['height'] // bank['rows']
-			print(f'fc.bank[{i}] = {json.dumps(bank)}', file=fo)
+			print(f'fc.bank[{i}] = {json.dumps(bank).replace(", ",",")}', file=fo)
 
 if __name__=="__main__":
 	burn_banks('../js/rom.js',{

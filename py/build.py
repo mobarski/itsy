@@ -7,7 +7,6 @@ FILES = [
 	#"../js/experimental.js",
 	#"../js/sound.js",
 	"../js/bank.js",
-	"../js/text.js",
 	"../js/rom.js",
 ]
 
@@ -17,5 +16,3 @@ with open(PATH, 'w') as fo:
 		raw = open(filepath).read()
 		print(f'// ===[ {filename} ]=================\n', file=fo)
 		print(raw, file=fo)
-
-
