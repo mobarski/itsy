@@ -2,8 +2,8 @@
 
 # TODO
 
-
-- drop frame / fps calculation / benchmark
+- benchmark
+- fps calculation
 - fc.col1 / fc.col0
 - core docs (main / init / update / draw / run)
 
@@ -34,6 +34,7 @@
 
 # DONE
 
+- frame dropping
 - reset pal
 - move colors to init
 - boot / init / update / draw / run
