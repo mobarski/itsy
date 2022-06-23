@@ -30,7 +30,7 @@ function init(width, height, fps, colors) {
 	}
 	pal()
 	
-	init_input()
+	if (fc.has_mouse) { init_mouse() }
 }
 
 function camera(x, y) {

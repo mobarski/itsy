@@ -2,6 +2,8 @@
 // TODO: left,right,up,down A B
 // TODO: start / select
 
+fc.has_mouse = true
+
 function on_mouse_move(e) {
 	var bcr = fc.cnv.getBoundingClientRect()
 	
@@ -12,28 +14,28 @@ function on_mouse_move(e) {
 	let mx = e.clientX - bcr_left
 	let my = e.clientY - bcr_top
 	
-	fc.mx = parseInt(mx / ratio) - fc.camera_x
-	fc.my = parseInt(my / ratio) - fc.camera_y
+	fc.mouse_x = parseInt(mx / ratio) - fc.camera_x
+	fc.mouse_y = parseInt(my / ratio) - fc.camera_y
 	
-	console.log('mouse_move', fc.mx, fc.my, e) // XXX
+	console.log('mouse_move', fc.mouse_x, fc.mouse_y, e) // XXX
 }
 
 function on_mouse_down(e) {
-	console.log('mouse_down', fc.mx, fc.my, e) // XXX
-	rect(fc.mx, fc.my, 1, 1, 7)
+	console.log('mouse_down', fc.mouse_x, fc.mouse_y, e) // XXX
+	rect(fc.mouse_x-1, fc.mouse_y-1, 3, 3, 7)
 }
 
 function on_mouse_up(e) {
-	console.log('mouse_up', fc.mx, fc.my, e) // XXX
+	console.log('mouse_up', fc.mouse_x, fc.mouse_y, e) // XXX
 }
 
 function on_wheel(e) {
-	console.log('mouse_wheel', fc.mx, fc.my, e) // XXX
+	console.log('mouse_wheel', fc.mouse_x, fc.mouse_y, e) // XXX
 }
 
-function init_input() {
-	fc.mx = -1
-	fc.my = -1
+function init_mouse() {
+	fc.mouse_x = -1
+	fc.mouse_y = -1
 	fc.cnv.addEventListener('contextmenu', function(e){e.preventDefault()})
 	document.addEventListener('mousemove', on_mouse_move)
 	document.addEventListener('mouseup',   on_mouse_up)
