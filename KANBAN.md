@@ -1,8 +1,12 @@
 # ACTIVE
 
-- mouse / touch
+- mouse: buttons
 
 # TODO
+
+- mouse: buttons
+- mouse: out of canvas behaviour 
+- touch
 
 - sound api idea/docs
 - sound

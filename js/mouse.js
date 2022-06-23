@@ -1,10 +1,12 @@
 
 fc.has_mouse = true
 
+// TODO: mouse buttons
 function mouse() {
-	// TODO
+	return fc.mouse_x, fc.mouse_y
 }
 
+// TODO: out of canvas behaviour
 function set_mouse_xy(e) {
 	let bcr = fc.cnv.getBoundingClientRect()
 	
