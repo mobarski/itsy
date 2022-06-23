@@ -1,30 +1,28 @@
 # ACTIVE
 
+- mouse / touch
+
 # TODO
 
-- flip support in blit (ala pyxel w<0 h<0)
-
-- text vs chr vs str vs blit
-- bank arg -> optional? move to function switch_bank? similar to color?
+- sound api idea/docs
+- sound
+- music
 
 - benchmark
 - fps calculation
 
-- fc.col1 / fc.col0
 - core docs (main / init / update / draw / run)
-- replace setInterval with chain of setTimeout
 
+- flip support in blit (ala pyxel w<0 h<0)
 
 - input api idea/docs
-- mouse / touch
 - joypad
 - text input
-- keyboard ???
 
 - fill patterns
 - option to add screen+fullscreen to document
-- scaling
-- alternative drawing on canvas (pixel -> scaled rect)
+- scaling !!!
+- alternative drawing method on canvas (pixel -> scaled rect)
 - draw virtual console (case, buttons, leds, etc)
 
 - screen api docs
@@ -34,12 +32,17 @@
 - screen recording (gif)
 - screen capture (gif/png)
 
-- sound api idea/docs
-- sound
-- music
+
+# TBD
+
+- text vs chr vs str vs blit ???
+- rename bank to font ???
+- keyboard ???
+- replace setInterval with chain of setTimeout ???
 
 # DONE
 
+- bank arg -> optional? move to function switch_bank? similar to color? ==> optional, default=0
 - burn.py - better api -  bank -> path
 - text
 - playscii .char support (https://github.com/michael-lazar/playscii/tree/master/charsets)
@@ -55,3 +58,15 @@
 - var vs let
 - global variables -> fc object
 - js/py directories
+
+# MVP
+
+[x] screen
+[x] bank
+[ ] mouse
+[ ] docs: core
+[ ] docs: screen
+[ ] docs: bank
+[ ] docs: mouse
+[ ] docs: build
+

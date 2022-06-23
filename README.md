@@ -4,7 +4,7 @@
 
 Minimalistic fantasy console API.
 
-- super-simple API
+- simple and easy API
 - adjustable resolution
 - adjustable color palette
 - 1 bit sprite-sheets
@@ -20,6 +20,7 @@ Minimalistic fantasy console API.
 - TIC-80
 - PQ93
 
+- PixelVision-8
 - 1Bit-Wonder
 - WASM-4
 - Prism-384
