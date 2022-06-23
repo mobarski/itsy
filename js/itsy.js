@@ -145,11 +145,12 @@ function fullscreen() {
 
 // ===[ mouse.js ]=================
 
-// TODO: mouse - x,y,button1
-// TODO: left,right,up,down A B
-// TODO: start / select
 
 fc.has_mouse = true
+
+function mouse() {
+	// TODO
+}
 
 function set_mouse_xy(e) {
 	let bcr = fc.cnv.getBoundingClientRect()
