@@ -1,10 +1,11 @@
 # ACTIVE
 
 - mouse: buttons
+- scaling
 
 # TODO
 
-- mouse: buttons
+- mouse: if *mouse* not called in this frame, change mouse_btn immediately
 - mouse: out of canvas behaviour 
 - touch
 
@@ -13,6 +14,9 @@
 - bank api docs
 - mouse api docs
 - build process docs
+
+- text control codes
+- text special commands
 
 - sound api idea/docs
 - sound
@@ -29,10 +33,7 @@
 
 - fill patterns
 - option to add screen+fullscreen to document
-- scaling !!!
-- alternative drawing method on canvas (pixel -> scaled rect)
 - draw virtual console (case, buttons, leds, etc)
-
 
 - playscii .psci support
 
@@ -42,13 +43,18 @@
 
 # TBD
 
+- font -> stream of character data
 - text vs chr vs str vs blit ???
-- rename bank to font ???
+  - hide char as it can be aliased with str([i], ...)
+  - OR allow i_list to be just int
+  - OR hide str and allow chr to take i_list as first arg
 - keyboard ???
 - replace setInterval with chain of setTimeout ???
 
 # DONE
 
+- alternative drawing method on canvas (pixel -> scaled rect)
+- rename bank to font ??? ==> YES
 - bank arg -> optional? move to function switch_bank? similar to color? ==> optional, default=0
 - burn.py - better api -  bank -> path
 - text

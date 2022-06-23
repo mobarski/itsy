@@ -1,5 +1,23 @@
 # API sandbox
 
+option 1 (TIC-80)
+```
+mx,my,mb = mouse()
+if (mb[1]) {
+}
+```
+PRO: simplicity
+CON: no info about press/release
+
+option 2 (PYXEL):
+```
+if (btn(1)) { // btnp / btnr
+	mx,my = mouse()
+)
+```
+PRO: same handling of all the buttons (mouse, pad, keyboard)
+
+
 # input
 
 ## pyxel

@@ -9,9 +9,9 @@ fc.colors = [
 	"#f4f4f4","#94b0c2","#566c86","#333c57"
 ]
 
-function init(width, height, fps, colors) {
+function init(width, height, scale=1, fps=30, colors) {
 	let screen = document.getElementById("screen")
-	screen.innerHTML = `<canvas id="main_canvas" width="${width}" height="${height}""></canvas>`
+	screen.innerHTML = `<canvas id="main_canvas" width="${width*scale}" height="${height*scale}""></canvas>`
 	
 	fc.cnv = document.getElementById("main_canvas")
 	
@@ -20,9 +20,12 @@ function init(width, height, fps, colors) {
 	fc.ctx.msImageSmoothingEnabled = false
 	fc.ctx.imageSmoothingEnabled = false
 	
+	fc.scale = scale
 	fc.width = width
 	fc.height = height
 	fc.fps = fps
+	fc.camera_x = 0
+	fc.camera_y = 0
 	
 	fc.color = 1
 	if (colors) {
@@ -36,7 +39,7 @@ function init(width, height, fps, colors) {
 function camera(x, y) {
 	fc.camera_x = x
 	fc.camera_y = y
-	fc.ctx.setTransform(1,0,0,1,x,y)
+	fc.ctx.setTransform(1, 0, 0, 1, x*fc.scale, y*fc.scale)
 }
 
 function cls(col) {
@@ -55,7 +58,9 @@ function color(col) {
 
 function pal(col1, col2) {
 	if (col1>=0) {
+		let prev_col = fc.draw_pal[col1]
 		fc.draw_pal[col1] = col2
+		return prev_col
 	} else {
 		fc.draw_pal = []
 		for (let i=0; i<fc.colors.length; i++) {
@@ -65,8 +70,9 @@ function pal(col1, col2) {
 }
 
 function rect(x, y, w, h, col) {
+	let s = fc.scale
 	color(col)
-	fc.ctx.fillRect(x,y,w,h)
+	fc.ctx.fillRect(x*s, y*s, w*s, h*s)
 }
 
 function fullscreen() {

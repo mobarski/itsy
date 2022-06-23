@@ -11,39 +11,50 @@
 <script>
 	
 	async function boot() {
-		init(320,200,10)
+		init(320,200,3,10)
 		fc.xxx = 0
 		cls(15)
 	}
 
 	function update() {
 		fc.xxx += 1
-		console.log('fc.xxx', fc.xxx)
+		//console.log('fc.xxx', fc.xxx)
 		//halt()
 	}
 
 	function draw() {
-		cls(0)
-		rect(10,10,100,100,1)
-		camera(10,10)
-		pal(1,2)
-		rect(10,10,100,100,1)
-		color(3)
-		rect(40,40,100,100)
-		pal(9,1)
+		t0 = time()
+		if (1) {
+			cls(0)
+			rect(10,10,100,100,1)
+			camera(10,10)
+			pal(1,2)
+			rect(10,10,100,100,1)
+			color(3)
+			rect(40,40,100,100)
+			pal(9,1)
 
-		blit(60,60,0,120,64,64,0,9)
-		blit(0,0,0,224,256,32,0,9)
-		blit(130,60,0,0,64,64,0,9)
-		blit(200,60,0,120,64,64,0,9)
-		blit(60,130,0,120,64,64,8,9)
-		pal()
+			blit(60,60,0,120,64,64,0,9)
+			blit(0,0,0,224,256,32,0,9)
+			blit(130,60,0,0,64,64,0,9)
+			blit(200,60,0,120,64,64,0,9)
+			blit(60,130,0,120,64,64,8,9)
+			pal()
+			
+			str([0,1,2,3,4,5,6,7,8,9,10], 150, 160, 0, 11,1)
+			chr(2, 150, 170)
+			text("HELLO world!!!", 150, 180)
+			text("HELLO world!!!", 150, 188, 8)
+		}
 		
-		str([0,1,2,3,4,5,6,7,8,9,10], 150, 160, 0, 11,1)
-		chr(2, 150, 170)
-		text("HELLO world!!!", 150, 180)
-		text("HELLO world!!!", 150, 188, 8)
-		halt()
+		let [mx,my,mb] = mouse()
+		//console.log('mouse',mx,my,mb)
+		
+		if (mb[1]) {
+			console.log('mouse_delay',time()-fc.xxx_ts, 'render_delay',time()-t0,'mouse',mx,my,mb)
+			rect(mx, my, mb[1]*5,mb[1]*5, 2+mb[1])
+		}
+		//halt()
 	}
 	
 	run(boot, update, draw)
