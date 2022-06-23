@@ -41,9 +41,9 @@ https://itch.io/tools/tag-fantasy-console
 - pal(col1, col2)
 - rect(x, y, w, h, [col])
 
-- text(str, x, y, [bank], [col1], [col0]) -> width
-- chr(i, x, y, [bank], [col1], [col0]) -> width
-- str(i_list, x, y, [bank], [col1], [col0]) -> width
+- text(str, x, y, [font], [col1], [col0]) -> width
+- chr(i, x, y, [font], [col1], [col0]) -> width
+- str(i_list, x, y, [font], [col1], [col0]) -> width
 
 - ??? clip(w, y, w, h)
 - ??? line(x, y, x2, y2, [col])

@@ -8,14 +8,18 @@
 - mouse: out of canvas behaviour 
 - touch
 
+- core api docs (main / init / update / draw / run)
+- screen api docs
+- bank api docs
+- mouse api docs
+- build process docs
+
 - sound api idea/docs
 - sound
 - music
 
 - benchmark
 - fps calculation
-
-- core docs (main / init / update / draw / run)
 
 - flip support in blit (ala pyxel w<0 h<0)
 
@@ -29,7 +33,6 @@
 - alternative drawing method on canvas (pixel -> scaled rect)
 - draw virtual console (case, buttons, leds, etc)
 
-- screen api docs
 
 - playscii .psci support
 
@@ -73,4 +76,4 @@
 [ ] docs: bank
 [ ] docs: mouse
 [ ] docs: build
-
+[ ] examples

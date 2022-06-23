@@ -1,9 +1,9 @@
 
 // 1 pixel encoded on 1 value (for simplicity)
-function blit1(x, y, bank_id, u, v, w, h, c1, c0) {
+function blit1(x, y, font_id, u, v, w, h, c1, c0) {
 	let img = fc.ctx.getImageData(x,y,w,h)
-	let b = fc.bank[bank_id]
-	//console.log('blit1 from bank',bank_id,'w',b.width,'h',b.height,'data',b.data) // XXX
+	let b = fc.font[font_id]
+	//console.log('blit1 from font',font_id,'w',b.width,'h',b.height,'data',b.data) // XXX
 	
 	let r1,g1,b1
 	let r0,g0,b0
@@ -45,13 +45,13 @@ function blit1(x, y, bank_id, u, v, w, h, c1, c0) {
 
 
 
-function set_bank(b, data, width) {
-	fc.bank[b] = {data:data, width:width, height:data.length/width}
+function set_font(b, data, width) {
+	fc.font[b] = {data:data, width:width, height:data.length/width}
 }
 
 
 // 1 bit per value
-function load_bank_from_id(b, id) {		
+function load_font_from_id(b, id) {		
 	let c = document.createElement('canvas')
 	let cc = c.getContext('2d')
 
@@ -67,19 +67,19 @@ function load_bank_from_id(b, id) {
 			break
 		}
 	}
-	//console.log('bank',b,'image.data.length',image.data.length,'>>2',image.data.length>>2)
+	//console.log('font',b,'image.data.length',image.data.length,'>>2',image.data.length>>2)
 	
 	
-	fc.bank[b] = {data:data, width:img.width, height:img.height}
+	fc.font[b] = {data:data, width:img.width, height:img.height}
 	img.remove()
 	//img.style.visibility = "hidden"
 	
-	//console.log('load_bank_from_id', b, fc.bank[b].data) // XXX
+	//console.log('load_font_from_id', b, fc.font[b].data) // XXX
 }
 
 
 // 1 bit per value
-function load_bank_from_url(b, url) {	
+function load_font_from_url(b, url) {	
 	let c = document.createElement('canvas')
 	let cc = c.getContext('2d')
 	
@@ -93,15 +93,15 @@ function load_bank_from_url(b, url) {
 			data[i>>2] = image.data[i]>=128 ? 1 : 0
 		}
 		
-		fc.bank[b] = {data:data, width:img.width, height:img.height}
-		//console.log('load_bank_from_url', b, fc.bank[b].data) // XXX
+		fc.font[b] = {data:data, width:img.width, height:img.height}
+		//console.log('load_font_from_url', b, fc.font[b].data) // XXX
 	}
 	img.crossOrigin = "anonymous"
 	img.src = url
 }
 
 // 1 bit per value
-async function load_bank_from_url_async(b, url) {	
+async function load_font_from_url_async(b, url) {	
 	let c = document.createElement('canvas')
 	let cc = c.getContext('2d')
 	
@@ -115,8 +115,8 @@ async function load_bank_from_url_async(b, url) {
 		data[i>>2] = image.data[i]>=128 ? 1 : 0
 	}
 	
-	fc.bank[b] = {data:data, width:img.width, height:img.height}
-	//console.log('load_bank_from_url_async', b, fc.bank[b].data) // XXX
+	fc.font[b] = {data:data, width:img.width, height:img.height}
+	//console.log('load_font_from_url_async', b, fc.font[b].data) // XXX
 
 }
 

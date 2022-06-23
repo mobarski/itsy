@@ -3,7 +3,7 @@ import json
 import base64
 import re
 
-def get_bank(path):
+def get_font(path):
 	im = Image.open(path)
 	w = im.width
 	h = im.height
@@ -29,17 +29,17 @@ def parse_charmap(path):
 	return {'charmap':charmap, 'rows':rows, 'cols':cols}
 
 
-def burn_banks(output, xxx):
+def burn_fonts(output, xxx):
 	with open(output,'w') as fo:
 		for i,path in xxx.items():
-			bank = get_bank(path)
-			bank.update(parse_charmap(path.replace('.png','.char')))
-			bank['w'] = bank['width'] // bank['cols']
-			bank['h'] = bank['height'] // bank['rows']
-			print(f'fc.bank[{i}] = {json.dumps(bank).replace(", ",",")}', file=fo)
+			font = get_font(path)
+			font.update(parse_charmap(path.replace('.png','.char')))
+			font['w'] = font['width'] // font['cols']
+			font['h'] = font['height'] // font['rows']
+			print(f'fc.font[{i}] = {json.dumps(font).replace(", ",",")}', file=fo)
 
 if __name__=="__main__":
-	burn_banks('../js/rom.js',{
+	burn_fonts('../js/rom.js',{
 			0:'../charsets/MRMOTEXT EX.png',
 			8:'../charsets/c64_petscii.png',
 		})
