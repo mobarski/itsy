@@ -36,7 +36,7 @@ https://itch.io/tools/tag-fantasy-console
 - init(w, h, fps, [colors])
 - camera(x, y)
 - cls([col])
-- color(col)
+- color(col) -> prev_col
 - pal(col1, col2)
 - rect(x, y, w, h, [col])
 
@@ -49,6 +49,7 @@ https://itch.io/tools/tag-fantasy-console
 
 ## input
 
+- ??? mouse() -> mx, my, b1, b2
 
 ## sound
 

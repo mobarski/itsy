@@ -4,8 +4,8 @@
 
 fc.has_mouse = true
 
-function on_mouse_move(e) {
-	var bcr = fc.cnv.getBoundingClientRect()
+function set_mouse_xy(e) {
+	let bcr = fc.cnv.getBoundingClientRect()
 	
 	let ratio = bcr.height/fc.height
 	let bcr_top = bcr.top
@@ -16,20 +16,26 @@ function on_mouse_move(e) {
 	
 	fc.mouse_x = parseInt(mx / ratio) - fc.camera_x
 	fc.mouse_y = parseInt(my / ratio) - fc.camera_y
-	
+}
+
+function on_mouse_move(e) {
+	set_mouse_xy(e)
 	console.log('mouse_move', fc.mouse_x, fc.mouse_y, e) // XXX
 }
 
 function on_mouse_down(e) {
+	set_mouse_xy(e)
 	console.log('mouse_down', fc.mouse_x, fc.mouse_y, e) // XXX
 	rect(fc.mouse_x-1, fc.mouse_y-1, 3, 3, 7)
 }
 
 function on_mouse_up(e) {
+	set_mouse_xy(e)
 	console.log('mouse_up', fc.mouse_x, fc.mouse_y, e) // XXX
 }
 
 function on_wheel(e) {
+	set_mouse_xy(e)
 	console.log('mouse_wheel', fc.mouse_x, fc.mouse_y, e) // XXX
 }
 

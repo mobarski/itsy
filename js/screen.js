@@ -44,11 +44,13 @@ function cls(col) {
 }
 
 function color(col) {
-	if (col == undefined) { return }
+	if (col == undefined) { return fc.color }
+	let prev_col = fc.color
 	fc.color = col
 	c = fc.draw_pal[col]
 	fc.ctx.fillStyle = fc.colors[c]
 	fc.ctx.strokeStyle = fc.ctx.fillStyle
+	return prev_col
 }
 
 function pal(col1, col2) {
