@@ -17,7 +17,7 @@ function chr(i, x, y, font=0, col1, col0) {
 	let v = h * parseInt(i / n_cols)
 	
 	blit(x,y, u, v, w, h, font, col1, col0)
-	return w,h
+	return [w,h]
 }
 
 // for internal use only?
@@ -38,12 +38,12 @@ function str(i_list, x, y, font=0, col1, col0) {
 	for (let i=0; i<i_list.length; i++) {
 		chr(i_list[i], x+i*w, y, font, col1, col0)
 	}
-	return w * i_list.length, h
+	return [w * i_list.length, h]
 }
 
 // for internal use only?
 // 8 pixels encoded on 1 value (default)
-function blit(x, y, u, v, w, h, font, c1, c0) {
+function blit(x, y, u, v, w, h, font, c1, c0=-1) {
 	let b = fc.font[font]
 	//console.log('blit from font',font,'w',b.width,'h',b.height,'data',b.data) // XXX
 	
@@ -52,7 +52,7 @@ function blit(x, y, u, v, w, h, font, c1, c0) {
 			let pos = (u+j)+(v+i)*b.width
 			let mask = 1 << (u+j)%8
 			if (b.data[pos>>3] & mask) {
-				if (c1>=0) {
+				if ((c1==undefined) || (c1>=0)) {
 					rect(x+j,y+i,1,1,c1)
 				}
 			} else {

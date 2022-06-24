@@ -1,19 +1,19 @@
 # ACTIVE
 
-- mouse: buttons
-- scaling
 
 # TODO
 
-- mouse: if *mouse* not called in this frame, change mouse_btn immediately
-- mouse: out of canvas behaviour 
-- touch
+- SIMPLIFY CODE AS JS IS SINGLETHREADED... DUH
 
 - core api docs (main / init / update / draw / run)
 - screen api docs
 - bank api docs
 - mouse api docs
 - build process docs
+
+- mouse: low delay input (time before first mouse check, time after finishig main_iter)
+- mouse: out of canvas behaviour 
+- touch
 
 - text control codes
 - text special commands
@@ -43,6 +43,8 @@
 
 # TBD
 
+- scaling
+- mouse: buttons
 - font -> stream of character data
 - text vs chr vs str vs blit ???
   - hide char as it can be aliased with str([i], ...)

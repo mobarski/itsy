@@ -14,7 +14,7 @@ function set_mouse_xy(e) {
 	
 	let ratio = bcr.height/fc.height
 	let bcr_top = bcr.top
-	let bcr_left = ratio==1 ? bcr.left : 0.5*(bcr.width - fc.width * ratio)
+	let bcr_left = ratio==fc.scale ? bcr.left : 0.5*(bcr.width - fc.width * ratio)
 	
 	let mx = e.clientX - bcr_left
 	let my = e.clientY - bcr_top
@@ -33,9 +33,8 @@ function on_mouse_down(e) {
 	fc.xxx_ts = time()
 	set_mouse_xy(e)
 	fc.mouse_btn_queue.push(e.buttons)
-	//fc.mouse_buttons = e.buttons
 	//console.log('mouse_down', fc.mouse_x, fc.mouse_y, e) // XXX
-	rect(fc.mouse_x-1, fc.mouse_y-1, 3, 3, 7) // XXX
+	//rect(fc.mouse_x-1, fc.mouse_y-1, 3, 3, 7) // XXX
 }
 
 function on_mouse_up(e) {
