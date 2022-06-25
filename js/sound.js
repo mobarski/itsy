@@ -94,25 +94,26 @@ fc.freq = {
 	1:27.50  // A0
 }
 
+fc.audio = new AudioContext()
 
-var context = new AudioContext()
-var osc = context.createOscillator()
-var vol = context.createGain()
-vol.connect(context.destination)
-
-osc.type = 'square'
-//osc.type = 'sine'
-osc.connect(vol)
-function sound(f,t) {
-	//vol.gain.exponentialRampToValueAtTime(1.0, 0.3) // fade in
-	vol.gain.exponentialRampToValueAtTime(0.00001, context.currentTime + t) // fade out
-	osc.frequency.value = f
-	//osc.frequency.setValueAtTime(0, context.currentTime + t*0.3)
-	//osc.frequency.setValueAtTime(f*4, context.currentTime + t*0.8)
+function snd(n, t=0.25, type='square', a=0.1, s=1.0, r=0.1) {
+	console.log('snd', n, t, a,s,r, type)
+	if (!(n in fc.freq)) { return }
+	let osc = fc.audio.createOscillator()
+	let vol = fc.audio.createGain()
+	osc.type = type
+	vol.connect(fc.audio.destination)
+	osc.connect(vol)
+	//
+	osc.frequency.value = fc.freq[n]
+	vol.gain.setValueAtTime(0.00001, fc.audio.currentTime)
+	vol.gain.linearRampToValueAtTime(s, fc.audio.currentTime + t*a)
+	vol.gain.setValueAtTime(s, fc.audio.currentTime + t*(1-r))
+	vol.gain.linearRampToValueAtTime(0.00001, fc.audio.currentTime + t)
+	
 	osc.start(0)
-	osc.stop(context.currentTime + t)
+	osc.stop(fc.audio.currentTime + t)
 }
-sound(220, 0.4)
 
 // REF: https://en.wikipedia.org/wiki/Envelope_(music)
 // REF: https://en.wikipedia.org/wiki/List_of_sound_chips

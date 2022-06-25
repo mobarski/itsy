@@ -1,9 +1,14 @@
 # ACTIVE
 
+- sound api idea/docs
+- sound
 
 # TODO
 
 - SIMPLIFY CODE AS JS IS SINGLETHREADED... DUH
+- mouse: low delay input (time before first mouse check, time after finishig main_iter)
+
+- flip support in blit (ala pyxel w<0 h<0)
 
 - core api docs (main / init / update / draw / run)
 - screen api docs
@@ -11,19 +16,13 @@
 - mouse api docs
 - build process docs
 
-- mouse: low delay input (time before first mouse check, time after finishig main_iter)
 - mouse: out of canvas behaviour 
 - touch
 
 - text control codes
 - text special commands
 
-- sound api idea/docs
-- sound
 - music
-
-
-- flip support in blit (ala pyxel w<0 h<0)
 
 - input api idea/docs
 - joypad
@@ -38,10 +37,9 @@
 - screen recording (gif)
 - screen capture (gif/png)
 
-
 # TBD
 
-- scaling
+- font -> stream of rows, value -> number of pixels before color inversion "11101100" -> 3,1,2,2
 - mouse: buttons
 - font -> stream of character data
 - text vs chr vs str vs blit ???
@@ -56,6 +54,7 @@
 - faster blit (+200% fps)
 - fps calculation
 - benchmark
+- scaling
 - alternative drawing method on canvas (pixel -> scaled rect)
 - rename bank to font ??? ==> YES
 - bank arg -> optional? move to function switch_bank? similar to color? ==> optional, default=0
