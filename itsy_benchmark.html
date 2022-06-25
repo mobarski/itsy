@@ -1,0 +1,42 @@
+<div id="screen" style="margin-left: 50px"></div>
+<a onclick='fullscreen()'>fullscreen</a/>
+
+<script src="js/core.js"></script>
+<script src="js/screen.js"></script>
+<script src="js/experimental.js"></script>
+<script src="js/font.js"></script>
+<script src="js/rom.js"></script>
+<script src="js/mouse.js"></script>
+
+<script>
+	
+	TRANSPARENT = false
+	
+	async function boot() {
+		init(320,200,3,10)
+	}
+
+	function draw() {
+		cls(0)
+		let i = 0
+		let n = fc.font[0].rows * fc.font[0].cols
+		for (let y=0; y<200; y += 8) {
+			for (let x=0; x<320; x += 8) {
+				if (TRANSPARENT) {
+					chr(i, x, y, 0, (i+fc.draw_cnt)% fc.colors.length)
+				} else {
+					chr(i, x, y, 0, (i+fc.draw_cnt)% fc.colors.length, fc.draw_cnt % fc.colors.length)
+				}
+				i = (i+1) % n
+			}
+		}
+		
+		if (fc.main_cnt%1000==0) {
+			console.log('fps max',1000*fc.draw_cnt/fc.main_total_ms)
+		}
+	}
+	
+	run(boot, null, draw)
+
+</script>
+

@@ -1,5 +1,7 @@
 # ACTIVE
 
+- fps calculation
+- faster blit
 
 # TODO
 
@@ -23,7 +25,6 @@
 - music
 
 - benchmark
-- fps calculation
 
 - flip support in blit (ala pyxel w<0 h<0)
 
