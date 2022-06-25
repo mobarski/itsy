@@ -1,7 +1,5 @@
 # ACTIVE
 
-- fps calculation
-- faster blit
 
 # TODO
 
@@ -24,7 +22,6 @@
 - sound
 - music
 
-- benchmark
 
 - flip support in blit (ala pyxel w<0 h<0)
 
@@ -56,6 +53,9 @@
 
 # DONE
 
+- faster blit (+200% fps)
+- fps calculation
+- benchmark
 - alternative drawing method on canvas (pixel -> scaled rect)
 - rename bank to font ??? ==> YES
 - bank arg -> optional? move to function switch_bank? similar to color? ==> optional, default=0

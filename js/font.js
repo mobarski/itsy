@@ -41,9 +41,14 @@ function str(i_list, x, y, font=0, col1, col0) {
 	return [w * i_list.length, h]
 }
 
+// BLIT PERFORMNCE:
+//  v1  3.53 fps
+//  v2  4.24 fps (+20%)
+//  v3 10.75 fps (+200%)
+
 // for internal use only?
 // 8 pixels encoded on 1 value (default)
-function blit(x, y, u, v, w, h, font, c1, c0=-1) {
+function blit_v1(x, y, u, v, w, h, font, c1, c0=-1) {
 	let b = fc.font[font]
 	//console.log('blit from font',font,'w',b.width,'h',b.height,'data',b.data) // XXX
 	
@@ -63,6 +68,60 @@ function blit(x, y, u, v, w, h, font, c1, c0=-1) {
 		}
 	}
 }
+
+function blit_v2(x, y, u, v, w, h, font, c1, c0=-1) {
+	let b = fc.font[font]
+	//console.log('blit from font',font,'w',b.width,'h',b.height,'data',b.data) // XXX
+	
+	for (let i=0; i<h; i++) {
+		for (let j=0; j<w; j++) {
+			let pos = ((u+j)+(v+i)*b.width)>>3
+			let mask = 1 << (u+j)%8
+			if ((mask<=128) && (j<w-1) && (b.data[pos]&mask) && (b.data[pos]&(mask<<1))) {
+				rect(x+j,y+i,2,1,c1)
+				j += 1
+			}
+			else if (b.data[pos] & mask) {
+				rect(x+j,y+i,1,1,c1)
+			} else {
+				rect(x+j,y+i,1,1,c0)
+			}
+		}
+	}
+}
+
+function blit_v3(x, y, u, v, w, h, font, c1, c0=-1) {
+	let b = fc.font[font]
+	//console.log('blit from font',font,'w',b.width,'h',b.height,'data',b.data) // XXX
+	
+	for (let i=0; i<h; i++) {
+		for (let j=0; j<w; j++) {
+			let pos = ((u+j)+(v+i)*b.width)>>3
+			let mask = 1 << (u+j)%8
+			let m = 1
+			let k = 0
+			if (b.data[pos] & mask) {
+				for (k=0; k < 8-(u+j)%8; k++) {
+					if (!(b.data[pos]&(mask<<(k+1)))) {
+						break
+					}
+				}
+				rect(x+j, y+i, (k+1), 1, c1)
+				j += k
+			} else {
+				for (k=0; k < 8-(u+j)%8; k++) {
+					if ((b.data[pos]&(mask<<(k+1)))) {
+						break
+					}
+				}
+				rect(x+j, y+i, (k+1), 1, c0)
+				j += k
+			}
+		}
+	}
+}
+
+blit = blit_v3
 
 // REF: https://stackoverflow.com/questions/37854355/wait-for-image-loading-to-complete-in-javascript
 // REF: https://thewebdev.info/2021/03/20/how-to-get-image-data-as-a-base64-url-in-javascript/

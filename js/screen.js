@@ -70,6 +70,7 @@ function pal(col1, col2) {
 }
 
 function rect(x, y, w, h, col) {
+	if (col<0) { return }
 	let s = fc.scale
 	color(col)
 	fc.ctx.fillRect(x*s, y*s, w*s, h*s)
