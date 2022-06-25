@@ -95,9 +95,76 @@ fc.freq = {
 }
 
 fc.audio = new AudioContext()
+fc.ch = {}
 
-function snd(n, t=0.25, type='square', a=0.1, s=1.0, r=0.1) {
-	console.log('snd', n, t, a,s,r, type)
+function channel(c, type='square', detune=0, delay=0, attack=0.1, release=0.1, volume=1.0) {
+	let osc = fc.audio.createOscillator()
+	let vol = fc.audio.createGain()
+	osc.type = type
+	osc.detune = detune
+	vol.connect(fc.audio.destination)
+	osc.connect(vol)
+	vol.gain.setValueAtTime(0.00001, fc.audio.currentTime)
+	osc.start(0)
+	
+	fc.ch[c] = {
+		type:type,
+		a:attack,
+		r:release,
+		v:volume,
+		del:delay,
+		detune:detune,
+		osc:osc,
+		vol:vol
+	}
+}
+
+function snd3(n, c=1, t=0.25) {
+	console.log('snd3', n, c, t)
+	if (!(n in fc.freq)) { return }
+	// TODO: first empty channel vol.gain.value<=0.0001
+	if (!(c in fc.ch)) { return }
+	
+	let ch = fc.ch[c]
+	
+	ch.vol.gain.cancelScheduledValues(fc.audio.currentTime)
+	ch.vol.gain.setValueAtTime(0.0001, fc.audio.currentTime)
+	ch.osc.frequency.value = fc.freq[n]
+	ch.vol.gain.linearRampToValueAtTime(ch.v, fc.audio.currentTime + ch.a + ch.del)
+	ch.vol.gain.setValueAtTime(ch.v, fc.audio.currentTime + t + ch.del)
+	ch.vol.gain.linearRampToValueAtTime(0.00001, fc.audio.currentTime + t + ch.r + ch.del)
+
+}
+
+function snd2(n, c=1, t=0.25) {
+	console.log('snd2', n, c, t)
+	if (!(n in fc.freq)) { return }
+	if (!(c in fc.ch)) { return }
+	
+	let ch = fc.ch[c]
+	
+	let osc = fc.audio.createOscillator()
+	let vol = fc.audio.createGain()
+	osc.type = ch.type
+	osc.detune = ch.detune
+	vol.connect(fc.audio.destination)
+	osc.connect(vol)
+	//
+	osc.frequency.value = fc.freq[n]
+	vol.gain.setValueAtTime(0.0001, fc.audio.currentTime)
+	vol.gain.linearRampToValueAtTime(ch.v, fc.audio.currentTime + ch.a)
+	vol.gain.setValueAtTime(ch.v, fc.audio.currentTime + t)
+	vol.gain.linearRampToValueAtTime(0.00001, fc.audio.currentTime + t + ch.r)
+	
+	osc.start(0)
+	osc.stop(fc.audio.currentTime + t)
+	
+	ch.osc = osc
+	ch.vol = vol
+}
+
+function snd(n, t=0.25, type='square', a=0.1, r=0.1) {
+	console.log('snd', n, t, a,r, type)
 	if (!(n in fc.freq)) { return }
 	let osc = fc.audio.createOscillator()
 	let vol = fc.audio.createGain()
@@ -107,13 +174,18 @@ function snd(n, t=0.25, type='square', a=0.1, s=1.0, r=0.1) {
 	//
 	osc.frequency.value = fc.freq[n]
 	vol.gain.setValueAtTime(0.00001, fc.audio.currentTime)
-	vol.gain.linearRampToValueAtTime(s, fc.audio.currentTime + t*a)
-	vol.gain.setValueAtTime(s, fc.audio.currentTime + t*(1-r))
-	vol.gain.linearRampToValueAtTime(0.00001, fc.audio.currentTime + t)
+	vol.gain.linearRampToValueAtTime(1, fc.audio.currentTime + a)
+	vol.gain.setValueAtTime(1, fc.audio.currentTime + t)
+	vol.gain.linearRampToValueAtTime(0.00001, fc.audio.currentTime + t + r)
 	
 	osc.start(0)
 	osc.stop(fc.audio.currentTime + t)
 }
+
+
+// REF: https://webaudio.github.io/web-audio-api/#OscillatorNode
+// REF: https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode/setPeriodicWave
+// REF: https://noisehack.com/generate-noise-web-audio-api/
 
 // REF: https://en.wikipedia.org/wiki/Envelope_(music)
 // REF: https://en.wikipedia.org/wiki/List_of_sound_chips
