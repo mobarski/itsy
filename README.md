@@ -2,7 +2,7 @@
 
 ## Idea
 
-Minimalistic fantasy console facade for JS.
+Minimalistic fantasy console facade `*` for JS.
 
 - simple and easy API
 - adjustable resolution
