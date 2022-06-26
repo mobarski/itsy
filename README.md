@@ -14,8 +14,9 @@ Minimalistic fantasy console facade for JS.
 - simple sound-synth with adjustable channels
 - playscii .psci support (TODO)
 
-* fantasy console -> https://en.wikipedia.org/wiki/Fantasy_video_game_console
-* facade -> https://en.wikipedia.org/wiki/Facade_pattern
+`*` fantasy console -> https://en.wikipedia.org/wiki/Fantasy_video_game_console
+
+`*` facade -> https://en.wikipedia.org/wiki/Facade_pattern
 
 # API
 
