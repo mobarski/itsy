@@ -14,9 +14,9 @@
 	async function boot() {
 		init(320,200,3,10)
 		cls(15)
-		channel(1,'sawtooth',0)
+		channel(1,'sine',0)
 		channel(2,'sawtooth',0,0.02)
-		channel(3,'square',0,0.04)
+		channel(3,'triangle',0,0.04)
 		channel(4,'square',0,0.08)
 	}
 
@@ -65,10 +65,10 @@
 			//snd(parseInt(mx/(fc.width/88) + 1), 0.25, mb[1]==3 ? 'square' : 'sawtooth')
 			//snd2(parseInt(mx/(fc.width/88) + 1))
 			let n = parseInt(mx/(fc.width/88) + 1)
-			snd3(n,1)
-			snd3(n+2,2)
-			snd3(n+5,3)
-			snd3(n+7,4)
+			snd3(n,mb[1]==3 ? 1 : 3)
+			//snd3(n+2,2)
+			//snd3(n+5,3)
+			//snd3(n+7,4)
 		}
 		//halt()
 		if (fc.main_cnt%100==0) {

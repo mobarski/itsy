@@ -2,7 +2,7 @@
 
 ## Idea
 
-Minimalistic fantasy console facade for JS.
+Minimalistic [fantasy console](https://en.wikipedia.org/wiki/Fantasy_video_game_console) [facade](https://en.wikipedia.org/wiki/Facade_pattern) for JS.
 
 - simple and easy API
 - adjustable resolution
@@ -10,10 +10,9 @@ Minimalistic fantasy console facade for JS.
 - 1 bit sprite/font-sheets
 - playscii .char support
 - pure JS - no external dependencies
-- embeddable into single JS/HTML file
-
+- embeddable into single, small JS/HTML file
 - simple sound-synth with adjustable channels
-- playscii .psci support
+- playscii .psci support (TODO)
 
 # API
 
@@ -34,20 +33,36 @@ Minimalistic fantasy console facade for JS.
 
 ## input
 
-- ??? mouse() -> mx, my, mb
+- mouse() -> mx, my, mb
 
 ## sound
+
+- channel(n, type='square', detune=0, delay=0, attack=0.1, release=0.5, volume=1.0)
+- snd(n, c=-1)
 
 ## other
 
 - halt()
+- resume()
 - time() -> ms since start
 
 # Reference materials
 
-API inspiration: Pyxel, PICO-8, TIC-80, PQ93
+API inspiration:
+- [Pyxel](https://github.com/kitao/pyxel)
+- [PICO-8](https://www.lexaloffle.com/dl/docs/pico-8_manual.html)
+- [TIC-80](https://tic80.com/learn)
+- [PQ93](https://charliezip.itch.io/pq93)
 
-FC inspiration: Playscii, PixelVision-8, 1Bit-Wonder, cel7
+FC inspiration:
+- [Playscii](http://vectorpoem.com/playscii/)
+- [PixelVision-8](https://github.com/PixelVision8/PixelVision8/wiki)
+- [1Bit-Wonder](https://brastin3.itch.io/1bit-wonder)
+- [cel7](https://rxi.itch.io/cel7)
+
+Code inspiration:
+- [Raccoon](https://github.com/Lyatus/raccoon)
+- [Atoo](https://github.com/devicefuture/atto)
 
 https://paladin-t.github.io/fantasy/
 https://itch.io/tools/tag-fantasy-console

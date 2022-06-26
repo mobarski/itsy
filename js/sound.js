@@ -97,7 +97,7 @@ fc.freq = {
 fc.audio = new AudioContext()
 fc.ch = {}
 
-function channel(c, type='square', detune=0, delay=0, attack=0.1, release=0.1, volume=1.0) {
+function channel(c, type='square', detune=0, delay=0, attack=0.1, release=0.5, volume=1.0) {
 	let osc = fc.audio.createOscillator()
 	let vol = fc.audio.createGain()
 	osc.type = type
@@ -130,9 +130,11 @@ function snd3(n, c=1, t=0.25) {
 	ch.vol.gain.cancelScheduledValues(fc.audio.currentTime)
 	ch.vol.gain.setValueAtTime(0.0001, fc.audio.currentTime)
 	ch.osc.frequency.value = fc.freq[n]
-	ch.vol.gain.linearRampToValueAtTime(ch.v, fc.audio.currentTime + ch.a + ch.del)
+	//ch.vol.gain.linearRampToValueAtTime(ch.v, fc.audio.currentTime + ch.a + ch.del)
+	ch.vol.gain.exponentialRampToValueAtTime(ch.v, fc.audio.currentTime + ch.a + ch.del)
 	ch.vol.gain.setValueAtTime(ch.v, fc.audio.currentTime + t + ch.del)
-	ch.vol.gain.linearRampToValueAtTime(0.00001, fc.audio.currentTime + t + ch.r + ch.del)
+	//ch.vol.gain.linearRampToValueAtTime(0.00001, fc.audio.currentTime + t + ch.r + ch.del)
+	ch.vol.gain.exponentialRampToValueAtTime(0.00001, fc.audio.currentTime + t + ch.r + ch.del)
 
 }
 
