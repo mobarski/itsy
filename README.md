@@ -2,7 +2,7 @@
 
 ## Idea
 
-Minimalistic [fantasy console](https://en.wikipedia.org/wiki/Fantasy_video_game_console) [facade](https://en.wikipedia.org/wiki/Facade_pattern) for JS.
+Minimalistic fantasy console facade for JS.
 
 - simple and easy API
 - adjustable resolution
@@ -13,6 +13,9 @@ Minimalistic [fantasy console](https://en.wikipedia.org/wiki/Fantasy_video_game_
 - embeddable into single, small JS/HTML file
 - simple sound-synth with adjustable channels
 - playscii .psci support (TODO)
+
+* fantasy console -> https://en.wikipedia.org/wiki/Fantasy_video_game_console
+* facade -> https://en.wikipedia.org/wiki/Facade_pattern
 
 # API
 
