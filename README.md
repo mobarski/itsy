@@ -67,6 +67,9 @@ FC inspiration:
 Code inspiration:
 - [Raccoon](https://github.com/Lyatus/raccoon)
 - [Atoo](https://github.com/devicefuture/atto)
+- [Octo](https://github.com/JohnEarnest/Octo)
+- [PuzzleScript](https://github.com/increpare/PuzzleScript)
+- [Yuki-JS](https://github.com/nrkn/yuki-js)
 
 FC listing:
 - https://paladin-t.github.io/fantasy/
