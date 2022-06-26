@@ -68,5 +68,6 @@ Code inspiration:
 - [Raccoon](https://github.com/Lyatus/raccoon)
 - [Atoo](https://github.com/devicefuture/atto)
 
-https://paladin-t.github.io/fantasy/
-https://itch.io/tools/tag-fantasy-console
+FC listing:
+- https://paladin-t.github.io/fantasy/
+- https://itch.io/tools/tag-fantasy-console
