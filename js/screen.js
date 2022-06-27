@@ -50,6 +50,12 @@ function init(width, height, scale=1, fps=30, colors) {
 		fc.rgb[i] = [r,g,b]
 	}
 	
+	// RESET FRAMEBUFFER - set alpha to 255, so we can skip setting it while drawing (+14% fps)
+	let data = fc.framebuffer.data
+	for (let i=3; i<data.length; i+=4) {
+		data[i] = 255
+	}
+	
 	if (fc.has_mouse) { init_mouse() }
 }
 
@@ -116,7 +122,7 @@ function rect(x,y,w,h,col) {
 			data[j+0] = r
 			data[j+1] = g
 			data[j+2] = b
-			data[j+3] = 255
+			//data[j+3] = 255 // +14% fps without it
 		}
 	}
 }
