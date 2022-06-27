@@ -50,13 +50,13 @@ Minimalistic fantasy console facade* for JS.
 
 ## math
 
-- int(a,b)
+- int(a, b=10)
 - ceil(a)
 - floor(a)
 - random()
-- rnd(a,b)
-- min(...args)
-- max(...args)
+- rnd(a, b)
+- min(a, [b], [c], ...)
+- max(a, [b], [c], ...)
 - abs(a)
 
 ## other
