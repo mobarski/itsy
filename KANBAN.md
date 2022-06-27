@@ -1,7 +1,11 @@
 # ACTIVE
 
 - sound api idea/docs
-- sound
+- sound: ch<0 -> first free channel
+- sound: type='noise'
+
+- sound: replace time values (float) with 120Hz ticks ???
+- rename: init->screen, channel->audio ???
 
 # TODO
 

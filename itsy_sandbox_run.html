@@ -13,11 +13,11 @@
 	
 	async function boot() {
 		init(320,200,3,10)
-		cls(15)
-		channel(1,'sine',0)
+		channel(1,'square',0)
 		channel(2,'sawtooth',0,0.02)
 		channel(3,'triangle',0,0.04)
-		channel(4,'square',0,0.08)
+		channel(4,'sine',0,0.08)
+		cls(15)
 	}
 
 	function update() {
