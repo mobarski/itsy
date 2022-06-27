@@ -27,15 +27,16 @@ Minimalistic fantasy console facade* for JS.
 ## screen
 
 - init(w, h, fps, [colors])
-- camera(x, y)
 - cls([col]) -> width, height
 - color(col) -> prev_col
-- pal(col1, col2) -> prev_col
 - rect(x, y, w, h, [col1], [col0], [pattern])
 
 - text(str, x, y, [font], [col1], [col0]) -> width, height
 - chr(i, x, y, [font], [col1], [col0]) -> width, height
 - str(i_list, x, y, [font], [col1], [col0]) -> width, height
+
+- camera(x, y)
+- pal(col1, col2) -> prev_col
 
 - ??? line(x, y, x2, y2, [col])
 
