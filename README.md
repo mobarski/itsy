@@ -65,6 +65,7 @@ Minimalistic fantasy console facade* for JS.
 
 - **halt**()
 - **resume**()
+- **fullscreen**()
 - **time**() -> ms since start
 
 # Reference materials
