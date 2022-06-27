@@ -47,6 +47,7 @@ function main_iter() {
 	if (!fc.skip_draw) {
 		fc.draw_cnt += 1
 		fc.draw()
+		flip()
 	}
 	fc.skip_draw = false
 	
@@ -78,6 +79,14 @@ function init(width, height, scale=1, fps=30, colors) {
 	fc.ctx.msImageSmoothingEnabled = false
 	fc.ctx.imageSmoothingEnabled = false
 	
+	// ENGINE_V2 - framebuffer based
+	fc.framebuffer = new ImageData(width, height)
+	fc.cnv_fb = document.createElement('canvas');
+	fc.cnv_fb.width = width;
+	fc.cnv_fb.height = height;
+	fc.ctx_fb = fc.cnv_fb.getContext('2d');
+	fc.ctx.scale(scale, scale)
+	
 	fc.scale = scale
 	fc.width = width
 	fc.height = height
@@ -89,6 +98,7 @@ function init(width, height, scale=1, fps=30, colors) {
 	if (colors) {
 		fc.colors = colors
 	}
+	fc.rgb = {}
 	pal()
 	
 	if (fc.has_mouse) { init_mouse() }
@@ -124,13 +134,14 @@ function pal(col1, col2) {
 		for (let i=0; i<fc.colors.length; i++) {
 			fc.draw_pal.push(i)
 		}
+		// RGB MAPPING
+		for (let i=0; i<fc.colors.length; i++) {
+			let r = parseInt(fc.colors[i].substr(1,2), 16)
+			let g = parseInt(fc.colors[i].substr(3,2), 16)
+			let b = parseInt(fc.colors[i].substr(5,2), 16)
+			fc.rgb[i] = [r,g,b]
+		}
 	}
-}
-
-function rect(x, y, w, h, col) {
-	let s = fc.scale
-	color(col)
-	fc.ctx.fillRect(x*s, y*s, w*s, h*s)
 }
 
 function fullscreen() {
@@ -146,6 +157,53 @@ function fullscreen() {
 	}
 }
 
+
+// ENGINE v1 - canvas operations
+function rect_v1(x, y, w, h, col) {
+	if (col<0) { return }
+	let s = fc.scale
+	color(col)
+	fc.ctx.fillRect(x*s, y*s, w*s, h*s)
+}
+
+function flip_v1() {
+}
+
+// ENGINE v2 - image operations
+function rect_v2(x,y,w,h,col) {
+	
+	// TODO: col
+	let c = fc.draw_pal[col]
+	let rgb = fc.rgb[c]
+	let r = rgb[0]
+	let g = rgb[1]
+	let b = rgb[2]
+	
+	let data = fc.framebuffer.data
+	
+	for (let i=0; i<h; i++) {
+		let row_offset = (y+i)*4*fc.width
+		for (let j=(x+0)*4+row_offset; j<(x+w)*4+row_offset; j+=4) {
+			data[j+0] = r
+			data[j+1] = g
+			data[j+2] = b
+			data[j+3] = 255
+		}
+	}
+}
+
+function flip_v2() {
+	fc.ctx_fb.putImageData(fc.framebuffer, 0, 0)
+	fc.ctx.drawImage(fc.cnv_fb, 0, 0)
+}
+
+// ENGINE SELECTION
+rect = rect_v2
+flip = flip_v2
+
+// BENCHMARK:
+// v1 -> 10fps
+// v2 -> 66fps
 
 // ===[ mouse.js ]=================
 
@@ -303,9 +361,14 @@ function str(i_list, x, y, font=0, col1, col0) {
 	return [w * i_list.length, h]
 }
 
+// BLIT PERFORMNCE:
+//  v1  3.53 fps
+//  v2  4.24 fps (+20%)
+//  v3 10.75 fps (+200%)
+
 // for internal use only?
 // 8 pixels encoded on 1 value (default)
-function blit(x, y, u, v, w, h, font, c1, c0=-1) {
+function blit_v1(x, y, u, v, w, h, font, c1, c0=-1) {
 	let b = fc.font[font]
 	//console.log('blit from font',font,'w',b.width,'h',b.height,'data',b.data) // XXX
 	
@@ -325,6 +388,60 @@ function blit(x, y, u, v, w, h, font, c1, c0=-1) {
 		}
 	}
 }
+
+function blit_v2(x, y, u, v, w, h, font, c1, c0=-1) {
+	let b = fc.font[font]
+	//console.log('blit from font',font,'w',b.width,'h',b.height,'data',b.data) // XXX
+	
+	for (let i=0; i<h; i++) {
+		for (let j=0; j<w; j++) {
+			let pos = ((u+j)+(v+i)*b.width)>>3
+			let mask = 1 << (u+j)%8
+			if ((mask<=128) && (j<w-1) && (b.data[pos]&mask) && (b.data[pos]&(mask<<1))) {
+				rect(x+j,y+i,2,1,c1)
+				j += 1
+			}
+			else if (b.data[pos] & mask) {
+				rect(x+j,y+i,1,1,c1)
+			} else {
+				rect(x+j,y+i,1,1,c0)
+			}
+		}
+	}
+}
+
+function blit_v3(x, y, u, v, w, h, font, c1, c0=-1) {
+	let b = fc.font[font]
+	//console.log('blit from font',font,'w',b.width,'h',b.height,'data',b.data) // XXX
+	
+	for (let i=0; i<h; i++) {
+		for (let j=0; j<w; j++) {
+			let pos = ((u+j)+(v+i)*b.width)>>3
+			let mask = 1 << (u+j)%8
+			let m = 1
+			let k = 0
+			if (b.data[pos] & mask) {
+				for (k=0; k < 8-(u+j)%8; k++) {
+					if (!(b.data[pos]&(mask<<(k+1)))) {
+						break
+					}
+				}
+				rect(x+j, y+i, (k+1), 1, c1)
+				j += k
+			} else {
+				for (k=0; k < 8-(u+j)%8; k++) {
+					if ((b.data[pos]&(mask<<(k+1)))) {
+						break
+					}
+				}
+				rect(x+j, y+i, (k+1), 1, c0)
+				j += k
+			}
+		}
+	}
+}
+
+blit = blit_v3
 
 // REF: https://stackoverflow.com/questions/37854355/wait-for-image-loading-to-complete-in-javascript
 // REF: https://thewebdev.info/2021/03/20/how-to-get-image-data-as-a-base64-url-in-javascript/

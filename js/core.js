@@ -45,6 +45,7 @@ function main_iter() {
 	if (!fc.skip_draw) {
 		fc.draw_cnt += 1
 		fc.draw()
+		flip()
 	}
 	fc.skip_draw = false
 	

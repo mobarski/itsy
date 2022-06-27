@@ -41,8 +41,10 @@ Minimalistic fantasy console facade* for JS.
 
 ## sound
 
-- channel(n, type='square', detune=0, delay=0, attack=0.1, release=0.5, volume=1.0)
-- snd(n, c=-1, t=0.25)
+- channel(n, volume=1.0, type='square', attack=0.1, release=0.5, detune=0, delay=0)
+- snd(n, c=-1, t=0.25, volume=1.0)
+
+## math
 
 ## other
 

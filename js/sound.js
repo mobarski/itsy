@@ -1,7 +1,5 @@
-// !!! SANDBOX !!!
 
 // REF: https://www.inspiredacoustics.com/en/MIDI_note_numbers_and_center_frequencies
-
 // key - piano key number
 fc.freq = {
 	88:4186.01, // C8
@@ -107,7 +105,7 @@ function channel(c, type='square', detune=0, delay=0, attack=0.1, release=0.5, v
 	let osc
 	if (type=='noise') {
 		let samples = 22050
-		let buf = fc.audio.createBuffer(2, samples, 22050); // XXX
+		let buf = fc.audio.createBuffer(2, samples, 22050);
 		for (let i=0; i<2; i++) {
 			let data = buf.getChannelData(i)
 			for (let j=0; j<buf.length; j++) {

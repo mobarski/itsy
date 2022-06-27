@@ -1,24 +1,27 @@
 # ACTIVE
 
-- sound api idea/docs
-- sound: ch<0 -> first free channel
-- sound: type='noise'
+- sound api idea (hold note?)
+- music api idea
 
-- sound: replace time values (float) with 120Hz ticks ???
-- rename: init->screen, channel->audio ???
+- sound: ch<0 -> round-robin channel selection from group (-1 -> g=1, -2 -> g=2 ...)
 
 # TODO
+
+- math api idea
 
 - SIMPLIFY CODE AS JS IS SINGLETHREADED... DUH
 - mouse: low delay input (time before first mouse check, time after finishig main_iter)
 
-- flip support in blit (ala pyxel w<0 h<0)
-
 - core api docs (main / init / update / draw / run)
 - screen api docs
-- bank api docs
+- font api docs
 - mouse api docs
+- sound api docs
+- math api idea
 - build process docs
+
+- screen: flip support in blit (ala pyxel w<0 h<0)
+- screen: fill pattern arg in rect
 
 - mouse: out of canvas behaviour 
 - touch
@@ -26,13 +29,11 @@
 - text control codes
 - text special commands
 
-- music
 
 - input api idea/docs
 - joypad
 - text input
 
-- fill patterns
 - option to add screen+fullscreen to document
 - draw virtual console (case, buttons, leds, etc)
 
@@ -41,7 +42,12 @@
 - screen recording (gif)
 - screen capture (gif/png)
 
+- screen: rect/flip -> webgl version -> benchmark
+
 # TBD
+
+- sound: replace time values (float) with 120Hz ticks ???
+- rename: init->screen, channel->audio ???
 
 - font -> stream of rows, value -> number of pixels before color inversion "11101100" -> 3,1,2,2
 - mouse: buttons
@@ -55,6 +61,8 @@
 
 # DONE
 
+- screen: rect/flip -> image/framebuffer version (put pixels into image, draw image onto canvas after draw()) -> benchmark (70fps)
+- sound: type='noise'
 - faster blit (+200% fps)
 - fps calculation
 - benchmark
