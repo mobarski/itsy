@@ -20,7 +20,7 @@ function init(width, height, scale=1, fps=30, colors) {
 	fc.ctx.msImageSmoothingEnabled = false
 	fc.ctx.imageSmoothingEnabled = false
 	
-	// ENGINE_V2 - framebuffer based
+	// ENGINE_V2 - image/framebuffer based
 	fc.framebuffer = new ImageData(width, height)
 	fc.cnv_fb = document.createElement('canvas');
 	fc.cnv_fb.width = width;
@@ -39,8 +39,16 @@ function init(width, height, scale=1, fps=30, colors) {
 	if (colors) {
 		fc.colors = colors
 	}
-	fc.rgb = {}
 	pal()
+	
+	// RGB MAPPING
+	fc.rgb = {}
+	for (let i=0; i<fc.colors.length; i++) {
+		let r = parseInt(fc.colors[i].substr(1,2), 16)
+		let g = parseInt(fc.colors[i].substr(3,2), 16)
+		let b = parseInt(fc.colors[i].substr(5,2), 16)
+		fc.rgb[i] = [r,g,b]
+	}
 	
 	if (fc.has_mouse) { init_mouse() }
 }
@@ -75,13 +83,6 @@ function pal(col1, col2) {
 		for (let i=0; i<fc.colors.length; i++) {
 			fc.draw_pal.push(i)
 		}
-		// RGB MAPPING
-		for (let i=0; i<fc.colors.length; i++) {
-			let r = parseInt(fc.colors[i].substr(1,2), 16)
-			let g = parseInt(fc.colors[i].substr(3,2), 16)
-			let b = parseInt(fc.colors[i].substr(5,2), 16)
-			fc.rgb[i] = [r,g,b]
-		}
 	}
 }
 
@@ -98,22 +99,9 @@ function fullscreen() {
 	}
 }
 
-
-// ENGINE v1 - canvas operations
-function rect_v1(x, y, w, h, col) {
-	if (col<0) { return }
-	let s = fc.scale
-	color(col)
-	fc.ctx.fillRect(x*s, y*s, w*s, h*s)
-}
-
-function flip_v1() {
-}
-
-// ENGINE v2 - image operations
-function rect_v2(x,y,w,h,col) {
+// ENGINE v2 - image/framebuffer operations
+function rect(x,y,w,h,col) {
 	
-	// TODO: col
 	let c = fc.draw_pal[col]
 	let rgb = fc.rgb[c]
 	let r = rgb[0]
@@ -133,15 +121,8 @@ function rect_v2(x,y,w,h,col) {
 	}
 }
 
-function flip_v2() {
+function flip() {
 	fc.ctx_fb.putImageData(fc.framebuffer, 0, 0)
 	fc.ctx.drawImage(fc.cnv_fb, 0, 0)
 }
 
-// ENGINE SELECTION
-rect = rect_v2
-flip = flip_v2
-
-// BENCHMARK:
-// v1 -> 10fps
-// v2 -> 66fps

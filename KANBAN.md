@@ -1,5 +1,6 @@
 # ACTIVE
 
+- mouse buttons api idea
 - sound api idea (hold note?)
 - music api idea
 
@@ -91,6 +92,7 @@
 [x] screen
 [x] bank
 [ ] mouse
+[ ] sound
 [ ] docs: core
 [ ] docs: screen
 [ ] docs: bank
