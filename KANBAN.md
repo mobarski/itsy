@@ -1,13 +1,14 @@
 # ACTIVE
 
-- math api idea
+- option to add screen+fullscreen to document
+- math api
 
-- mouse buttons api idea
-- sound api idea (hold note?)
-
-- core api docs (main / init / update / draw / run)
+- mouse buttons api (mx,my,m1,m2 vs mx,my,mb)
+- sound api (hold note?)
 
 # TODO
+
+- core api docs (main / init / update / draw / run)
 
 - music api idea
 - sound: ch<0 -> round-robin channel selection from group (-1 -> g=1, -2 -> g=2 ...)
@@ -36,7 +37,6 @@
 - joypad
 - text input
 
-- option to add screen+fullscreen to document
 - draw virtual console (case, buttons, leds, etc)
 
 - playscii .psci support
@@ -63,6 +63,7 @@
 
 # DONE
 
+- screen: line
 - screen: rect/flip -> image/framebuffer version (put pixels into image, draw image onto canvas after draw()) -> benchmark (70fps)
 - sound: type='noise'
 - faster blit (+200% fps)

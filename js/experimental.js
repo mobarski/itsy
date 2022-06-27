@@ -1,11 +1,3 @@
-function line(x,y,x2,y2,col) {
-	color(col)
-	fc.ctx.beginPath()
-	fc.ctx.moveTo(x,y)
-	fc.ctx.lineTo(x2,y2)
-	fc.ctx.stroke()
-}
-
 
 function tri(x,y,x2,y2,x3,y3,col) {
 	color(col)

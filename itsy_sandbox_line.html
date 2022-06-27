@@ -1,0 +1,36 @@
+<div id="screen" style="margin-left: 50px"></div>
+<a onclick='fullscreen()'>fullscreen</a/>
+
+<script src="js/core.js"></script>
+<script src="js/math.js"></script>
+<script src="js/screen.js"></script>
+<script src="js/experimental.js"></script>
+<script src="js/font.js"></script>
+<script src="js/rom.js"></script>
+<script src="js/mouse.js"></script>
+<script src="js/sound.js"></script>
+
+<script>
+	
+	async function boot() {
+		init(320,200,3,10)
+		cls(0)
+	}
+
+	function update() {
+	}
+
+	function draw() {
+		cls(0)
+		let [mx,my,mb] = mouse()
+		rect(mx-10,my-10,20,20,2)
+		line(0,0,mx,my,1)
+		line(fc.width,0,mx,my,1)
+		line(0,fc.height,mx,my,1)
+		line(fc.width,fc.height,mx,my,1)
+	}
+	
+	run(boot, update, draw)
+	
+</script>
+

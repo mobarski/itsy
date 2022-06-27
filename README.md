@@ -27,9 +27,11 @@ Minimalistic fantasy console facade* for JS.
 ## screen
 
 - init(w, h, fps, [colors])
+
 - cls([col]) -> width, height
 - color(col) -> prev_col
 - rect(x, y, w, h, [col1], [col0], [pattern])
+- line(x0, y0, x1, y1, [col])
 
 - text(str, x, y, [font], [col1], [col0]) -> width, height
 - chr(i, x, y, [font], [col1], [col0]) -> width, height
@@ -38,7 +40,6 @@ Minimalistic fantasy console facade* for JS.
 - camera(x, y)
 - pal(col1, col2) -> prev_col
 
-- ??? line(x, y, x2, y2, [col])
 
 ## input
 

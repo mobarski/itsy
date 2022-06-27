@@ -79,6 +79,35 @@ function color(col) {
 	return prev_col
 }
 
+
+// REF: https://en.wikipedia.org/wiki/Line_drawing_algorithm
+// REF: https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
+function line(x0, y0, x1, y1, col) {
+	let dx = Math.abs(x1 - x0)
+	let sx = x0 < x1 ? 1 : -1
+	let dy = -Math.abs(y1 - y0)
+	let sy = y0 < y1 ? 1 : -1
+	let error = dx + dy
+	let e2
+	
+	for (;;) {
+		rect(x0,y0,1,1,col)
+		if ((x0==x1) && (y0==y1)) { break }
+		e2 = 2 * error
+		if (e2 >= dy) {
+			if (x0==x1) { break }
+			error += dy
+			x0 += sx
+		}
+		if (e2 <= dx) {
+			if (y0 == y1) { break }
+			error += dx
+			y0 += sy
+		}
+	}
+}
+
+
 function pal(col1, col2) {
 	if (col1>=0) {
 		let prev_col = fc.draw_pal[col1]
@@ -107,6 +136,8 @@ function fullscreen() {
 
 // ENGINE v2 - image/framebuffer operations
 function rect(x,y,w,h,col) {
+	
+	if (col==undefined) { col=fc.color }
 	
 	let c = fc.draw_pal[col]
 	let rgb = fc.rgb[c]
