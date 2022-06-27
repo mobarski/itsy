@@ -55,17 +55,17 @@
 			text("HELLO world!!!", 150, 188, 8)
 		}
 		
-		let [mx,my,mb] = mouse()
+		let [mx,my,m1,m2] = mouse()
 		//console.log('mouse',mx,my,mb)
 		
-		if ((mb[1]==3) || (mb[2]==3)) {
+		if ((m1==3) || (m2==3)) {
 			console.log('mouse_delay',time()-fc.xxx_ts, 'render_delay',time()-t0,'mouse',mx,my,mb)
 			console.log('fps max',1000*fc.main_cnt/fc.main_total_ms)
-			rect(mx, my, mb[1]*5,mb[1]*5, 2+mb[1])
-			//snd(parseInt(mx/(fc.width/88) + 1), 0.25, mb[1]==3 ? 'square' : 'sawtooth')
+			rect(mx, my, m1*5,m1*5, 2+m1)
+			//snd(parseInt(mx/(fc.width/88) + 1), 0.25, m1==3 ? 'square' : 'sawtooth')
 			//snd2(parseInt(mx/(fc.width/88) + 1))
 			let n = parseInt(mx/(fc.width/88) + 1)
-			snd3(n,mb[1]==3 ? 1 : 3)
+			snd3(n,m1==3 ? 1 : 3)
 			//snd3(n+2,2)
 			//snd3(n+5,3)
 			//snd3(n+7,4)

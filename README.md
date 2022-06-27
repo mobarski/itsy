@@ -26,46 +26,46 @@ Minimalistic fantasy console facade* for JS.
 
 ## screen
 
-- init(w, h, fps, [colors])
+- **init**(w, h, fps, [colors])
 
-- cls([col]) -> width, height
-- color(col) -> prev_col
-- rect(x, y, w, h, [col1], [col0], [pattern])
-- line(x0, y0, x1, y1, [col])
+- **cls**([col])  ->  [width, height]
+- **color**(col)  ->  prev_col
+- **rect**(x, y, w, h, [col1], [col0], [pattern])
+- **line**(x0, y0, x1, y1, [col])
 
-- text(str, x, y, [font], [col1], [col0]) -> width, height
-- chr(i, x, y, [font], [col1], [col0]) -> width, height
-- str(i_list, x, y, [font], [col1], [col0]) -> width, height
+- **text**(str, x, y, [font], [col1], [col0])  ->  [width, height]
+- **chr**(i, x, y, [font], [col1], [col0])  ->  [width, height]
+- **str**(i_list, x, y, [font], [col1], [col0])  ->  [width, height]
 
-- camera(x, y)
-- pal(col1, col2) -> prev_col
+- **camera**(x, y)
+- **pal**(col1, col2)  ->  prev_col
 
 
 ## input
 
-- mouse() -> mx, my, mb
+- **mouse**() -> [mx, my, m1, m2]
 
 ## sound
 
-- channel(n, volume=1.0, type='square', attack=0.1, release=0.5, detune=0, delay=0)
-- snd(n, c=-1, t=0.25, volume=1.0)
+- **channel**(n, volume=1.0, type='square', attack=0.1, release=0.5, detune=0, delay=0)
+- **snd**(n, c=-1, t=0.25, volume=1.0)
 
 ## math
 
-- int(a, b=10)
-- ceil(a)
-- floor(a)
-- random()
-- rnd(a, b)
-- min(a, ...)
-- max(a, ...)
-- abs(a)
+- **int**(a, b=10)
+- **ceil**(a)
+- **floor**(a)
+- **random**()
+- **rnd**(a, b)
+- **min**(a, ...)
+- **max**(a, ...)
+- **abs**(a)
 
 ## other
 
-- halt()
-- resume()
-- time() -> ms since start
+- **halt**()
+- **resume**()
+- **time**() -> ms since start
 
 # Reference materials
 

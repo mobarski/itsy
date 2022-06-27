@@ -23,13 +23,13 @@
 	}
 
 	function update() {
-		let [mx,my,mb] = mouse()
+		let [mx,my,m1,m2] = mouse()
 		
-		if ((mb[1]==3) || (mb[2]==3)) {
+		if ((m1==3) || (m2==3)) {
 			let n = int(mx/(fc.width/88) + 1)
 			let c = int(my/(fc.height/5) + 1)
-			fc.ch[c].exp_attack  = mb[1]==3 ? 1 : 0
-			fc.ch[c].exp_release = mb[1]==3 ? 0 : 0
+			fc.ch[c].exp_attack  = m1==3 ? 1 : 0
+			fc.ch[c].exp_release = m1==3 ? 0 : 0
 			snd(n, c)
 		}
 	}
