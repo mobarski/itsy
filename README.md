@@ -55,8 +55,8 @@ Minimalistic fantasy console facade* for JS.
 - floor(a)
 - random()
 - rnd(a, b)
-- min(a, [b], [c], ...)
-- max(a, [b], [c], ...)
+- min(a, ...)
+- max(a, ...)
 - abs(a)
 
 ## other
