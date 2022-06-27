@@ -2,6 +2,7 @@ PATH = '../js/itsy.js'
 
 FILES = [
 	"../js/core.js",
+	"../js/math.js",
 	"../js/screen.js",
 	"../js/mouse.js",
 	#"../js/experimental.js",

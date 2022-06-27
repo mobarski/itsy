@@ -18,6 +18,10 @@ Minimalistic fantasy console facade* for JS.
 
 `*` facade -> https://en.wikipedia.org/wiki/Facade_pattern
 
+## Why?
+
+
+
 # API
 
 ## screen
@@ -45,6 +49,15 @@ Minimalistic fantasy console facade* for JS.
 - snd(n, c=-1, t=0.25, volume=1.0)
 
 ## math
+
+- int(a,b)
+- ceil(a)
+- floor(a)
+- random()
+- rnd(a,b)
+- min(...args)
+- max(...args)
+- abs(a)
 
 ## other
 

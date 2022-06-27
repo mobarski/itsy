@@ -55,6 +55,20 @@ function main_iter() {
 	fc.main_total_ms += time()-t0
 }
 
+// ===[ math.js ]=================
+
+int = parseInt
+ceil = Math.ceil
+floor = Math.floor
+random = Math.random
+min = Math.min
+max = Math.max
+abs = Math.abs
+
+function rnd(a,b) {
+	return a + int(random() * (b-a+1))
+}
+
 // ===[ screen.js ]=================
 
 

@@ -1,19 +1,20 @@
 # ACTIVE
 
+- math api idea
+
 - mouse buttons api idea
 - sound api idea (hold note?)
-- music api idea
 
-- sound: ch<0 -> round-robin channel selection from group (-1 -> g=1, -2 -> g=2 ...)
+- core api docs (main / init / update / draw / run)
 
 # TODO
 
-- math api idea
+- music api idea
+- sound: ch<0 -> round-robin channel selection from group (-1 -> g=1, -2 -> g=2 ...)
 
 - SIMPLIFY CODE AS JS IS SINGLETHREADED... DUH
 - mouse: low delay input (time before first mouse check, time after finishig main_iter)
 
-- core api docs (main / init / update / draw / run)
 - screen api docs
 - font api docs
 - mouse api docs
