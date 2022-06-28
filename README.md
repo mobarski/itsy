@@ -2,7 +2,7 @@
 
 ## Idea
 
-Minimalistic fantasy console facade* for JS.
+Minimalistic *fantasy console* API/adapter for JS.
 
 - simple and easy API
 - adjustable resolution
@@ -12,34 +12,56 @@ Minimalistic fantasy console facade* for JS.
 - pure JS - no external dependencies
 - embeddable into single, small JS/HTML file
 - simple sound-synth with adjustable channels
-- playscii .psci support (TODO)
+- playscii .psci support (TODO???)
 
 `*` fantasy console -> https://en.wikipedia.org/wiki/Fantasy_video_game_console
 
-`*` facade -> https://en.wikipedia.org/wiki/Facade_pattern
 
 ## Why?
 
+
+## Minimal example
+
+```html
+<div id="screen"></div>
+<script src="itsy.js"></script>
+
+<script>
+	
+	init(320, 200)
+	cls(0)
+	rect(10,  10, 300, 90, 10)
+	rect(10, 100, 300, 90, 4)
+	flip()
+	
+</script>
+```
+
+## Typical example
 
 
 # API
 
 ## screen
 
-- **init**(w, h, fps, [colors])
+- **init**(w, h, [scale], [fps], [colors])
 
 - **cls**([col])  ->  [width, height]
 - **color**(col)  ->  prev_col
-- **rect**(x, y, w, h, [col1], [col0], [pattern])
+- **rect**(x, y, w, h, [col])
 - **line**(x0, y0, x1, y1, [col])
 
 - **text**(str, x, y, [font], [col1], [col0])  ->  [width, height]
 - **chr**(i, x, y, [font], [col1], [col0])  ->  [width, height]
-- **str**(i_list, x, y, [font], [col1], [col0])  ->  [width, height]
 
+## screen (advanced)
+
+- **flip**()
 - **camera**(x, y)
 - **pal**(col1, col2)  ->  prev_col
+- **str**(i_list, x, y, [font], [col1], [col0])  ->  [width, height]
 
+- **rect**(x, y, w, h, col1, col0, pattern) // TODO
 
 ## input
 
@@ -47,8 +69,8 @@ Minimalistic fantasy console facade* for JS.
 
 ## sound
 
-- **channel**(n, volume=1.0, type='square', attack=0.1, release=0.5, detune=0, delay=0)
 - **snd**(n, c=-1, t=0.25, volume=1.0)
+- **channel**(n, volume=1.0, type='square', attack=0.1, release=0.5, detune=0, delay=0)
 
 ## math
 

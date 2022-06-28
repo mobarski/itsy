@@ -1,7 +1,6 @@
 # ACTIVE
 
-- option to add screen+fullscreen to document
-
+- run api -> boot,update,draw vs update,draw,boot vs draw,update,boot
 - math api
 
 - mouse buttons api (mx,my,m1,m2 vs mx,my,mb)
@@ -89,6 +88,10 @@
 - var vs let
 - global variables -> fc object
 - js/py directories
+
+# REJECTED
+
+- option to add screen+fullscreen to document
 
 # MVP
 

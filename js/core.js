@@ -1,7 +1,7 @@
 fc = {}
 
 async function run(boot, update, draw) {
-	fc.boot = boot
+	fc.boot = boot || async function() {}
 	fc.update = update || function() {}
 	fc.draw = draw || function() {}
 	fc.skip_draw = false

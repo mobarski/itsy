@@ -3,7 +3,7 @@
 fc = {}
 
 async function run(boot, update, draw) {
-	fc.boot = boot
+	fc.boot = boot || async function() {}
 	fc.update = update || function() {}
 	fc.draw = draw || function() {}
 	fc.skip_draw = false
@@ -82,8 +82,8 @@ fc.colors = [
 	"#f4f4f4","#94b0c2","#566c86","#333c57"
 ]
 
-function init(width, height, scale=1, fps=30, colors) {
-	let screen = document.getElementById("screen")
+function init(width, height, scale=1, fps=30, colors, div_id='screen') {
+	let screen = document.getElementById(div_id)
 	screen.innerHTML = `<canvas id="main_canvas" width="${width*scale}" height="${height*scale}""></canvas>`
 	
 	fc.cnv = document.getElementById("main_canvas")
@@ -156,6 +156,12 @@ function color(col) {
 // REF: https://en.wikipedia.org/wiki/Line_drawing_algorithm
 // REF: https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
 function line(x0, y0, x1, y1, col) {
+	// vertical
+	if (x0==x1) { return rect(x0, min(y0,y1), 1, abs(y1-y0), col) }
+	// horizontal
+	if (y0==y1) { return rect(min(x0,x1), y0, abs(x1-x0), 1, col) }
+	
+	// other
 	let dx = Math.abs(x1 - x0)
 	let sx = x0 < x1 ? 1 : -1
 	let dy = -Math.abs(y1 - y0)
@@ -219,6 +225,20 @@ function rect(x,y,w,h,col) {
 	let b = rgb[2]
 	
 	let data = fc.framebuffer.data
+	
+	// LIMIT x,y,w,h TO FRAMEBUFFER COORDS
+	if ((x+w < 0) || (y+h < 0)) { return }
+	if ((x > fc.width) || (y > fc.height)) { return }
+	if (x < 0) {
+		w += x
+		x = 0
+	}
+	if (y < 0) {
+		h += y
+		y = 0
+	}
+	w = min(w, fc.width-x)
+	h = min(h, fc.height-y)
 	
 	for (let i=0; i<h; i++) {
 		let row_offset = (y+i)*4*fc.width
