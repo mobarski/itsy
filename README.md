@@ -71,29 +71,29 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 <script src="itsy.js"></script>
 
 <script>
-	
-	async function boot() {
-		init(160, 144, 4, 90)
-		label = "HELLO WORLD"
-		frame = 0
-	}
-	
-	function update() {
-		frame += 1
-	}
-	
-	function draw() {
-		cls(0)
-		for (let i=0; i<label.length; i++) {
-			let x = 80 - label.length*8/2 + i*8
-			let y = 72 - 10*sin(frame/8 + i/2)
-			let c = frame/4%15 + 1
-			text(label[i], x, y, 0, c)
-		}
-	}
-	
-	run(boot, update, draw)
-	
+    
+    async function boot() {
+        init(160, 144, 4, 90)
+        label = "HELLO WORLD"
+        frame = 0
+    }
+    
+    function update() {
+        frame += 1
+    }
+    
+    function draw() {
+        cls(0)
+        for (let i=0; i<label.length; i++) {
+            let x = 80 - label.length*8/2 + i*8
+            let y = 72 - 10*sin(frame/8 + i/2)
+            let c = frame/4%15 + 1
+            text(label[i], x, y, 0, c)
+        }
+    }
+    
+    run(boot, update, draw)
+    
 </script>
 ```
 
