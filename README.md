@@ -19,7 +19,7 @@ Minimalistic *fantasy console* API/adapter for JS.
 
 ## Why?
 
-#### To lower the entry point to programming
+### To lower the entry point to programming
 
 In the 8-bit computer era, there was an interpreter (BASIC) on every computer.
 You could start programming right away and the ability of a computer to teach
@@ -38,7 +38,7 @@ into programming had risen and not went down.
 
 Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 
-#### To explore the aesthetics of modern text-art
+### To explore the aesthetics of modern text-art
 
 - https://pl.pinterest.com/search/pins/?q=textmode-game
 - https://pinterest.com/search/pins/?q=mrmotext

@@ -2,13 +2,13 @@
 
 - screen: support float values as args (cast to int)
 
-- run api -> boot,update,draw vs update,draw,boot vs draw,update,boot
 - math api
 
-- mouse buttons api (mx,my,m1,m2 vs mx,my,mb)
 - sound api (hold note?)
 
 # TODO
+
+- text/chr: yscale,xscale -> scale ??? (0:1,1 1:1,2 2:2,1 3:2,2)
 
 - core api docs (main / init / update / draw / run)
 
@@ -50,6 +50,8 @@
 
 # TBD
 
+- run api -> boot,update,draw vs update,draw,boot vs draw,update,boot
+
 - sound: replace time values (float) with 120Hz ticks ???
 - rename: init->screen, channel->audio ???
 
@@ -65,6 +67,7 @@
 
 # DONE
 
+- mouse buttons api (mx,my,m1,m2 vs mx,my,mb)
 - screen: line
 - screen: rect/flip -> image/framebuffer version (put pixels into image, draw image onto canvas after draw()) -> benchmark (70fps)
 - sound: type='noise'
