@@ -136,7 +136,7 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 - **ceil**(a)
 - **floor**(a)
 
-- **rnd**(a, b)
+- **randint**(a, b)
 
 - **abs**(a)
 - **min**(a, ...)
