@@ -71,9 +71,8 @@ function mid(a,b,c) {
 	return c
 }
 
-random = Math.random
 function rnd(a,b) {
-	return a + int(random() * (b-a+1))
+	return int(a) + int(Math.random() * (int(b)-int(a)+1))
 }
 
 sin = Math.sin
@@ -82,6 +81,7 @@ atan2 = Math.atan2
 PI = Math.PI
 
 sqrt = Math.sqrt
+
 // ===[ screen.js ]=================
 
 

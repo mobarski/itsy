@@ -136,7 +136,6 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 - **ceil**(a)
 - **floor**(a)
 
-- **random**()
 - **rnd**(a, b)
 
 - **abs**(a)
