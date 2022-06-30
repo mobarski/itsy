@@ -71,7 +71,7 @@ function mid(a,b,c) {
 	return c
 }
 
-function rnd(a,b) {
+function randint(a,b) {
 	return int(a) + int(Math.random() * (int(b)-int(a)+1))
 }
 
