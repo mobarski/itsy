@@ -89,10 +89,9 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
         cls(0)
         for (let i=0; i<label.length; i++) {
             let x = 80 - label.length*8/2 + i*8
-            let y = 72 - 10*sin(frame/8 + i/2)
-            let c = frame/4%15 + 1
+            let y = 72 - 8 - int(8*sin(frame/12+i/2))
+            let c = (frame/4 + i)%15 + 1
             text(label[i], x, y, 0, c)
-        }
     }
     
     run(boot, update, draw)
