@@ -11,9 +11,13 @@ def get_font(path):
 	data = [0]*(w*h//8) # TODO: ceil
 	for y in range(h):
 		for x in range(w):
-			r,g,b,a = im.getpixel((x,y))
+			try:
+				r,g,b,a = (im.getpixel((x,y))+(0,0,0,0))[:4]
+			except TypeError:
+				v = im.getpixel((x,y))
+				r=g=b = v
 			i = x//8+ y*w//8
-			if r>127:
+			if r+g+b > 0:
 				data[i] |= 1<<(x%8)
 	
 	return {"data":data, "width":w, "height":h}
@@ -22,7 +26,7 @@ def get_font(path):
 def parse_charmap(path):
 	lines = open(path,encoding='utf8').readlines()
 	lines = [x.rstrip('\r\n') for x in lines if not x.strip().startswith('//')]
-	cols,rows = [int(x.strip()) for x in lines[1].strip().split(', ')]
+	cols,rows = [int(x.strip()) for x in lines[1].strip().split(',')]
 	data = lines[2:]
 	flat = ''.join(data)
 	charmap = {c:i for i,c in enumerate(flat) if c.strip()}
@@ -42,4 +46,15 @@ if __name__=="__main__":
 	burn_fonts('../js/rom.js',{
 			0:'../charsets/c64_petscii.png',
 			1:'../charsets/MRMOTEXT EX.png',
+			2:'../charsets/apple2.png',
+			3:'../charsets/atari.png',
+			4:'../charsets/bbc_master.png',
+			5:'../charsets/cpc.png',
+			6:'../charsets/dos.png',
+			7:'../charsets/speccy.png',
+			8:'../charsets/teletext_uk.png',
+			9:'../charsets/intellivision.png',
+			10:'../charsets/msx.png',
+			11:'../charsets/pacman.png',
+			12:'../charsets/sharp.png',
 		})

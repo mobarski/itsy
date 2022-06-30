@@ -10,7 +10,9 @@ function text(s, x, y, font=0, col1, col0) {
 function chr(i, x, y, font=0, col1, col0) {
 	let w = fc.font[font].w
 	let h = fc.font[font].h
-	if (!i) { return w,h }
+	if (!i) { return [w,h] }
+	if ((x+w < 0) || (x>fc.width))  { return [w,h] } 
+	if ((y+h < 0) || (y>fc.height)) { return [w,h] } 
 	let font_width = fc.font[font].width
 	let n_cols = parseInt(font_width / w)
 	let u = w * (i % n_cols)

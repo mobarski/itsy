@@ -1,5 +1,7 @@
 # ACTIVE
 
+- github pages: https://pages.github.com/  https://stackoverflow.com/questions/8446218/how-to-see-an-html-page-on-github-as-a-normal-rendered-html-page-to-see-preview
+
 - screen: support float values as args (cast to int)
 
 - math api
@@ -67,7 +69,8 @@
 
 # DONE
 
-- mouse buttons api (mx,my,m1,m2 vs mx,my,mb)
+- font: faster handling of chars that are not on the screen
+- mouse buttons api >>> mx,my,m1,m2 <<< vs mx,my,mb
 - screen: line
 - screen: rect/flip -> image/framebuffer version (put pixels into image, draw image onto canvas after draw()) -> benchmark (70fps)
 - sound: type='noise'
