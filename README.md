@@ -64,13 +64,11 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 
 ## More typical example
 
-TODO
-
 ```html
 <div id="screen"></div>
 <a onclick='fullscreen()'>fullscreen</a/>
 
-<script src="../js/itsy.js"></script>
+<script src="itsy.js"></script>
 
 <script>
 	
@@ -133,14 +131,25 @@ TODO
 
 ## math
 
-- **int**(a, b=10)
+- **int**(a, [b])
+
 - **ceil**(a)
 - **floor**(a)
+
 - **random**()
 - **rnd**(a, b)
+
+- **abs**(a)
 - **min**(a, ...)
 - **max**(a, ...)
-- **abs**(a)
+- **mid**(a, b, c)
+
+- **sin**(a)
+- **cos**(b)
+- **atan2**(a, b)
+- **PI**
+
+- **sqrt**(a)
 
 ## other
 
