@@ -40,6 +40,6 @@ def burn_fonts(output, xxx):
 
 if __name__=="__main__":
 	burn_fonts('../js/rom.js',{
-			0:'../charsets/MRMOTEXT EX.png',
-			8:'../charsets/c64_petscii.png',
+			0:'../charsets/c64_petscii.png',
+			1:'../charsets/MRMOTEXT EX.png',
 		})

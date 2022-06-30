@@ -24,9 +24,9 @@
 		for (let y=0; y<200; y += 8) {
 			for (let x=0; x<320; x += 8) {
 				if (TRANSPARENT) {
-					chr(i, x, y, 0, (i+fc.draw_cnt)% fc.colors.length)
+					chr(i, x, y, 1, (i+fc.draw_cnt)% fc.colors.length)
 				} else {
-					chr(i, x, y, 0, (i+fc.draw_cnt)% fc.colors.length, fc.draw_cnt % fc.colors.length)
+					chr(i, x, y, 1, (i+fc.draw_cnt)% fc.colors.length, fc.draw_cnt % fc.colors.length)
 				}
 				i = (i+1) % n
 			}
