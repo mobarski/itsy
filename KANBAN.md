@@ -1,5 +1,7 @@
 # ACTIVE
 
+- screen: support float values as args (cast to int)
+
 - run api -> boot,update,draw vs update,draw,boot vs draw,update,boot
 - math api
 

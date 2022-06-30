@@ -19,6 +19,31 @@ Minimalistic *fantasy console* API/adapter for JS.
 
 ## Why?
 
+#### To lower the entry point to programming
+
+In the 8-bit computer era, there was an interpreter (BASIC) on every computer.
+You could start programming right away and the ability of a computer to teach
+its user how to program was a selling point for hardware.
+
+The API consisted of simple words with intuitive effects.
+There were even keyboards with all the commands
+[printed on the keys](https://en.wikipedia.org/wiki/ZX_Spectrum#/media/File:ZXSpectrum48k.jpg)
+to improve the UX/ergonomy and facilitate exploration.
+
+Programs written in BASIC were not 100% portable between the machines with different dialects
+BUT it was easy to port them. Many books and magazines contained BASIC scripts 
+
+Many years have passed, and computers are now much more powerful. Unfortunately the barier of entry
+into programming had risen and not went down.
+
+Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
+
+#### To explore the aesthetics of modern text-art
+
+- https://pl.pinterest.com/search/pins/?q=textmode-game
+- https://pinterest.com/search/pins/?q=mrmotext
+- https://twitter.com/hashtag/MRMOTEXT
+- https://twitter.com/hashtag/playscii
 
 ## Minimal example
 
@@ -37,8 +62,42 @@ Minimalistic *fantasy console* API/adapter for JS.
 </script>
 ```
 
-## Typical example
+## More typical example
 
+TODO
+
+```html
+<div id="screen"></div>
+<a onclick='fullscreen()'>fullscreen</a/>
+
+<script src="../js/itsy.js"></script>
+
+<script>
+	
+	async function boot() {
+		init(160, 144, 4, 90)
+		label = "HELLO WORLD"
+		frame = 0
+	}
+	
+	function update() {
+		frame += 1
+	}
+	
+	function draw() {
+		cls(0)
+		for (let i=0; i<label.length; i++) {
+			let x = 80 - label.length*8/2 + i*8
+			let y = 72 - 10*sin(frame/8 + i/2)
+			let c = frame/4%15 + 1
+			text(label[i], x, y, 0, c)
+		}
+	}
+	
+	run(boot,update,draw)
+	
+</script>
+```
 
 # API
 

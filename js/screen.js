@@ -72,8 +72,8 @@ function cls(col) {
 function color(col) {
 	if (col == undefined) { return fc.color }
 	let prev_col = fc.color
-	fc.color = col
-	c = fc.draw_pal[col]
+	fc.color = int(col)
+	c = fc.draw_pal[fc.color]
 	fc.ctx.fillStyle = fc.colors[c]
 	fc.ctx.strokeStyle = fc.ctx.fillStyle
 	return prev_col
@@ -116,6 +116,8 @@ function line(x0, y0, x1, y1, col) {
 
 function pal(col1, col2) {
 	if (col1>=0) {
+		col1 = int(col1)
+		col2 = int(col2)
 		let prev_col = fc.draw_pal[col1]
 		fc.draw_pal[col1] = col2
 		return prev_col
@@ -142,10 +144,12 @@ function fullscreen() {
 
 // ENGINE v2 - image/framebuffer operations
 function rect(x,y,w,h,col) {
-	
+	if (col<0) { return }
 	if (col==undefined) { col=fc.color }
 	
-	let c = fc.draw_pal[col]
+	let c = fc.draw_pal[int(col)]
+	if (c<0) { return }
+	if (!(c in fc.rgb)) { console.log('invalid color col:',col,'c:',c) } // xxx
 	let rgb = fc.rgb[c]
 	let r = rgb[0]
 	let g = rgb[1]
