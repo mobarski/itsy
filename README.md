@@ -55,8 +55,8 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 	
 	init(320, 200)
 	cls(0)
-	rect(10,  10, 300, 90, 10)
-	rect(10, 100, 300, 90, 4)
+	rect(10,  10, 300, 90, 10) // blue
+	rect(10, 100, 300, 90, 4)  // yellow
 	flip()
 	
 </script>
