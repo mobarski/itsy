@@ -1,5 +1,7 @@
 # Intro
 
+**Warning! This is pre-alpha build - anything can change without any notice.**
+
 ## Idea
 
 Minimalistic *fantasy console* API/adapter for JS.
@@ -31,10 +33,10 @@ There were even keyboards with all the commands
 to improve the UX/ergonomy and facilitate exploration.
 
 Programs written in BASIC were not 100% portable between the machines with different dialects
-BUT it was easy to port them. Many books and magazines contained BASIC scripts 
+BUT it was easy to port them. Many books and magazines contained BASIC scripts ... TODO ...
 
 Many years have passed, and computers are now much more powerful. Unfortunately the barier of entry
-into programming had risen and not went down.
+into programming had risen and not went down. ... TODO ...
 
 Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 
