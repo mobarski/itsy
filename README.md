@@ -108,10 +108,10 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 ## screen
 
 ### init
-`init(w, h, [scale], [fps], [colors])`
+- `init(w, h, [scale], [fps], [colors])`
 
 ### cls
-`cls([col])` Clears the screen
+- `cls([col])` Clears the screen
 
 ### color
 - `color(col) → prev_col`
@@ -134,27 +134,42 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 
 ## screen (advanced)
 
-- **flip**()
-  - Flip the back buffer to screen
-- **camera**(x, y)
-  - Set the camera offset - usefull for camera shaking effects
-- **pal**(col1, col2)  →  prev_col
-  - Remaps color col1 to col2
-  - To reset all remaping call pal() without any arguments
-- **str**(i_list, x, y, [font], [col1], [col0])  →  [width, height]
+### flip
+- `flip()`
+- Flip the back buffer to screen
 
-- **rect**(x, y, w, h, col1, col0, pattern) // TODO
+### camera
+- `camera(x, y)`
+- Set the camera offset - usefull for camera shaking effects
+
+### pal
+- `pal(col1, col2) → prev_col`
+- Remaps color col1 to col2
+- To reset all remaping call pal() without any arguments
+
+### str
+- `str(i_list, x, y, [font], [col1], [col0])  →  [width, height]`
+
+
+### rect
+- `rect(x, y, w, h, col1, col0, pattern)`
+- TODO
 
 ## input
 
-- **mouse**() → [mx, my, m1, m2]
-  - Returns the mouse coordinates and state of both buttons
-  - Button state: 3 → just pressed, 2 → held, 1 → just released, 0 → not pressed
+### mouse
+- `mouse() → [mx, my, m1, m2]`
+- Returns the mouse coordinates and state of both buttons
+- Button state: 3 → just pressed, 2 → held, 1 → just released, 0 → not pressed
+
 
 ## sound
 
-- **snd**(n, c=-1, t=0.25, volume=1.0)
-- **channel**(n, volume=1.0, type='square', attack=0.1, release=0.5, detune=0, delay=0)
+### snd
+- `snd(n, c=-1, t=0.25, volume=1.0)`
+
+### channel
+- `channel**(n, volume=1.0, type='square', attack=0.1, release=0.5, detune=0, delay=0)`
 
 ## math
 
