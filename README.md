@@ -70,6 +70,8 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 ```html
 <div id="screen"></div>
 <a onclick='fullscreen()'>fullscreen</a>
+<a onclick='halt()'>halt</a>
+<a onclick='resume()'>resume</a>
 
 <script src="itsy.js"></script>
 
