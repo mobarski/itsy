@@ -143,9 +143,9 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 - Set the camera offset - usefull for camera shaking effects
 
 ### pal
-- `pal(col1, col2) → prev_col`
-- Remaps color col1 to col2
-- To reset all remaping call pal() without any arguments
+> pal(col1, col2) → prev_col
+> Remaps color col1 to col2
+> To reset all remaping call pal() without any arguments
 
 ### str
 - `str(i_list, x, y, [font], [col1], [col0])  →  [width, height]`
