@@ -4,20 +4,18 @@
 
 ## Idea
 
-Minimalistic *fantasy console* API/adapter for JS.
+Minimalistic [fantasy console](https://en.wikipedia.org/wiki/Fantasy_video_game_console) API for JS.
 
 - simple and easy API
 - adjustable resolution
 - adjustable color palette
 - 1 bit sprite/font-sheets
 - playscii .char support
+- built-in [MRMOTEXT](https://mrmotarius.itch.io/mrmotext) charset by Mrmo Tarius
 - pure JS - no external dependencies
 - embeddable into single, small JS/HTML file
 - simple sound-synth with adjustable channels
 - playscii .psci support (TODO???)
-
-`*` fantasy console -> https://en.wikipedia.org/wiki/Fantasy_video_game_console
-
 
 ## Why?
 
@@ -30,13 +28,16 @@ its user how to program was a selling point for hardware.
 The API consisted of simple words with intuitive effects.
 There were even keyboards with all the commands
 [printed on the keys](https://en.wikipedia.org/wiki/ZX_Spectrum#/media/File:ZXSpectrum48k.jpg)
-to improve the UX/ergonomy and facilitate exploration.
+to improve the ergonomy and facilitate exploration.
 
 Programs written in BASIC were not 100% portable between the machines with different dialects
-BUT it was easy to port them. Many books and magazines contained BASIC scripts ... TODO ...
+BUT it was easy to port them. Books and magazines contained BASIC scripts and it was quite
+easy to find interesting code to play with.
 
-Many years have passed, and computers are now much more powerful. Unfortunately the barier of entry
-into programming had risen and not went down. ... TODO ...
+Years have passed, computers are now much more powerful and the software can do amazing things.
+Somehow the barier of entry into programming had risen and not went down. Sure, there are some
+systems designed for kids (i.e. Scratch, MakeCode Arcade) and systems that emulate
+the "old school" experience of developing software (i.e. PICO-8, TIC-80) but ... TODO ...
 
 Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 
@@ -108,26 +109,36 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 
 - **init**(w, h, [scale], [fps], [colors])
 
-- **cls**([col])  ->  [width, height]
-- **color**(col)  ->  prev_col
+- **cls**([col])  →  [width, height]
+  - Clear the screen
+- **color**(col)  →  prev_col
+  - Set the current color
 - **rect**(x, y, w, h, [col])
+  - Draw a filled rectengle
 - **line**(x0, y0, x1, y1, [col])
+  - Draw a line
 
-- **text**(str, x, y, [font], [col1], [col0])  ->  [width, height]
-- **chr**(i, x, y, [font], [col1], [col0])  ->  [width, height]
+- **text**(str, x, y, [font], [col1], [col0])  →  [width, height]
+- **chr**(i, x, y, [font], [col1], [col0])  →  [width, height]
 
 ## screen (advanced)
 
 - **flip**()
+  - Flip the back buffer to screen
 - **camera**(x, y)
-- **pal**(col1, col2)  ->  prev_col
-- **str**(i_list, x, y, [font], [col1], [col0])  ->  [width, height]
+  - Set the camera offset - usefull for camera shaking effects
+- **pal**(col1, col2)  →  prev_col
+  - Remaps color col1 to col2
+  - To reset all remaping call pal() without any arguments
+- **str**(i_list, x, y, [font], [col1], [col0])  →  [width, height]
 
 - **rect**(x, y, w, h, col1, col0, pattern) // TODO
 
 ## input
 
-- **mouse**() -> [mx, my, m1, m2]
+- **mouse**() → [mx, my, m1, m2]
+  - Returns the mouse coordinates and state of both buttons
+  - Button state: 3 → just pressed, 2 → held, 1 → just released, 0 → not pressed
 
 ## sound
 

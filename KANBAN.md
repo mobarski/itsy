@@ -45,6 +45,8 @@
 - playscii .psci support
 
 - screen recording (gif)
+  - https://medium.com/@emma.pejko/making-gifs-in-javascript-497349bf3cc8
+  - https://javascript.plainenglish.io/how-to-create-an-animated-gif-from-custom-canvas-frames-with-client-side-javascript-696b1ba933ba
 - screen capture (gif/png)
 
 - screen: rect/flip -> webgl version -> benchmark
