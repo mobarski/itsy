@@ -137,11 +137,11 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 
 ### flip
 - `flip()`
-- Flip the back buffer to screen
+- Flips the back buffer to screen
 
 ### camera
 - `camera(x, y)`
-- Set the camera offset - usefull for camera shaking effects
+- Sets the camera offset - usefull for camera shaking effects
 
 ### pal
 - `pal(col1, col2) → prev_col`
@@ -174,31 +174,64 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 
 ## math
 
-- **int**(a, [b])
+### int
+- `int(a, [b])`
 
-- **ceil**(a)
-- **floor**(a)
+### ceil
+- `ceil(a)`
 
-- **randint**(a, b)
+### floor
+- `floor(a)`
 
-- **abs**(a)
-- **min**(a, ...)
-- **max**(a, ...)
-- **mid**(a, b, c)
+### randint
+- `randint(a, b)`
 
-- **sin**(a)
-- **cos**(b)
-- **atan2**(a, b)
-- **PI**
+### abs
+- `abs(a)`
 
-- **sqrt**(a)
+### min
+- `min(a, ...)`
+
+### max
+- `max(a, ...)`
+
+### mid
+- `mid(a, b, c)`
+
+
+### PI
+- `PI`
+
+### sin
+- `sin(a)`
+
+### cos
+- `cos(b)`
+
+### atan2
+- `atan2(a, b)`
+
+### sqrt
+- `sqrt(a)`
+
+
 
 ## other
 
-- **halt**()
-- **resume**()
-- **fullscreen**()
-- **time**() -> ms since start
+### halt
+- `halt()`
+
+### resume
+- `resume()`
+
+### fullscreen
+- `fullscreen()`
+
+### time
+- `time() -> t`
+- Returns time since start (in milliseconds)
+
+
 
 # Reference materials
 
