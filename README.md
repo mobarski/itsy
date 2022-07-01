@@ -69,7 +69,7 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 
 ```html
 <div id="screen"></div>
-<a onclick='fullscreen()'>fullscreen</a/>
+<a onclick='fullscreen()'>fullscreen</a>
 
 <script src="itsy.js"></script>
 
@@ -77,7 +77,7 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
     
     async function boot() {
         init(160, 144, 4, 90)
-        label = "HELLO WORLD"
+        label = "Hello World"
         frame = 0
     }
     
