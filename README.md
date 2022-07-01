@@ -107,62 +107,69 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 
 ## screen
 
-#### init(w, h, [scale], [fps], [colors])
+### init
+- `init(w, h, [scale], [fps], [colors])`
 
-#### cls([col])
+### cls
+- `cls([col])`
 - Clears the screen
 
-#### color(col) → prev_col
+### color
+- `color(col) → prev_col`
 - Sets the current color
 
-#### rect(x, y, w, h, [col])
+### rect
+- `rect(x, y, w, h, [col])`
 - Draws a filled rectengle
 
-#### line(x0, y0, x1, y1, [col])
+### line
+- `line(x0, y0, x1, y1, [col])`
 - Draws a line
 
-#### text(str, x, y, [font], [col1], [col0])  →  [width, height]
-- ...
-#### chr(i, x, y, [font], [col1], [col0])  →  [width, height]
-- ...
+### text
+- `text(str, x, y, [font], [col1], [col0])  →  [width, height]`
+
+### chr
+- `chr(i, x, y, [font], [col1], [col0])  →  [width, height]`
+
 
 ## screen (advanced)
 
-#### flip
+### flip
 - `flip()`
-  - Flip the back buffer to screen
+- Flip the back buffer to screen
 
-#### camera
+### camera
 - `camera(x, y)`
-  - Set the camera offset - usefull for camera shaking effects
+- Set the camera offset - usefull for camera shaking effects
 
-#### pal
+### pal
 - `pal(col1, col2) → prev_col`
-  - Remaps color col1 to col2
-  - To reset all remaping call pal() without any arguments
+- Remaps color col1 to col2
+- To reset all remaping call pal() without any arguments
 
-#### str
+### str
 - `str(i_list, x, y, [font], [col1], [col0])  →  [width, height]`
 
 
-#### rect
+### rect
 - `rect(x, y, w, h, col1, col0, pattern)`
-  - TODO
+- TODO
 
 ## input
 
-#### mouse
+### mouse
 - `mouse() → [mx, my, m1, m2]`
-  - Returns the mouse coordinates and state of both buttons
-  - Button state: 3 → just pressed, 2 → held, 1 → just released, 0 → not pressed
+- Returns the mouse coordinates and state of both buttons
+- Button state: 3 → just pressed, 2 → held, 1 → just released, 0 → not pressed
 
 
 ## sound
 
-#### snd
+### snd
 - `snd(n, c=-1, t=0.25, volume=1.0)`
 
-#### channel
+### channel
 - `channel**(n, volume=1.0, type='square', attack=0.1, release=0.5, detune=0, delay=0)`
 
 ## math
