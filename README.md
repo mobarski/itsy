@@ -107,31 +107,24 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 
 ## screen
 
-#### init
-- `init(w, h, [scale], [fps], [colors])`
+#### init(w, h, [scale], [fps], [colors])
 
-#### cls
-- `cls([col])` 
-  - Clears the screen
+#### cls([col])
+- Clears the screen
 
-#### color
-- `color(col) → prev_col`
-  - Sets the current color
+#### color(col) → prev_col
+- Sets the current color
 
-#### rect
-- `rect(x, y, w, h, [col])`
-  - Draws a filled rectengle
+#### rect(x, y, w, h, [col])
+- Draws a filled rectengle
 
-#### line
-- `line(x0, y0, x1, y1, [col])`
-  - Draws a line
+#### line(x0, y0, x1, y1, [col])
+- Draws a line
 
-#### text
-- `text(str, x, y, [font], [col1], [col0])  →  [width, height]`
-
-#### chr
-- `chr(i, x, y, [font], [col1], [col0])  →  [width, height]`
-
+#### text(str, x, y, [font], [col1], [col0])  →  [width, height]
+- ...
+#### chr(i, x, y, [font], [col1], [col0])  →  [width, height]
+- ...
 
 ## screen (advanced)
 
