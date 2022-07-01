@@ -170,7 +170,7 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 - `snd(n, c=-1, t=0.25, volume=1.0)`
 
 ### channel
-- `channel**(n, volume=1.0, type='square', attack=0.1, release=0.5, detune=0, delay=0)`
+- `channel(n, volume=1.0, type='square', attack=0.1, release=0.5, detune=0, delay=0)`
 
 ## math
 
