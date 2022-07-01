@@ -115,15 +115,15 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 
 ### color
 - `color(col) → prev_col`
-- Sets the current color
+  - Sets the current color
 
 ### rect
 - `rect(x, y, w, h, [col])`
-- Draws a filled rectengle
+  - Draws a filled rectengle
 
 ### line
 - `line(x0, y0, x1, y1, [col])`
-- Draws a line
+  - Draws a line
 
 ### text
 - `text(str, x, y, [font], [col1], [col0])  →  [width, height]`
@@ -136,11 +136,11 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 
 ### flip
 - `flip()`
-- Flip the back buffer to screen
+  - Flip the back buffer to screen
 
 ### camera
 - `camera(x, y)`
-- Set the camera offset - usefull for camera shaking effects
+  - Set the camera offset - usefull for camera shaking effects
 
 ### pal
 - `pal(col1, col2) → prev_col`
@@ -159,8 +159,8 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 
 ### mouse
 - `mouse() → [mx, my, m1, m2]`
-- Returns the mouse coordinates and state of both buttons
-- Button state: 3 → just pressed, 2 → held, 1 → just released, 0 → not pressed
+  - Returns the mouse coordinates and state of both buttons
+  - Button state: 3 → just pressed, 2 → held, 1 → just released, 0 → not pressed
 
 
 ## sound
