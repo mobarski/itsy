@@ -1,5 +1,6 @@
 # ACTIVE
 
+- built-in [MRMOTEXT](https://mrmotarius.itch.io/mrmotext) charset by Mrmo Tarius
 
 - screen: support float values as args (cast to int)
 

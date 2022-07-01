@@ -11,7 +11,6 @@ Minimalistic [fantasy console](https://en.wikipedia.org/wiki/Fantasy_video_game_
 - adjustable color palette
 - 1 bit sprite/font-sheets
 - playscii .char support
-- built-in [MRMOTEXT](https://mrmotarius.itch.io/mrmotext) charset by Mrmo Tarius
 - pure JS - no external dependencies
 - embeddable into single, small JS/HTML file
 - simple sound-synth with adjustable channels
