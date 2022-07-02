@@ -1,6 +1,8 @@
 # ACTIVE
 
-- screen: support float values as args (cast to int)
+- mouse: fix registering button presses outside of the canvas
+
+- screen: support float values as args (cast to int) ??? -> performance hit :(
 
 - built-in [MRMOTEXT](https://mrmotarius.itch.io/mrmotext) charset by Mrmo Tarius
 
