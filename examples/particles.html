@@ -57,7 +57,11 @@
 	
 	function draw() {
 		cls(0)
+		color(4)
+		text("Press LMB or RMB",14,2)
+		text("to spawn particles",6,10)
 		particles_draw()
+		//
 		let [mx,my,m1,m2] = mouse()
 		if ((m1==3) || (m2==3)) {
 			let c1 = m1 ? 2 : 5
