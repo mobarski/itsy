@@ -10,7 +10,7 @@
 	
 	function particles_update() {
 		let new_particles = []
-		let old_particles = fc.particles
+		let old_particles = fc.particles // not used
 		for (i in fc.particles) {
 			let p = fc.particles[i]
 			p.x += p.dx || 0
@@ -30,13 +30,14 @@
 		}
 	}
 	
-	function add_particle(effect,ttl,x,y,dx,dy) {
+	function add_particle(effect, ttl, x, y, dx, dy) {
 		let p = {effect:effect, x:x||0, y:y||0, dx:dx||0, dy:dy||0, ttl:ttl, ttl_max:ttl}
 		fc.particles.push(p)
 		return p
 	}
 	
-	function p_rect(c1,c2) {
+	// effect factory
+	function ef_rect(c1,c2) {
 		return function(p) {
 			rect(int(p.x), int(p.y), 1, 1, p.ttl/p.ttl_max>0.2 ? c1 : c2)
 		}
@@ -53,6 +54,15 @@
 	function update() {
 		frame += 1
 		particles_update()
+		// new particles
+		let [mx,my,m1,m2] = mouse()
+		if ((m1==3) || (m2==3)) {
+			let c1 = m1 ? 2 : 5
+			let c2 = m1 ? 1 : 6
+			for (let i=0; i<10; i++) {
+				add_particle(ef_rect(c1,c2), rnd(30,60), mx, my, rnd(-10,10)/10, rnd(-10,10)/10)
+			}
+		}
 	}
 	
 	function draw() {
@@ -61,15 +71,6 @@
 		text("Press LMB or RMB",14,2)
 		text("to spawn particles",6,10)
 		particles_draw()
-		//
-		let [mx,my,m1,m2] = mouse()
-		if ((m1==3) || (m2==3)) {
-			let c1 = m1 ? 2 : 5
-			let c2 = m1 ? 1 : 6
-			for (let i=0; i<10; i++) {
-				add_particle(p_rect(c1,c2), rnd(30,60), mx, my, rnd(-10,10)/10, rnd(-10,10)/10)
-			}
-		}
 	}
 	
 	run(boot, update, draw)
