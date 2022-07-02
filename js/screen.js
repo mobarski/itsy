@@ -155,6 +155,13 @@ function rect(x,y,w,h,col) {
 	let g = rgb[1]
 	let b = rgb[2]
 	
+	/*
+	x = int(x)
+	y = int(y)
+	w = int(w)
+	h = int(h)
+	*/
+	
 	let data = fc.framebuffer.data
 	
 	// LIMIT x,y,w,h TO FRAMEBUFFER COORDS

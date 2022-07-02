@@ -12,7 +12,7 @@ function mid(a,b,c) {
 	return c
 }
 
-function randint(a,b) {
+function rnd(a,b) {
 	return int(a) + int(Math.random() * (int(b)-int(a)+1))
 }
 

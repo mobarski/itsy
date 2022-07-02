@@ -1,0 +1,73 @@
+<div id="screen"></div>
+<a onclick='fullscreen()'>fullscreen</a>
+<a onclick='halt()'>halt</a>
+<a onclick='resume()'>resume</a>
+
+<script src="../js/itsy.js"></script>
+
+<script>
+	
+	
+	function particles_update() {
+		let new_particles = []
+		let old_particles = fc.particles
+		for (i in fc.particles) {
+			let p = fc.particles[i]
+			p.x += p.dx || 0
+			p.y += p.dy || 0
+			p.ttl -= 1
+			if (p.ttl >= 0) {
+				new_particles.push(p)
+			}
+		}
+		fc.particles = new_particles
+	}
+	
+	function particles_draw() {
+		for (i in fc.particles) {
+			let p = fc.particles[i]
+			if (p.effect) { p.effect(p) }
+		}
+	}
+	
+	function add_particle(effect,ttl,x,y,dx,dy) {
+		let p = {effect:effect, x:x||0, y:y||0, dx:dx||0, dy:dy||0, ttl:ttl, ttl_max:ttl}
+		fc.particles.push(p)
+		return p
+	}
+	
+	function p_rect(c1,c2) {
+		return function(p) {
+			rect(int(p.x), int(p.y), 1, 1, p.ttl/p.ttl_max>0.2 ? c1 : c2)
+		}
+	}
+	
+	// BOOT UPDATE DRAW
+	
+	async function boot() {
+		init(160, 144, 4, 90)
+		frame = 0
+		fc.particles = []
+	}
+	
+	function update() {
+		frame += 1
+		particles_update()
+	}
+	
+	function draw() {
+		cls(0)
+		particles_draw()
+		let [mx,my,m1,m2] = mouse()
+		if ((m1==3) || (m2==3)) {
+			let c1 = m1 ? 2 : 5
+			let c2 = m1 ? 1 : 6
+			for (let i=0; i<10; i++) {
+				add_particle(p_rect(c1,c2), rnd(30,60), mx, my, rnd(-10,10)/10, rnd(-10,10)/10)
+			}
+		}
+	}
+	
+	run(boot, update, draw)
+	
+</script>
