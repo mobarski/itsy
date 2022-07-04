@@ -1,6 +1,7 @@
 # ACTIVE
 
 - mouse: fix registering button presses outside of the canvas
+- touch
 
 - screen: support float values as args (cast to int) ??? -> performance hit :(
 
@@ -32,12 +33,8 @@
 - screen: flip support in blit (ala pyxel w<0 h<0)
 - screen: fill pattern arg in rect
 
-- mouse: out of canvas behaviour 
-- touch
-
 - text control codes
 - text special commands
-
 
 - input api idea/docs
 - joypad
