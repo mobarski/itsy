@@ -13,12 +13,12 @@
 <script>
 	
 	async function boot() {
-		init(320,200,3,10)
-		channel(1,'square',0)
-		channel(2,'sawtooth',0,0.02)
-		channel(3,'triangle',0,0.04)
-		channel(4,'sine',0,0.08)
-		channel(5,'noise',0,0.08)
+		init(512,200,3,10)
+		channel(1,'square')
+		channel(2,'sawtooth')
+		channel(3,'triangle')
+		channel(4,'sine')
+		channel(5,'noise')
 		cls(15)
 	}
 
@@ -26,19 +26,19 @@
 		let [mx,my,m1,m2] = mouse()
 		
 		if ((m1==3) || (m2==3)) {
-			let n = int(mx/(fc.width/88) + 1)
+			let n = int(mx/(fc.width/128) + 0)
 			let c = int(my/(fc.height/5) + 1)
-			fc.ch[c].exp_attack  = m1==3 ? 1 : 0
-			fc.ch[c].exp_release = m1==3 ? 0 : 0
-			snd(n, c)
+			//fc.ch[c].exp_attack  = m1==3 ? 1 : 0
+			//fc.ch[c].exp_release = m1==3 ? 0 : 0
+			snd(n, c, m1==3 ? 0 : -2)
 		}
 	}
 
 	function draw() {
-		let w = fc.width/88
+		let w = 4
 		let h = fc.height/5
 		for (let c=0; c<5; c++) {
-			for (let n=0; n<88; n++) {
+			for (let n=0; n<128; n++) {
 				let col = n%2 ? c+1 : 0
 				rect(int(n*w), int(c*h), w, h, col)
 			}

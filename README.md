@@ -167,10 +167,13 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 ## sound
 
 ### snd
-- `snd(n, c=-1, t=0.25, volume=1.0)`
+- `snd(n, c=-1, d=0, volume=1.0)`
+- n - midi note number (0-127), 69 → A4 (440HZ) 
+- c - channel
+- d - duration: 2 → full note, 1 → half note, 0 → quarter, -1 → eight note, -2 → sixteenth note
 
 ### channel
-- `channel(n, volume=1.0, type='square', attack=0.1, release=0.5, detune=0, delay=0)`
+- `channel(c, volume=1.0, type='square', bpm=120, attack=0.1, release=0.3)`
 
 ## math
 

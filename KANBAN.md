@@ -70,6 +70,7 @@
 
 # DONE
 
+- sound: piano key number -> midi note number
 - github pages: https://pages.github.com/  https://stackoverflow.com/questions/8446218/how-to-see-an-html-page-on-github-as-a-normal-rendered-html-page-to-see-preview
 - font: faster handling of chars that are not on the screen
 - mouse buttons api >>> mx,my,m1,m2 <<< vs mx,my,mb
