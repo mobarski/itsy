@@ -339,6 +339,28 @@ function on_wheel(e) {
 	console.log('mouse_wheel', fc.mouse_x, fc.mouse_y, dx, dy, e) // XXX
 }
 
+// ===[ TOUCH ]================
+
+// REF: https://flaviocopes.com/touch-events/
+
+function on_touch_start(e) {
+	// TODO
+	set_mouse_xy(e)
+	fc.mouse_btn_queue.push(1)
+}
+
+function on_touch_move(e) {
+	// TODO
+	set_mouse_xy(e)
+	fc.mouse_btn_queue.push(1)
+}
+
+function on_touch_end(e) {
+	// TODO
+	set_mouse_xy(e)
+	fc.mouse_btn_queue.push(0)
+}
+
 function init_mouse() {
 	fc.mouse_x = -1
 	fc.mouse_y = -1
@@ -350,6 +372,9 @@ function init_mouse() {
 	document.addEventListener('mouseup',   on_mouse_up)
 	document.addEventListener('mousedown', on_mouse_down)
 	document.addEventListener('wheel',     on_wheel)
+	document.addEventListener('touchstart', on_touch_start)
+	document.addEventListener('touchmove',  on_touch_move)
+	document.addEventListener('touchend',   on_touch_end)
 }
 
 // TODO: mouse buttons as dict key (1,2,3) -> state (3-just pressed, 2-down, 1-just released, 0-up)
