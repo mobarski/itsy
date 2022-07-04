@@ -60,18 +60,21 @@ function on_wheel(e) {
 
 function on_touch_start(e) {
 	// TODO
+	e.preventDefault()
 	set_mouse_xy(e)
 	fc.mouse_btn_queue.push(1)
 }
 
 function on_touch_move(e) {
 	// TODO
+	e.preventDefault()
 	set_mouse_xy(e)
 	fc.mouse_btn_queue.push(1)
 }
 
 function on_touch_end(e) {
 	// TODO
+	e.preventDefault()
 	set_mouse_xy(e)
 	fc.mouse_btn_queue.push(0)
 }
