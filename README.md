@@ -107,7 +107,7 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 
 - [simple](https://mobarski.github.io/itsy/examples/minimal.html) - init, cls, rect, flip
 - [typical](https://mobarski.github.io/itsy/examples/typical.html) - boot, update, draw, run, text, fullscreen, halt, resume
-- [particles](https://mobarski.github.io/itsy/examples/particles.html) - mouse, color, boot, update, draw, run, rect
+- [particles](https://mobarski.github.io/itsy/examples/particles.html) - mouse, color, rnd, boot, update, draw, run, rect
 
 
 # API
