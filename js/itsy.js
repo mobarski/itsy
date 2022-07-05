@@ -162,8 +162,6 @@ set_touch_xy(e)
 fc.mouse_btn_queue.push(1)}
 function on_touch_end(e){e.preventDefault()
 fc.mouse_btn_queue.push(0)}
-function on_touch_over(e){e.preventDefault()
-set_touch_xy(e)}
 function set_touch_xy(e){let bcr=fc.cnv.getBoundingClientRect()
 let ratio=fc.scale
 let mx=parseInt(e.targetTouches[0].pageX)
@@ -173,6 +171,7 @@ fc.mouse_y=parseInt(my/ratio)
 dom_set('status')
 for(let i=0;i<e.targetTouches.length;i++){let t=e.targetTouches[i]
 dom_add('status',`i:${i} x:${t.pageX} y:${t.pageY} force:${t.force} pressure:${t.pressure}  altitudeAngle:${t.altitudeAngle} radiusX:${t.radiusX} radiusY:${t.radiusY}`)}}
+function on_pointer_over(e){dom_set('status',`x:${e.pageX} y:${e.pageY} pressure:${e.pressure} tiltX:${e.tiltX} twist:${e.twist} pointerType:${e.pointerType}`)}
 function init_mouse(){fc.mouse_x=-1
 fc.mouse_y=-1
 fc.mouse_btn={1:0,2:0,3:0}
@@ -185,7 +184,7 @@ document.addEventListener('wheel',on_wheel)
 fc.cnv.addEventListener('touchstart',on_touch_start)
 fc.cnv.addEventListener('touchmove',on_touch_move)
 fc.cnv.addEventListener('touchend',on_touch_end)
-fc.cnv.addEventListener('touchover',on_touch_over)
+fc.cnv.addEventListener('pointerover',on_pointer_over)
 fc.cnv.addEventListener('contextmenu',function(e){e.preventDefault()})}
 function proc_mouse(){for(let j in[1,2,3]){if(fc.mouse_btn[j]==3){fc.mouse_btn[j]=2}
 if(fc.mouse_btn[j]==1){fc.mouse_btn[j]=0}

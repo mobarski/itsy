@@ -81,12 +81,6 @@ function on_touch_end(e) {
 	fc.mouse_btn_queue.push(0)
 }
 
-function on_touch_over(e) {
-	// TODO
-	e.preventDefault()
-	set_touch_xy(e)
-}
-
 function set_touch_xy(e) {
 	let bcr = fc.cnv.getBoundingClientRect()
 	let ratio = fc.scale
@@ -102,6 +96,12 @@ function set_touch_xy(e) {
 		let t = e.targetTouches[i]
 		dom_add('status', `i:${i} x:${t.pageX} y:${t.pageY} force:${t.force} pressure:${t.pressure}  altitudeAngle:${t.altitudeAngle} radiusX:${t.radiusX} radiusY:${t.radiusY}`)
 	}
+}
+
+// === pointer
+
+function on_pointer_over(e) {
+	dom_set('status', `x:${e.pageX} y:${e.pageY} pressure:${e.pressure} tiltX:${e.tiltX} twist:${e.twist} pointerType:${e.pointerType}`)
 }
 
 // ===
@@ -121,7 +121,8 @@ function init_mouse() {
 	fc.cnv.addEventListener('touchstart', on_touch_start)
 	fc.cnv.addEventListener('touchmove',  on_touch_move)
 	fc.cnv.addEventListener('touchend',   on_touch_end)
-	fc.cnv.addEventListener('touchover',  on_touch_over)
+	//
+	fc.cnv.addEventListener('pointerover',  on_pointer_over)
 	//
 	fc.cnv.addEventListener('contextmenu', function(e){e.preventDefault()})
 }
