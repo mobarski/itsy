@@ -1,4 +1,20 @@
 
+function dom_set(name, html) {
+	let out = document.getElementById(name)
+	if (out) {
+		out.innerHTML = html
+	}
+}
+
+function dom_add(name, html) {
+	let out = document.getElementById(name)
+	if (out) {
+		out.innerHTML += html
+	}
+}
+
+
+
 function tri(x,y,x2,y2,x3,y3,col) {
 	color(col)
 	fc.ctx.beginPath()

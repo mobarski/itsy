@@ -194,10 +194,3 @@ function flip() {
 	fc.ctx_fb.putImageData(fc.framebuffer, 0, 0)
 	fc.ctx.drawImage(fc.cnv_fb, 0, 0)
 }
-
-/*
-function status(text) {
-	let out = document.getElementById('status')
-	out.innerHTML = text
-}
-*/
