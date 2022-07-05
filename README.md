@@ -102,9 +102,12 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 ```
 [See the result](https://mobarski.github.io/itsy/examples/typical.html)
 
-## Other examples
 
-- [particles](https://mobarski.github.io/itsy/examples/particles.html)
+## All examples
+
+- [simple](https://mobarski.github.io/itsy/examples/minimal.html) - init, cls, rect, flip
+- [typical](https://mobarski.github.io/itsy/examples/typical.html) - boot, update, draw, run, text
+- [particles](https://mobarski.github.io/itsy/examples/particles.html) - mouse, color
 
 
 # API
