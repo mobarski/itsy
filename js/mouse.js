@@ -88,6 +88,12 @@ function set_touch_xy(e) {
 	
 	fc.mouse_x = parseInt(mx / ratio)
 	fc.mouse_y = parseInt(my / ratio)
+	
+	dom_set('status')
+	for (let i in e.targetTouches) {
+		let t = e.targetTouches[i]
+		dom_add('status', `i:${i} x:${t.pageX} y:${t.pageY} force:${t.force} altitudeAngle:${t.altitudeAngle} radiusX:${t.radiusX} radiusY:${t.radiusY}`)
+	}
 }
 
 // ===
