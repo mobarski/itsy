@@ -195,3 +195,9 @@ function flip() {
 	fc.ctx.drawImage(fc.cnv_fb, 0, 0)
 }
 
+/*
+function status(text) {
+	let out = document.getElementById('status')
+	out.innerHTML = text
+}
+*/

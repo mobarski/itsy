@@ -161,7 +161,6 @@ function on_touch_move(e){e.preventDefault()
 set_touch_xy(e)
 fc.mouse_btn_queue.push(1)}
 function on_touch_end(e){e.preventDefault()
-set_touch_xy(e)
 fc.mouse_btn_queue.push(0)}
 function set_touch_xy(e){let bcr=fc.cnv.getBoundingClientRect()
 let ratio=fc.scale

@@ -76,7 +76,6 @@ function on_touch_move(e) {
 function on_touch_end(e) {
 	// TODO
 	e.preventDefault()
-	set_touch_xy(e)
 	fc.mouse_btn_queue.push(0)
 }
 
