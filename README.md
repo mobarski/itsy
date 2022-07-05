@@ -102,7 +102,6 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 ```
 [See the result](https://mobarski.github.io/itsy/examples/typical.html)
 
-
 ## All examples
 
 - [simple](https://mobarski.github.io/itsy/examples/minimal.html) - init, cls, rect, flip
