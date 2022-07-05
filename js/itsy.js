@@ -140,6 +140,12 @@ let my=e.clientY-bcr_top
 fc.mouse_x=parseInt(mx/ratio)-fc.camera_x
 fc.mouse_y=parseInt(my/ratio)-fc.camera_y
 }
+function set_touch_xy(e){let bcr=fc.cnv.getBoundingClientRect()
+let ratio=fc.scale
+let mx=e.clientX
+let my=e.clientY
+fc.mouse_x=parseInt(mx/ratio)
+fc.mouse_y=parseInt(my/ratio)}
 function on_mouse_move(e){set_mouse_xy(e)
 }
 function on_mouse_down(e){fc.xxx_ts=time()
@@ -155,27 +161,27 @@ let dx=e.deltaX
 let dy=e.deltaY
 console.log('mouse_wheel',fc.mouse_x,fc.mouse_y,dx,dy,e)}
 function on_touch_start(e){e.preventDefault()
-set_mouse_xy(e)
+set_touch_xy(e)
 fc.mouse_btn_queue.push(1)}
 function on_touch_move(e){e.preventDefault()
-set_mouse_xy(e)
+set_touch_xy(e)
 fc.mouse_btn_queue.push(1)}
 function on_touch_end(e){e.preventDefault()
-set_mouse_xy(e)
+set_touch_xy(e)
 fc.mouse_btn_queue.push(0)}
 function init_mouse(){fc.mouse_x=-1
 fc.mouse_y=-1
 fc.mouse_btn={1:0,2:0,3:0}
 fc.mouse_buttons=0
 fc.mouse_btn_queue=[]
-fc.cnv.addEventListener('contextmenu',function(e){e.preventDefault()})
 document.addEventListener('mousemove',on_mouse_move)
 document.addEventListener('mouseup',on_mouse_up)
 document.addEventListener('mousedown',on_mouse_down)
 document.addEventListener('wheel',on_wheel)
-document.addEventListener('touchstart',on_touch_start)
-document.addEventListener('touchmove',on_touch_move)
-document.addEventListener('touchend',on_touch_end)}
+fc.cnv.addEventListener('touchstart',on_touch_start)
+fc.cnv.addEventListener('touchmove',on_touch_move)
+fc.cnv.addEventListener('touchend',on_touch_end)
+fc.cnv.addEventListener('contextmenu',function(e){e.preventDefault()})}
 function proc_mouse(){for(let j in[1,2,3]){if(fc.mouse_btn[j]==3){fc.mouse_btn[j]=2}
 if(fc.mouse_btn[j]==1){fc.mouse_btn[j]=0}
 if(fc.mouse_btn[j]==2){fc.mouse_btn[j]=fc.mouse_buttons&(1<<(j-1))?2:1}}

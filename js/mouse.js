@@ -24,6 +24,17 @@ function set_mouse_xy(e) {
 	//console.log('set_mouse',fc.mouse_x,fc.mouse_y)
 }
 
+function set_touch_xy(e) {
+	let bcr = fc.cnv.getBoundingClientRect()
+	let ratio = fc.scale
+	
+	let mx = e.clientX
+	let my = e.clientY
+	
+	fc.mouse_x = parseInt(mx / ratio)
+	fc.mouse_y = parseInt(my / ratio)
+}
+
 function on_mouse_move(e) {
 	set_mouse_xy(e)
 	//console.log('mouse_move', fc.mouse_x, fc.mouse_y, e) // XXX
@@ -61,21 +72,21 @@ function on_wheel(e) {
 function on_touch_start(e) {
 	// TODO
 	e.preventDefault()
-	set_mouse_xy(e)
+	set_touch_xy(e)
 	fc.mouse_btn_queue.push(1)
 }
 
 function on_touch_move(e) {
 	// TODO
 	e.preventDefault()
-	set_mouse_xy(e)
+	set_touch_xy(e)
 	fc.mouse_btn_queue.push(1)
 }
 
 function on_touch_end(e) {
 	// TODO
 	e.preventDefault()
-	set_mouse_xy(e)
+	set_touch_xy(e)
 	fc.mouse_btn_queue.push(0)
 }
 
@@ -85,14 +96,17 @@ function init_mouse() {
 	fc.mouse_btn = {1:0, 2:0, 3:0}
 	fc.mouse_buttons = 0
 	fc.mouse_btn_queue = []
-	fc.cnv.addEventListener('contextmenu', function(e){e.preventDefault()})
+	//
 	document.addEventListener('mousemove', on_mouse_move)
 	document.addEventListener('mouseup',   on_mouse_up)
 	document.addEventListener('mousedown', on_mouse_down)
 	document.addEventListener('wheel',     on_wheel)
-	document.addEventListener('touchstart', on_touch_start)
-	document.addEventListener('touchmove',  on_touch_move)
-	document.addEventListener('touchend',   on_touch_end)
+	//
+	fc.cnv.addEventListener('touchstart', on_touch_start)
+	fc.cnv.addEventListener('touchmove',  on_touch_move)
+	fc.cnv.addEventListener('touchend',   on_touch_end)
+	//
+	fc.cnv.addEventListener('contextmenu', function(e){e.preventDefault()})
 }
 
 // TODO: mouse buttons as dict key (1,2,3) -> state (3-just pressed, 2-down, 1-just released, 0-up)
