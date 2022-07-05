@@ -24,17 +24,6 @@ function set_mouse_xy(e) {
 	//console.log('set_mouse',fc.mouse_x,fc.mouse_y)
 }
 
-function set_touch_xy(e) {
-	let bcr = fc.cnv.getBoundingClientRect()
-	let ratio = fc.scale
-	
-	let mx = e.clientX
-	let my = e.clientY
-	
-	fc.mouse_x = parseInt(mx / ratio)
-	fc.mouse_y = parseInt(my / ratio)
-}
-
 function on_mouse_move(e) {
 	set_mouse_xy(e)
 	//console.log('mouse_move', fc.mouse_x, fc.mouse_y, e) // XXX
@@ -68,6 +57,7 @@ function on_wheel(e) {
 // ===[ TOUCH ]================
 
 // REF: https://flaviocopes.com/touch-events/
+// REF: https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/HandlingEvents/HandlingEvents.html#//apple_ref/doc/uid/TP40006511-SW22
 
 function on_touch_start(e) {
 	// TODO
@@ -89,6 +79,19 @@ function on_touch_end(e) {
 	set_touch_xy(e)
 	fc.mouse_btn_queue.push(0)
 }
+
+function set_touch_xy(e) {
+	let bcr = fc.cnv.getBoundingClientRect()
+	let ratio = fc.scale
+	
+	let mx = e.touches[0].clientX
+	let my = e.touches[0].clientY
+	
+	fc.mouse_x = parseInt(mx / ratio)
+	fc.mouse_y = parseInt(my / ratio)
+}
+
+// ===
 
 function init_mouse() {
 	fc.mouse_x = -1

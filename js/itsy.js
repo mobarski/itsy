@@ -140,12 +140,6 @@ let my=e.clientY-bcr_top
 fc.mouse_x=parseInt(mx/ratio)-fc.camera_x
 fc.mouse_y=parseInt(my/ratio)-fc.camera_y
 }
-function set_touch_xy(e){let bcr=fc.cnv.getBoundingClientRect()
-let ratio=fc.scale
-let mx=e.clientX
-let my=e.clientY
-fc.mouse_x=parseInt(mx/ratio)
-fc.mouse_y=parseInt(my/ratio)}
 function on_mouse_move(e){set_mouse_xy(e)
 }
 function on_mouse_down(e){fc.xxx_ts=time()
@@ -169,6 +163,12 @@ fc.mouse_btn_queue.push(1)}
 function on_touch_end(e){e.preventDefault()
 set_touch_xy(e)
 fc.mouse_btn_queue.push(0)}
+function set_touch_xy(e){let bcr=fc.cnv.getBoundingClientRect()
+let ratio=fc.scale
+let mx=e.touches[0].clientX
+let my=e.touches[0].clientY
+fc.mouse_x=parseInt(mx/ratio)
+fc.mouse_y=parseInt(my/ratio)}
 function init_mouse(){fc.mouse_x=-1
 fc.mouse_y=-1
 fc.mouse_btn={1:0,2:0,3:0}
