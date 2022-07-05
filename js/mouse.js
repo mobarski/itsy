@@ -81,12 +81,18 @@ function on_touch_end(e) {
 	fc.mouse_btn_queue.push(0)
 }
 
+function on_touch_over(e) {
+	// TODO
+	e.preventDefault()
+	set_touch_xy(e)
+}
+
 function set_touch_xy(e) {
 	let bcr = fc.cnv.getBoundingClientRect()
 	let ratio = fc.scale
 	
-	let mx = e.targetTouches[0].pageX
-	let my = e.targetTouches[0].pageY
+	let mx = parseInt(e.targetTouches[0].pageX)
+	let my = parseInt(e.targetTouches[0].pageY)
 	
 	fc.mouse_x = parseInt(mx / ratio)
 	fc.mouse_y = parseInt(my / ratio)
@@ -115,6 +121,7 @@ function init_mouse() {
 	fc.cnv.addEventListener('touchstart', on_touch_start)
 	fc.cnv.addEventListener('touchmove',  on_touch_move)
 	fc.cnv.addEventListener('touchend',   on_touch_end)
+	fc.cnv.addEventListener('touchover',  on_touch_over)
 	//
 	fc.cnv.addEventListener('contextmenu', function(e){e.preventDefault()})
 }
