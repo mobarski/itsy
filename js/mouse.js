@@ -1,4 +1,6 @@
 
+// REF: https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events
+
 fc.has_mouse = true
 
 // TBD: mouse wheel as another return value ???
@@ -90,9 +92,9 @@ function set_touch_xy(e) {
 	fc.mouse_y = parseInt(my / ratio)
 	
 	dom_set('status')
-	for (let i in e.targetTouches) {
+	for (let i=0; i<e.targetTouches.length; i++) {
 		let t = e.targetTouches[i]
-		dom_add('status', `i:${i} x:${t.pageX} y:${t.pageY} force:${t.force} altitudeAngle:${t.altitudeAngle} radiusX:${t.radiusX} radiusY:${t.radiusY}`)
+		dom_add('status', `i:${i} x:${t.pageX} y:${t.pageY} force:${t.force} pressure:${t.pressure}  altitudeAngle:${t.altitudeAngle} radiusX:${t.radiusX} radiusY:${t.radiusY}`)
 	}
 }
 

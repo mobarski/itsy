@@ -169,8 +169,8 @@ let my=e.targetTouches[0].pageY
 fc.mouse_x=parseInt(mx/ratio)
 fc.mouse_y=parseInt(my/ratio)
 dom_set('status')
-for(let i in e.targetTouches){let t=e.targetTouches[i]
-dom_add('status',`i:${i} x:${t.pageX} y:${t.pageY} force:${t.force} altitudeAngle:${t.altitudeAngle} radiusX:${t.radiusX} radiusY:${t.radiusY}`)}}
+for(let i=0;i<e.targetTouches.length;i++){let t=e.targetTouches[i]
+dom_add('status',`i:${i} x:${t.pageX} y:${t.pageY} force:${t.force} pressure:${t.pressure}  altitudeAngle:${t.altitudeAngle} radiusX:${t.radiusX} radiusY:${t.radiusY}`)}}
 function init_mouse(){fc.mouse_x=-1
 fc.mouse_y=-1
 fc.mouse_btn={1:0,2:0,3:0}
