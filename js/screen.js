@@ -57,6 +57,7 @@ function init(width, height, scale=1, fps=30, colors, div_id='screen') {
 	}
 	
 	if (fc.has_mouse) { init_mouse() }
+	if (fc.has_sound) { init_sound() }
 }
 
 function camera(x, y) {
