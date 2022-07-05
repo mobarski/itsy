@@ -165,8 +165,8 @@ set_touch_xy(e)
 fc.mouse_btn_queue.push(0)}
 function set_touch_xy(e){let bcr=fc.cnv.getBoundingClientRect()
 let ratio=fc.scale
-let mx=e.touches[0].clientX
-let my=e.touches[0].clientY
+let mx=e.targetTouches[0].pageX
+let my=e.targetTouches[0].pageY
 fc.mouse_x=parseInt(mx/ratio)
 fc.mouse_y=parseInt(my/ratio)}
 function init_mouse(){fc.mouse_x=-1
