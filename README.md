@@ -40,12 +40,21 @@ the "old school" experience of developing software (i.e. PICO-8, TIC-80) but ...
 
 Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 
-### To explore the aesthetics of modern text-art
+### To explore the aesthetics of a specific set of graphic primitives
 
+Itsy ofers only 3 primitives for creating graphics: lines, rectangles, and bitmap fonts.
+Although it may seem limited it should be more than enough for creating simple games.
+
+Text-art examples:
 - https://pl.pinterest.com/search/pins/?q=textmode-game
 - https://pinterest.com/search/pins/?q=mrmotext
 - https://twitter.com/hashtag/MRMOTEXT
 - https://twitter.com/hashtag/playscii
+
+Line-art (vectors) examples:
+- https://www.youtube.com/watch?v=m1k6ZKvI4Ck
+- https://www.youtube.com/watch?v=pt3E3kpHAwc
+
 
 ## Minimal example
 
@@ -115,7 +124,7 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 ## screen
 
 ### init
-- `init(w, h, [scale], [fps], [colors])`
+- `init(w, h, scale=1, fps=30, [colors])`
 
 ### cls
 - `cls([col])`
@@ -134,10 +143,10 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 - Draws a line
 
 ### text
-- `text(str, x, y, [font], [col1], [col0])  →  [width, height]`
+- `text(str, x, y, font=0, [col1], [col0])  →  [width, height]`
 
 ### chr
-- `chr(i, x, y, [font], [col1], [col0])  →  [width, height]`
+- `chr(i, x, y, font=0, [col1], [col0])  →  [width, height]`
 
 
 ## screen (advanced)
@@ -166,8 +175,8 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 ## input
 
 ### mouse
-- `mouse() → [mx, my, m1, m2]`
-- Returns the mouse coordinates and state of both buttons
+- `mouse() → [mx, my, m1]`
+- Returns the mouse coordinates and state of the button
 - Button state: 3 → just pressed, 2 → held, 1 → just released, 0 → not pressed
 
 
@@ -236,6 +245,9 @@ Reference: ["Why Johny can't code"](https://www.salon.com/2006/09/14/basic_2/)
 
 ### fullscreen
 - `fullscreen()`
+
+### rescale
+- `rescale(scale)`
 
 ### time
 - `time() -> t`

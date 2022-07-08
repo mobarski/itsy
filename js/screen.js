@@ -10,24 +10,8 @@ fc.colors = [
 ]
 
 function init(width, height, scale=1, fps=30, colors, div_id='screen') {
-	let screen = document.getElementById(div_id)
-	screen.innerHTML = `<canvas id="main_canvas" width="${width*scale}" height="${height*scale}""></canvas>`
-	
-	fc.cnv = document.getElementById("main_canvas")
-	
-	fc.ctx = fc.cnv.getContext("2d")
-	fc.ctx.webkitImageSmoothingEnabled = false
-	fc.ctx.msImageSmoothingEnabled = false
-	fc.ctx.imageSmoothingEnabled = false
-	
-	// ENGINE_V2 - image/framebuffer based
-	fc.framebuffer = new ImageData(width, height)
-	fc.cnv_fb = document.createElement('canvas');
-	fc.cnv_fb.width = width;
-	fc.cnv_fb.height = height;
-	fc.ctx_fb = fc.cnv_fb.getContext('2d');
-	fc.ctx.scale(scale, scale)
-	
+
+	fc.screen = document.getElementById(div_id)
 	fc.scale = scale
 	fc.width = width
 	fc.height = height
@@ -35,6 +19,15 @@ function init(width, height, scale=1, fps=30, colors, div_id='screen') {
 	fc.camera_x = 0
 	fc.camera_y = 0
 	
+	init_cnv_ctx()
+	
+	// ENGINE_V2 - image/framebuffer based
+	fc.framebuffer = new ImageData(width, height)
+	fc.cnv_fb = document.createElement('canvas');
+	fc.cnv_fb.width = width;
+	fc.cnv_fb.height = height;
+	fc.ctx_fb = fc.cnv_fb.getContext('2d');
+		
 	fc.color = 1
 	if (colors) {
 		fc.colors = colors
@@ -193,4 +186,19 @@ function rect(x,y,w,h,col) {
 function flip() {
 	fc.ctx_fb.putImageData(fc.framebuffer, 0, 0)
 	fc.ctx.drawImage(fc.cnv_fb, 0, 0)
+}
+
+function rescale(scale) {
+	fc.scale = scale
+	init_cnv_ctx()
+}
+
+function init_cnv_ctx() {
+	fc.screen.innerHTML =  `<canvas id="main_canvas" width="${fc.width*fc.scale}" height="${fc.height*fc.scale}""></canvas>`
+	fc.cnv = document.getElementById("main_canvas")
+	fc.ctx = fc.cnv.getContext("2d")
+	fc.ctx.scale(fc.scale, fc.scale)
+	fc.ctx.webkitImageSmoothingEnabled = false
+	fc.ctx.msImageSmoothingEnabled = false
+	fc.ctx.imageSmoothingEnabled = false
 }

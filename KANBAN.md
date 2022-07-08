@@ -70,6 +70,7 @@
 
 # DONE
 
+- rescale
 - sound: piano key number -> midi note number
 - github pages: https://pages.github.com/  https://stackoverflow.com/questions/8446218/how-to-see-an-html-page-on-github-as-a-normal-rendered-html-page-to-see-preview
 - font: faster handling of chars that are not on the screen
@@ -104,15 +105,8 @@
 
 - option to add screen+fullscreen to document
 
-# MVP
+# TOPICS
 
-[x] screen
-[x] bank
-[ ] mouse
-[ ] sound
-[ ] docs: core
-[ ] docs: screen
-[ ] docs: bank
-[ ] docs: mouse
-[ ] docs: build
-[ ] examples
+- input
+- compatibility
+- sound

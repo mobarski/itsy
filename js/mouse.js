@@ -7,7 +7,7 @@ fc.has_mouse = true
 // TBD: mouse buttons in another function ???
 function mouse() {
 	//console.log('mouse',fc.mouse_x, fc.mouse_y, fc.mouse_btn)
-	return [fc.mouse_x, fc.mouse_y, fc.mouse_btn[1], fc.mouse_btn[2]]
+	return [fc.mouse_x, fc.mouse_y, fc.mouse_btn[1]]
 }
 
 // TODO: out of canvas behaviour

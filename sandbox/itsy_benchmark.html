@@ -19,14 +19,15 @@
 
 	function draw() {
 		cls(0)
+		let f = 0
 		let i = 0
-		let n = fc.font[0].rows * fc.font[0].cols
+		let n = fc.font[f].rows * fc.font[f].cols
 		for (let y=0; y<200; y += 8) {
 			for (let x=0; x<320; x += 8) {
 				if (TRANSPARENT) {
-					chr(i, x, y, 1, (i+fc.draw_cnt)% fc.colors.length)
+					chr(i, x, y, f, (i+fc.draw_cnt)% fc.colors.length)
 				} else {
-					chr(i, x, y, 1, (i+fc.draw_cnt)% fc.colors.length, fc.draw_cnt % fc.colors.length)
+					chr(i, x, y, f, (i+fc.draw_cnt)% fc.colors.length, fc.draw_cnt % fc.colors.length)
 				}
 				i = (i+1) % n
 			}
