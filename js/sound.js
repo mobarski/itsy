@@ -4,7 +4,7 @@ fc.freq = {} // key -> midi note number (0-127, 69 -> 440Hz [A4])
 fc.audio = new AudioContext()
 fc.ch = {}
 
-function channel(c, type='square', bpm=120, attack=0.1, release=0.3, volume=1.0, exp_attack=0, exp_release=0, detune=0, delay=0) {
+function channel(c, type='square', attack=0.1, release=0.3, volume=1.0, exp_attack=0, exp_release=0, detune=0, delay=0) {
 	// VOL
 	let vol = fc.audio.createGain()
 	vol.connect(fc.audio.destination)
@@ -34,7 +34,6 @@ function channel(c, type='square', bpm=120, attack=0.1, release=0.3, volume=1.0,
 	
 	fc.ch[c] = {
 		type:type,
-		bpm:bpm,
 		attack:attack,
 		release:release,
 		volume:volume,
@@ -47,8 +46,10 @@ function channel(c, type='square', bpm=120, attack=0.1, release=0.3, volume=1.0,
 	}
 }
 
-function snd(n, c=1, d=0) {
-	let t = 60/fc.ch[c].bpm * Math.pow(2,d) / 4
+// TODO: inf duration
+// TODO: slide frequency
+function snd(n, c=1, d=15) {
+	let t = d / fc.fps
 	console.log('snd', n, c, d, t)
 	if (!(n in fc.freq)) { return }
 	// TODO: first empty channel vol.gain.value<=0.0001

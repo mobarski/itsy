@@ -1,0 +1,67 @@
+<div id="screen" style="margin-left: 50px"></div>
+<a onclick='fullscreen()'>fullscreen</a/>
+
+<script src="../js/core.js"></script>
+<script src="../js/math.js"></script>
+<script src="../js/screen.js"></script>
+<script src="../js/experimental.js"></script>
+<script src="../js/font.js"></script>
+<script src="../js/rom.js"></script>
+<script src="../js/mouse.js"></script>
+<script src="../js/sound.js"></script>
+
+<script>
+
+	function proc_music() {
+		if (music.length==0) { return }
+		if (music[0][0]>frame) { return }
+		let [t,n] = music.shift()
+		snd(n)
+	}
+
+	async function boot() {
+		init(160,144,3,100)
+		channel(1,'triangle')
+		cls(15)
+		frame = 0
+		music = []
+	}
+
+	// C5 - 72
+	// D5 - 74
+	// E5 - 76
+	// F5 - 77
+	// G5 - 79
+	// ode-to-joy: 76 76 77 79 79 77 76 74 72 72 74 76 76 74 74
+	function update() {
+		frame += 1
+		let dt = 10
+		let [mx,my,mb] = mouse()
+		if (mb==3) {
+			t=frame
+			music.push([t+0*dt, 76])
+			music.push([t+1*dt, 76])
+			music.push([t+2*dt, 77])
+			music.push([t+3*dt, 79])
+			music.push([t+4*dt, 79])
+			music.push([t+5*dt, 77])
+			music.push([t+6*dt, 76])
+			music.push([t+7*dt, 74])
+			music.push([t+8*dt, 72])
+			music.push([t+9*dt, 72])
+			music.push([t+10*dt, 74])
+			music.push([t+11*dt, 76])
+			music.push([t+12*dt, 76])
+			music.push([t+13*dt, 74])
+			music.push([t+14*dt, 74])
+		}
+		proc_music()
+	}
+
+	function draw() {
+	}
+	
+	run(boot, update, draw)
+	
+</script>
+

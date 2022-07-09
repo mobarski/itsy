@@ -41,22 +41,16 @@ atan2=Math.atan2
 PI=Math.PI
 sqrt=Math.sqrt
 fc.colors=["#1a1c2c","#5d275d","#b13e53","#ef7d57","#ffcd75","#a7f070","#38b764","#257179","#29366f","#3b5dc9","#41a6f6","#73eff7","#f4f4f4","#94b0c2","#566c86","#333c57"]
-function init(width,height,scale=1,fps=30,colors,div_id='screen'){let screen=document.getElementById(div_id)
-screen.innerHTML=`<canvas id="main_canvas" width="${width*scale}" height="${height*scale}""></canvas>`
-fc.cnv=document.getElementById("main_canvas")
-fc.ctx=fc.cnv.getContext("2d")
-fc.ctx.webkitImageSmoothingEnabled=false
-fc.ctx.msImageSmoothingEnabled=false
-fc.ctx.imageSmoothingEnabled=false
-fc.framebuffer=new ImageData(width,height)
-fc.cnv_fb=document.createElement('canvas');fc.cnv_fb.width=width;fc.cnv_fb.height=height;fc.ctx_fb=fc.cnv_fb.getContext('2d');fc.ctx.scale(scale,scale)
+function init(width,height,scale=1,fps=30,colors,div_id='screen'){fc.screen=document.getElementById(div_id)
 fc.scale=scale
 fc.width=width
 fc.height=height
 fc.fps=fps
 fc.camera_x=0
 fc.camera_y=0
-fc.color=1
+init_cnv_ctx()
+fc.framebuffer=new ImageData(width,height)
+fc.cnv_fb=document.createElement('canvas');fc.cnv_fb.width=width;fc.cnv_fb.height=height;fc.ctx_fb=fc.cnv_fb.getContext('2d');fc.color=1
 if(colors){fc.colors=colors}
 pal()
 fc.rgb={}
@@ -129,8 +123,17 @@ data[j+2]=b
 }}}
 function flip(){fc.ctx_fb.putImageData(fc.framebuffer,0,0)
 fc.ctx.drawImage(fc.cnv_fb,0,0)}
+function rescale(scale){fc.scale=scale
+init_cnv_ctx()}
+function init_cnv_ctx(){fc.screen.innerHTML=`<canvas id="main_canvas" width="${fc.width*fc.scale}" height="${fc.height*fc.scale}""></canvas>`
+fc.cnv=document.getElementById("main_canvas")
+fc.ctx=fc.cnv.getContext("2d")
+fc.ctx.scale(fc.scale,fc.scale)
+fc.ctx.webkitImageSmoothingEnabled=false
+fc.ctx.msImageSmoothingEnabled=false
+fc.ctx.imageSmoothingEnabled=false}
 fc.has_mouse=true
-function mouse(){return[fc.mouse_x,fc.mouse_y,fc.mouse_btn[1],fc.mouse_btn[2]]}
+function mouse(){return[fc.mouse_x,fc.mouse_y,fc.mouse_btn[1]]}
 function set_mouse_xy(e){let bcr=fc.cnv.getBoundingClientRect()
 let ratio=bcr.height/fc.height
 let bcr_top=bcr.top
@@ -205,7 +208,7 @@ fc.has_sound=true
 fc.freq={}
 fc.audio=new AudioContext()
 fc.ch={}
-function channel(c,type='square',bpm=120,attack=0.1,release=0.3,volume=1.0,exp_attack=0,exp_release=0,detune=0,delay=0){let vol=fc.audio.createGain()
+function channel(c,type='square',attack=0.1,release=0.3,volume=1.0,exp_attack=0,exp_release=0,detune=0,delay=0){let vol=fc.audio.createGain()
 vol.connect(fc.audio.destination)
 vol.gain.setValueAtTime(0.00001,fc.audio.currentTime)
 let osc
@@ -219,8 +222,8 @@ osc.type=type}
 osc.detune=detune
 osc.connect(vol)
 osc.start(0)
-fc.ch[c]={type:type,bpm:bpm,attack:attack,release:release,volume:volume,delay:delay,detune:detune,exp_attack:exp_attack,exp_release:exp_release,osc:osc,vol:vol}}
-function snd(n,c=1,d=0){let t=60/fc.ch[c].bpm*Math.pow(2,d)/4
+fc.ch[c]={type:type,attack:attack,release:release,volume:volume,delay:delay,detune:detune,exp_attack:exp_attack,exp_release:exp_release,osc:osc,vol:vol}}
+function snd(n,c=1,d=15){let t=d/fc.fps
 console.log('snd',n,c,d,t)
 if(!(n in fc.freq)){return}
 if(!(c in fc.ch)){return}

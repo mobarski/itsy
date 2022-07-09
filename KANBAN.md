@@ -1,11 +1,9 @@
 # ACTIVE
 
 - mouse: fix registering button presses outside of the canvas
-- touch
+- mouse: mouse() -> mouse.x mouse.y mouse.button
 
 - screen: support float values as args (cast to int) ??? -> performance hit :(
-
-- built-in [MRMOTEXT](https://mrmotarius.itch.io/mrmotext) charset by Mrmo Tarius
 
 - math api
 
@@ -33,6 +31,8 @@
 - screen: flip support in blit (ala pyxel w<0 h<0)
 - screen: fill pattern arg in rect
 
+- built-in [MRMOTEXT](https://mrmotarius.itch.io/mrmotext) charset by Mrmo Tarius
+
 - text control codes
 - text special commands
 
@@ -50,6 +50,8 @@
 - screen capture (gif/png)
 
 - screen: rect/flip -> webgl version -> benchmark
+
+- option to add screen+fullscreen to document
 
 # TBD
 
@@ -70,6 +72,7 @@
 
 # DONE
 
+- touch
 - rescale
 - sound: piano key number -> midi note number
 - github pages: https://pages.github.com/  https://stackoverflow.com/questions/8446218/how-to-see-an-html-page-on-github-as-a-normal-rendered-html-page-to-see-preview
@@ -101,12 +104,15 @@
 - global variables -> fc object
 - js/py directories
 
-# REJECTED
-
-- option to add screen+fullscreen to document
 
 # TOPICS
 
-- input
-- compatibility
-- sound
+- input - ALMOST DONE (1 button mouse only, fix out of canvas)
+- screen - ALMOST DONE - (fix fullscreen, fix fullscreen proportions on ipad)
+- sound & music - ACTIVE
+- math - ALMOST DONE (docs)
+- examples
+
+- font_load
+- storage
+- network

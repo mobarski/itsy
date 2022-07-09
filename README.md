@@ -175,7 +175,7 @@ Line-art (vectors) examples:
 ## input
 
 ### mouse
-- `mouse() → [mx, my, m1]`
+- `mouse() → [mx, my, mb]`
 - Returns the mouse coordinates and state of the button
 - Button state: 3 → just pressed, 2 → held, 1 → just released, 0 → not pressed
 
@@ -186,10 +186,10 @@ Line-art (vectors) examples:
 - `snd(n, c=-1, d=0, volume=1.0)`
 - n - midi note number (0-127), 69 → A4 (440HZ) 
 - c - channel
-- d - duration: 2 → full note, 1 → half note, 0 → quarter, -1 → eight note, -2 → sixteenth note
+- d - duration (frames)
 
 ### channel
-- `channel(c, volume=1.0, type='square', bpm=120, attack=0.1, release=0.3)`
+- `channel(c, volume=1.0, type='square', attack=0.1, release=0.3)`
 
 ## math
 
