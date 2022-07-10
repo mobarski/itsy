@@ -1,7 +1,6 @@
 # ACTIVE
 
 - mouse: fix registering button presses outside of the canvas
-- mouse: mouse() -> mouse.x mouse.y mouse.button
 
 - screen: support float values as args (cast to int) ??? -> performance hit :(
 
@@ -54,6 +53,8 @@
 - option to add screen+fullscreen to document
 
 # TBD
+
+- mouse: mouse() -> mouse.x mouse.y mouse.button
 
 - run api -> boot,update,draw vs update,draw,boot vs draw,update,boot
 
