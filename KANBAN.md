@@ -11,6 +11,7 @@
 # TODO
 
 - text/chr: yscale,xscale -> scale ??? (0:1,1 1:1,2 2:2,1 3:2,2)
+- text/chr: bold
 
 - core api docs (main / init / update / draw / run)
 
